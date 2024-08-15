@@ -34,6 +34,10 @@ robolectric = "4.10.3"
 androidXJunit = "1.1.5"
 androidxEspresso = "3.5.1"
 
+# Other
+detekt = "1.23.6"
+twitterComposeRule = "0.0.26"
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
@@ -45,6 +49,8 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 ## Dependency of the include build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+detekt-gradlePlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
+detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
 
 # Kotlin
 kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin" }
@@ -73,3 +79,5 @@ robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectr
 androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidXJunit" }
 androidx-espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxEspresso" }
 
+# Other
+twitter-compose-rule = { module = "com.twitter.compose.rules:detekt", version.ref = "twitterComposeRule" }
