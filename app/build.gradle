@@ -1,5 +1,6 @@
 plugins {
     id("yumemi.primitive.android.application")
+    id("yumemi.primitive.detekt")
 }
 
 android {

@@ -12,6 +12,7 @@ java {
 dependencies {
     implementation(libs.android.gradlePlugin)
     implementation(libs.kotlin.gradlePlugin)
+    implementation(libs.detekt.gradlePlugin)
 }
 
 gradlePlugin {
@@ -23,6 +24,10 @@ gradlePlugin {
         register("AndroidLibrary") {
             id = "yumemi.primitive.android.library"
             implementationClass = "primitive.LibraryPlugin"
+        }
+        register("DetektPlugin") {
+            id = "yumemi.primitive.detekt"
+            implementationClass = "primitive.DetektPlugin"
         }
     }
 }
