@@ -8,6 +8,7 @@ import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
 
+@Suppress("UNCHECKED_CAST")
 internal fun Project.configureDetekt() {
     extensions.getByType<DetektExtension>().apply {
         toolVersion = libs.version("detekt")
@@ -25,7 +26,8 @@ internal fun Project.configureDetekt() {
         autoCorrect = false
     }
 
-    @Suppress("UNCHECKED_CAST")
+    // 各モジュールでの Detekt 実行結果を一つにまとめるタスク（CIでコメントする際に使用）
+    // FYI: https://detekt.dev/docs/introduction/reporting/#kotlin-dsl
     val reportMerge = if (!rootProject.tasks.names.contains("reportMerge")) {
         rootProject.tasks.register("reportMerge", ReportMergeTask::class) {
             output.set(rootProject.layout.buildDirectory.file("reports/detekt/merge.xml"))
