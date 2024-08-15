@@ -5,14 +5,15 @@ versionCode = "1"
 
 # SDK
 minSdk = "27"
-targetSdk = "33"
-compileSdk = "33"
+targetSdk = "34"
+compileSdk = "34"
 
 # Gradle
 gradle = "8.4.2"
 
 # Kotlin
-kotlin = "2.0.0"
+kotlin = "2.0.10"
+kotlinCoroutines = "1.8.1"
 
 # AndroidX
 androidxCore = "1.13.1"
@@ -20,7 +21,7 @@ androidxAppCompat = "1.7.0"
 
 # Google
 material = "1.12.0"
-ksp = "2.0.0-1.0.21"
+ksp = "2.0.10-1.0.24"
 
 # Moshi
 moshi = "1.13.0"
@@ -36,6 +37,7 @@ androidxEspresso = "3.5.1"
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradle" }
 android-library = { id = "com.android.library", version.ref = "gradle" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 [libraries]
@@ -49,8 +51,8 @@ kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8" }
 
 # KotlinX
-kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin" }
-kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlin" }
+kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinCoroutines" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinCoroutines" }
 
 # AndroidX
 androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
