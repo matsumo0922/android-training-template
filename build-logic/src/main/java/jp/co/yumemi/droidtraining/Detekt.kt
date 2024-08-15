@@ -1,6 +1,5 @@
 package jp.co.yumemi.droidtraining
 
-import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import io.gitlab.arturbosch.detekt.report.ReportMergeTask
 import org.gradle.api.Project
@@ -26,6 +25,7 @@ internal fun Project.configureDetekt() {
         autoCorrect = false
     }
 
+    @Suppress("UNCHECKED_CAST")
     val reportMerge = if (!rootProject.tasks.names.contains("reportMerge")) {
         rootProject.tasks.register("reportMerge", ReportMergeTask::class) {
             output.set(rootProject.layout.buildDirectory.file("reports/detekt/merge.xml"))
@@ -35,15 +35,18 @@ internal fun Project.configureDetekt() {
     }
 
     plugins.withType<io.gitlab.arturbosch.detekt.DetektPlugin> {
-        tasks.withType<Detekt> detekt@{
-            exclude {
-                it.file.relativeTo(projectDir).startsWith("build")
-            }
-
+        tasks.withType<io.gitlab.arturbosch.detekt.Detekt> detekt@{
             finalizedBy(reportMerge)
 
+            source = project.files("./").asFileTree
+
+            include("**/*.kt")
+            include("**/*.kts")
+            exclude("**/resources/**")
+            exclude("**/build/**")
+
             reportMerge.configure {
-                input.from(this@detekt.xmlReportFile)
+                input.from(this@detekt.xmlReportFile) // or .sarifReportFile
             }
         }
     }
