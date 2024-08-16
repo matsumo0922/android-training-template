@@ -39,8 +39,7 @@ class YumemiWeatherTest {
 
     @Before
     fun setup() {
-        val context = RuntimeEnvironment.getApplication()
-        yumemiWeather = YumemiWeather(context, random)
+        yumemiWeather = YumemiWeather(random)
         moshi = Moshi.Builder()
             .add(Date::class.java, DateAdapter())
             .build()
@@ -83,6 +82,7 @@ class YumemiWeatherTest {
 
     @Test(expected = NetworkOnMainThreadException::class)
     fun fetchJsonWeatherAsync() = runTest {
-        yumemiWeather.fetchJsonWeatherAsync(testRequest)
+        val context = RuntimeEnvironment.getApplication()
+        yumemiWeather.fetchJsonWeatherAsync(context, testRequest)
     }
 }

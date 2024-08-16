@@ -14,7 +14,6 @@ import java.util.Date
 import kotlin.random.Random
 
 class YumemiWeather(
-    private val context: Context,
     private val random: Random = Random.Default,
 ) {
 
@@ -27,7 +26,7 @@ class YumemiWeather(
         return fetchSimpleWeather()
     }
 
-    suspend fun fetchWeatherAsync(): String {
+    suspend fun fetchWeatherAsync(context: Context): String {
         if (context.mainLooper.isCurrentThread) {
             throw NetworkOnMainThreadException()
         }
@@ -59,7 +58,7 @@ class YumemiWeather(
         return responseAdapter.toJson(response)
     }
 
-    suspend fun fetchJsonWeatherAsync(json: String): String {
+    suspend fun fetchJsonWeatherAsync(context: Context, json: String): String {
         if (context.mainLooper.isCurrentThread) {
             throw NetworkOnMainThreadException()
         }
