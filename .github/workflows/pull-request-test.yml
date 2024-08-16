@@ -34,7 +34,7 @@ jobs:
         run: ./gradlew app:koverHtmlReportDebug
 
       - name: Copy files
-        run:
+        run: |
           mkdir -p "pr-${{ github.event.pull_request.number }}/kover"
           cp -r app/build/reports/kover/htmlDebug/. "pr-${{ github.event.pull_request.number }}/kover"
 
