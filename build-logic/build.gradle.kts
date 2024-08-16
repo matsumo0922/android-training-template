@@ -12,6 +12,7 @@ java {
 dependencies {
     implementation(libs.android.gradlePlugin)
     implementation(libs.kotlin.gradlePlugin)
+    implementation(libs.kover.gradlePlugin)
     implementation(libs.detekt.gradlePlugin)
 }
 
@@ -28,6 +29,10 @@ gradlePlugin {
         register("DetektPlugin") {
             id = "yumemi.primitive.detekt"
             implementationClass = "primitive.DetektPlugin"
+        }
+        register("KoverPlugin") {
+            id = "yumemi.primitive.kover"
+            implementationClass = "primitive.KoverPlugin"
         }
     }
 }

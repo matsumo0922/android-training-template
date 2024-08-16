@@ -34,3 +34,11 @@ fun Project.setupAndroid() {
         }
     }
 }
+
+fun Project.isApplicationProject(): Boolean {
+    return project.extensions.findByType(BaseAppModuleExtension::class.java) != null
+}
+
+fun Project.isLibraryProject(): Boolean {
+    return project.extensions.findByType(LibraryExtension::class.java) != null
+}

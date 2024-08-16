@@ -37,6 +37,7 @@ androidxEspresso = "3.5.1"
 # Other
 detekt = "1.23.6"
 twitterComposeRule = "0.0.26"
+kover = "0.8.3"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -50,6 +51,7 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 ## Dependency of the include build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+kover-gradlePlugin = { module = "org.jetbrains.kotlinx:kover-gradle-plugin", version.ref = "kover" }
 detekt-gradlePlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
 detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
 
