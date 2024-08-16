@@ -71,3 +71,8 @@ class YumemiWeather(
 }
 
 class UnknownException : Throwable()
+
+data class Sample(
+    val test: Int,
+    val test2: String
+)

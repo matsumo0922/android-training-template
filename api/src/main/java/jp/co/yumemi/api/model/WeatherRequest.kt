@@ -7,5 +7,4 @@ import java.util.Date
 internal data class WeatherRequest(
     val area: String,
     val date: Date,
-    val test: Int
 )
