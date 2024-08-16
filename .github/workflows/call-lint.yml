@@ -3,14 +3,13 @@ name: Lint
 on:
   workflow_call:
 
-permissions:
-  pull-requests: write
-
 jobs:
   detekt:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    permissions:
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
