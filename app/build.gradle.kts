@@ -2,6 +2,7 @@ plugins {
     id("yumemi.primitive.android.application")
     id("yumemi.primitive.detekt")
     id("yumemi.primitive.kover")
+    id("yumemi.primitive.compose")
 }
 
 android {

@@ -18,6 +18,7 @@ kotlinCoroutines = "1.8.1"
 # AndroidX
 androidxCore = "1.13.1"
 androidxAppCompat = "1.7.0"
+androidxActivity = "1.9.0"
 androidxCompose = "2024.06.00"
 
 # Google
@@ -68,15 +69,16 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 # AndroidX
 androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppCompat" }
+androidx-activity = { module = "androidx.activity:activity-ktx", version.ref = "androidxActivity" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
 
 # Compose
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidxCompose" }
 compose-runtime = { module = "androidx.compose.runtime:runtime" }
-compose-foundation = { module = "androidx.compose.foundation:foundation-android" }
+compose-foundation = { module = "androidx.compose.foundation:foundation" }
 compose-ui = { module = "androidx.compose.ui:ui" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
-compose-material = { module = "androidx.compose.material:material" }
 compose-material3 = { module = "androidx.compose.material3:material3" }
 compose-material-icons = { module = "androidx.compose.material:material-icons-extended" }
 
@@ -103,10 +105,11 @@ twitter-compose-rule = { module = "com.twitter.compose.rules:detekt", version.re
 ui-implementations = [
     "androidx-core",
     "androidx-appcompat",
+    "androidx-activity",
+    "androidx-activity-compose",
     "compose-runtime",
     "compose-foundation",
     "compose-ui",
-    "compose-material",
     "compose-material3",
     "compose-material-icons",
     "material",
