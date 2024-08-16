@@ -26,6 +26,10 @@ gradlePlugin {
             id = "yumemi.primitive.android.library"
             implementationClass = "primitive.LibraryPlugin"
         }
+        register("ComposePlugin") {
+            id = "yumemi.primitive.compose"
+            implementationClass = "primitive.ComposePlugin"
+        }
         register("DetektPlugin") {
             id = "yumemi.primitive.detekt"
             implementationClass = "primitive.DetektPlugin"

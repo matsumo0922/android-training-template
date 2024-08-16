@@ -43,6 +43,7 @@ captures/
 *.iml
 /.idea/*
 !/.idea/gradle.xml
+!/.idea/codeInsightSettings.xml
 
 # Keystore files
 # Uncomment the following lines if you do not want to check your keystore files in.

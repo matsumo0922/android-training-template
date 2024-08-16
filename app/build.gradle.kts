@@ -2,6 +2,7 @@ plugins {
     id("yumemi.primitive.android.application")
     id("yumemi.primitive.detekt")
     id("yumemi.primitive.kover")
+    id("yumemi.primitive.compose")
 }
 
 android {
@@ -10,10 +11,10 @@ android {
 
 dependencies {
     implementation(project(":api"))
+    implementation(project(":core:ui"))
+    implementation(project(":core:model"))
 
-    implementation(libs.androidx.core)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    implementation(libs.bundles.ui.implementations)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
