@@ -11,6 +11,8 @@ android {
 
 dependencies {
     implementation(project(":api"))
+    implementation(project(":core:ui"))
+    implementation(project(":core:model"))
 
     implementation(libs.bundles.ui.implementations)
 
