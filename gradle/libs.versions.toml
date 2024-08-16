@@ -19,6 +19,7 @@ kotlinCoroutines = "1.8.1"
 androidxCore = "1.13.1"
 androidxAppCompat = "1.7.0"
 androidxActivity = "1.9.1"
+androidxLifecycle = "2.8.4"
 androidxCompose = "2024.06.00"
 
 # Google
@@ -37,6 +38,7 @@ androidXJunit = "1.1.5"
 androidxEspresso = "3.5.1"
 
 # Other
+koin = "3.5.1"
 detekt = "1.23.6"
 twitterComposeRule = "0.0.26"
 kover = "0.8.3"
@@ -71,6 +73,9 @@ androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidxCore
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppCompat" }
 androidx-activity = { module = "androidx.activity:activity-ktx", version.ref = "androidxActivity" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
+androidx-lifecycle-common = { module = "androidx.lifecycle:lifecycle-common", version.ref = "androidxLifecycle" }
+androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
 
 # Compose
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidxCompose" }
@@ -84,6 +89,12 @@ compose-material-icons = { module = "androidx.compose.material:material-icons-ex
 
 # Google
 material = { module = "com.google.android.material:material", version.ref = "material" }
+
+# Koin
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin" }
+koin-core = { module = "io.insert-koin:koin-core"  }
+koin-android = { module = "io.insert-koin:koin-android" }
+koin-compose = { module = "io.insert-koin:koin-androidx-compose" }
 
 # Moshi
 moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
@@ -107,10 +118,19 @@ ui-implementations = [
     "androidx-appcompat",
     "androidx-activity",
     "androidx-activity-compose",
+    "androidx-lifecycle-common",
+    "androidx-lifecycle-runtime-compose",
+    "androidx-lifecycle-viewmodel-compose",
     "compose-runtime",
     "compose-foundation",
     "compose-ui",
     "compose-material3",
     "compose-material-icons",
     "material",
+]
+
+koin = [
+    "koin-core",
+    "koin-compose",
+    "koin-android",
 ]
