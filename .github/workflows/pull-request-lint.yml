@@ -47,6 +47,9 @@ jobs:
         run: cat ./build/reports/detekt/merge.xml |
           reviewdog -f=checkstyle -name="detekt" -reporter="github-pr-review"
 
+      - if: steps.detekt.outcome == 'failure'
+        run: exit 1
+
       - name: Comment lint check success
         if: steps.detekt.outcome == 'success'
         uses: marocchino/sticky-pull-request-comment@v2
