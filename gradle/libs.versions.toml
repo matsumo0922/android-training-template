@@ -18,7 +18,7 @@ kotlinCoroutines = "1.8.1"
 # AndroidX
 androidxCore = "1.13.1"
 androidxAppCompat = "1.7.0"
-androidxActivity = "1.9.0"
+androidxActivity = "1.9.1"
 androidxCompose = "2024.06.00"
 
 # Google
