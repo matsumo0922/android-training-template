@@ -77,7 +77,7 @@ class YumemiWeatherTest {
         val responseAdapter = moshi.adapter(WeatherResponse::class.java)
         val response = responseAdapter.fromJson(value)!!
         Truth.assertThat(response.maxTemp).isEqualTo(0)
-        Truth.assertThat(response.minTemp).isEqualTo(0)
+        Truth.assertThat(response.minTemp).isEqualTo(1)
         Truth.assertThat(response.weather).isEqualTo("sunny")
     }
 
