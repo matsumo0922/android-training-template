@@ -14,7 +14,6 @@ class KoverPlugin : Plugin<Project> {
             configureKover()
 
             if (isApplicationProject()) {
-                println("Hello ${project.name}!")
                 dependencies {
                     "kover"(project(":api"))
                 }
