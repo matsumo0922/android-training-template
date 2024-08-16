@@ -43,7 +43,7 @@ class YumemiWeather(
             .build()
 
         val requestAdapter = moshi.adapter(WeatherRequest::class.java)
-        val request = requestAdapter.fromJson(json) ?: throw IllegalArgumentException()
+        val request = requestAdapter.fromJson(json) ?: throw IllegalArgumentException("Failed to parse the JSON into a WeatherRequest object.")
 
         val responseAdapter = moshi.adapter(WeatherResponse::class.java)
 
