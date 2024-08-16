@@ -14,6 +14,7 @@ jobs:
     timeout-minutes: 20
     permissions:
       contents: write
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -55,4 +56,4 @@ jobs:
           recreate: true
           message: |
             ## Test coverage report :rocket:
-            https://matsumo0922/github.io/android-training-template/pr-${{ github.event.pull_request.number }}/kover/index.html
+            https://matsumo0922.github.io/android-training-template/pr-${{ github.event.pull_request.number }}/kover/index.html
