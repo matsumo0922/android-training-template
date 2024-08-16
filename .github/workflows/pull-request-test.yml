@@ -1,0 +1,59 @@
+name: CI Test
+
+on:
+  pull_request_target:
+    types: [ opened, reopened, synchronize, ready_for_review, converted_to_draft ]
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  unit-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: "refs/pull/${{ github.event.pull_request.number }}/merge"
+
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Testing app
+        run: ./gradlew app:koverHtmlReportDebug
+
+      - name: Copy files
+        run: |
+          mkdir -p "pr-${{ github.event.pull_request.number }}/kover"
+          cp -r app/build/reports/kover/htmlDebug/. "pr-${{ github.event.pull_request.number }}/kover"
+
+      - name: Deploy coverage
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: "pr-${{ github.event.pull_request.number }}"
+            destination_dir: "pr-${{ github.event.pull_request.number }}"
+            keep_files: true
+
+      - name: Comment lint check success
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: kover
+          recreate: true
+          message: |
+            ## Test coverage report :rocket:
+            https://matsumo0922.github.io/android-training-template/pr-${{ github.event.pull_request.number }}/kover/index.html

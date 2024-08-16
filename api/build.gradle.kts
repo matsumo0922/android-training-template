@@ -3,6 +3,7 @@
 plugins {
     id("yumemi.primitive.android.library")
     id("yumemi.primitive.detekt")
+    id("yumemi.primitive.kover")
 }
 
 android {

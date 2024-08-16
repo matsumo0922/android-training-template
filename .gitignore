@@ -21,6 +21,9 @@ out/
 .gradle/
 build/
 
+# Kotlin
+.kotlin
+
 # Local configuration file (sdk path, etc)
 local.properties
 
@@ -74,3 +77,6 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+# For Mac users
+.DS_Store

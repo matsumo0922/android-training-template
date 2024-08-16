@@ -32,5 +32,17 @@ fun Project.setupAndroid() {
             sourceCompatibility = JavaVersion.VERSION_17
             targetCompatibility = JavaVersion.VERSION_17
         }
+
+        testOptions {
+            unitTests.isIncludeAndroidResources = true
+        }
     }
+}
+
+fun Project.isApplicationProject(): Boolean {
+    return project.extensions.findByType(BaseAppModuleExtension::class.java) != null
+}
+
+fun Project.isLibraryProject(): Boolean {
+    return project.extensions.findByType(LibraryExtension::class.java) != null
 }
