@@ -21,6 +21,7 @@ androidxAppCompat = "1.7.0"
 androidxActivity = "1.9.1"
 androidxLifecycle = "2.8.4"
 androidxCompose = "2024.06.00"
+androidxComposeConstraintLayout = "1.0.1"
 
 # Google
 material = "1.12.0"
@@ -90,6 +91,7 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 compose-material3 = { module = "androidx.compose.material3:material3" }
 compose-material-icons = { module = "androidx.compose.material:material-icons-extended" }
+compose-constraint-layout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "androidxComposeConstraintLayout" }
 
 # Google
 material = { module = "com.google.android.material:material", version.ref = "material" }
@@ -132,6 +134,7 @@ ui-implementations = [
     "compose-ui",
     "compose-material3",
     "compose-material-icons",
+    "compose-constraint-layout",
     "material",
 ]
 

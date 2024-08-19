@@ -1,6 +1,7 @@
 package jp.co.yumemi.droidtraining.components
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -11,6 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import jp.co.yumemi.droidtraining.core.ui.R
 import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
 import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
@@ -31,7 +33,7 @@ internal fun MainActionButtonsSection(
 
         MainActionButton(
             modifier = Modifier.weight(1f),
-            text = stringResource(R.string.main_weather_action_reload),
+            text = stringResource(R.string.main_weather_action_next),
             onClick = {},
         )
     }
@@ -51,9 +53,11 @@ private fun MainActionButton(
             containerColor = Color.Black,
             contentColor = Color.White,
         ),
+        contentPadding = PaddingValues()
     ) {
         Text(
-            text = text,
+            text = text.uppercase(),
+            fontSize = 18.sp,
         )
     }
 }
