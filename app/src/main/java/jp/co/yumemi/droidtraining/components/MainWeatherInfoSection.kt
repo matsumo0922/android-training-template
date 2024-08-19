@@ -61,7 +61,7 @@ internal fun MainWeatherInfoSection(
 
 @ComponentPreviews
 @Composable
-private fun MainWeatherInfoSectionPreview() {
+private fun MainWeatherInfoSectionPreviewSunny() {
     YumemiTheme {
         MainWeatherInfoSection(
             weather = Weather.Sunny,
@@ -71,7 +71,27 @@ private fun MainWeatherInfoSectionPreview() {
 
 @ComponentPreviews
 @Composable
-private fun MainWeatherInfoSectionPreview2() {
+private fun MainWeatherInfoSectionPreviewCloudy() {
+    YumemiTheme {
+        MainWeatherInfoSection(
+            weather = Weather.Cloudy,
+        )
+    }
+}
+
+@ComponentPreviews
+@Composable
+private fun MainWeatherInfoSectionPreviewRainy() {
+    YumemiTheme {
+        MainWeatherInfoSection(
+            weather = Weather.Rainy,
+        )
+    }
+}
+
+@ComponentPreviews
+@Composable
+private fun MainWeatherInfoSectionPreviewSnowy() {
     YumemiTheme {
         MainWeatherInfoSection(
             weather = Weather.Snowy,
