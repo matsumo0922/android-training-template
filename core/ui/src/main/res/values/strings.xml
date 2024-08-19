@@ -4,7 +4,4 @@
     <!-- Main -->
     <string name="main_weather_action_reload">Reload</string>
     <string name="main_weather_action_next">Next</string>
-
-    <!-- Error -->
-    <string name="error_fetching_weather">Failed to fetch weather.</string>
 </resources>
