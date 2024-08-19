@@ -14,7 +14,7 @@ import jp.co.yumemi.droidtraining.core.ui.colors.LightBlueColorScheme
 
 @Composable
 fun YumemiTheme(
-    themeConfig: ThemeConfig = ThemeConfig.Light,
+    themeConfig: ThemeConfig = ThemeConfig.System,
     enableDynamicTheme: Boolean = false,
     content: @Composable () -> Unit,
 ) {
