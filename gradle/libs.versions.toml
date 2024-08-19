@@ -134,7 +134,6 @@ ui-implementations = [
     "compose-ui",
     "compose-material3",
     "compose-material-icons",
-    "compose-constraint-layout",
     "material",
 ]
 
