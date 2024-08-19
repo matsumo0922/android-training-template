@@ -53,7 +53,7 @@ private fun MainActionButton(
             containerColor = Color.Black,
             contentColor = Color.White,
         ),
-        contentPadding = PaddingValues()
+        contentPadding = PaddingValues(),
     ) {
         Text(
             text = text.uppercase(),
