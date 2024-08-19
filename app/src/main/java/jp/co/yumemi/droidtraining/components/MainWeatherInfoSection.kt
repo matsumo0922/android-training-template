@@ -98,3 +98,13 @@ private fun MainWeatherInfoSectionPreviewSnowy() {
         )
     }
 }
+
+@ComponentPreviews
+@Composable
+private fun MainWeatherInfoSectionPreviewUnknown() {
+    YumemiTheme {
+        MainWeatherInfoSection(
+            weather = Weather.Unknown,
+        )
+    }
+}
