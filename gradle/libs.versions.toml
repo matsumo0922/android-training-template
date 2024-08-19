@@ -26,6 +26,10 @@ androidxCompose = "2024.06.00"
 material = "1.12.0"
 ksp = "2.0.10-1.0.24"
 
+# Koin
+koin = "3.5.1"
+koinAnnotations = "1.4.0-RC3"
+
 # Moshi
 moshi = "1.13.0"
 
@@ -38,7 +42,6 @@ androidXJunit = "1.1.5"
 androidxEspresso = "3.5.1"
 
 # Other
-koin = "3.5.1"
 detekt = "1.23.6"
 twitterComposeRule = "0.0.26"
 kover = "0.8.3"
@@ -57,6 +60,7 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 kover-gradlePlugin = { module = "org.jetbrains.kotlinx:kover-gradle-plugin", version.ref = "kover" }
+ksp-gradlePlugin = { module = "com.google.devtools.ksp:symbol-processing-gradle-plugin", version.ref = "ksp" }
 detekt-gradlePlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
 detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
 
@@ -95,6 +99,8 @@ koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core"  }
 koin-android = { module = "io.insert-koin:koin-android" }
 koin-compose = { module = "io.insert-koin:koin-androidx-compose" }
+koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koinAnnotations" }
+koin-ksp-compiler = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koinAnnotations" }
 
 # Moshi
 moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
@@ -133,4 +139,5 @@ koin = [
     "koin-core",
     "koin-compose",
     "koin-android",
+    "koin-annotations",
 ]

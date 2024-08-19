@@ -1,9 +1,10 @@
 package jp.co.yumemi.droidtraining.di
 
-import jp.co.yumemi.api.di.apiModule
+import jp.co.yumemi.api.di.ApiModule
 import org.koin.core.KoinApplication
+import org.koin.ksp.generated.module
 
 fun KoinApplication.applyModules() {
-    modules(appModule)
-    modules(apiModule)
+    modules(AppModule().module)
+    modules(ApiModule().module)
 }

@@ -1,10 +1,8 @@
 package jp.co.yumemi.api.di
 
-import jp.co.yumemi.api.YumemiWeather
-import org.koin.dsl.module
+import org.koin.core.annotation.ComponentScan
+import org.koin.core.annotation.Module
 
-val apiModule = module {
-    single {
-        YumemiWeather()
-    }
-}
+@Module
+@ComponentScan("jp.co.yumemi.api")
+class ApiModule

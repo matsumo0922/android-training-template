@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
                     contentAlignment = Alignment.Center,
                 ) {
                     Text(
-                        text = "Hello World!",
+                        text = viewModel.fetchWeather(),
                         style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.onSurface,
                     )

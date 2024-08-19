@@ -1,9 +1,8 @@
 package jp.co.yumemi.droidtraining.di
 
-import jp.co.yumemi.droidtraining.MainViewModel
-import org.koin.androidx.viewmodel.dsl.viewModelOf
-import org.koin.dsl.module
+import org.koin.core.annotation.ComponentScan
+import org.koin.core.annotation.Module
 
-val appModule = module {
-    viewModelOf(::MainViewModel)
-}
+@Module
+@ComponentScan("jp.co.yumemi.droidtraining")
+class AppModule

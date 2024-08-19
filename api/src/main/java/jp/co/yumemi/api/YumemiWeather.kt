@@ -10,9 +10,11 @@ import jp.co.yumemi.api.model.Weather
 import jp.co.yumemi.api.model.WeatherRequest
 import jp.co.yumemi.api.model.WeatherResponse
 import kotlinx.coroutines.delay
+import org.koin.core.annotation.Single
 import java.util.Date
 import kotlin.random.Random
 
+@Single
 class YumemiWeather(
     private val random: Random = Random.Default,
 ) {

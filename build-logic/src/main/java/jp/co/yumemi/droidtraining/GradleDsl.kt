@@ -75,6 +75,12 @@ private fun DependencyHandlerScope.api(
     add("api", artifact)
 }
 
+fun DependencyHandlerScope.ksp(
+    artifact: MinimalExternalModuleDependency,
+) {
+    add("ksp", artifact)
+}
+
 fun Project.java(action: JavaPluginExtension.() -> Unit) {
     extensions.configure(action)
 }
