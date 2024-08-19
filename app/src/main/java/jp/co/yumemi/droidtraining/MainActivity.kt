@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                     statusBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) { shouldUseDarkTheme },
                     navigationBarStyle = SystemBarStyle.auto(lightScrim, darkScrim) { shouldUseDarkTheme },
                 )
-                onDispose {  }
+                onDispose { }
             }
 
             YumemiTheme(
