@@ -80,7 +80,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/8)
+    (0/14)
   </span>
 </td>
 </tr>
@@ -94,12 +94,13 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package jp.co.yumemi.droidtraining.di
 &nbsp;
-&nbsp;import jp.co.yumemi.api.di.apiModule
+&nbsp;import jp.co.yumemi.api.di.ApiModule
 &nbsp;import org.koin.core.KoinApplication
+&nbsp;import org.koin.ksp.generated.module
 &nbsp;
 &nbsp;fun KoinApplication.applyModules() {
-<b class="nc">&nbsp;    modules(appModule)</b>
-<b class="nc">&nbsp;    modules(apiModule)</b>
+<b class="nc">&nbsp;    modules(AppModule().module)</b>
+<b class="nc">&nbsp;    modules(ApiModule().module)</b>
 &nbsp;}
 </code>
 </pre>
@@ -124,7 +125,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-16 09:53</div>
+    <div style="float:right;">generated on 2024-08-19 04:17</div>
 </div>
 </body>
 </html>

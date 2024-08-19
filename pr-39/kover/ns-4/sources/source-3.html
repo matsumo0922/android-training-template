@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>app Coverage Report > MainViewModel</title>
+  <title>app Coverage Report > YumemiApplication</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -22,7 +22,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     <a href="../index.html">jp.co.yumemi.droidtraining</a>
 </div>
 
-<h1>Coverage Summary for Class: MainViewModel (jp.co.yumemi.droidtraining)</h1>
+<h1>Coverage Summary for Class: YumemiApplication (jp.co.yumemi.droidtraining)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -49,7 +49,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 </th>
 </tr>
 <tr>
-  <td class="name">MainViewModel</td>
+  <td class="name">YumemiApplication</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -63,7 +63,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/1)
+    (0/3)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -72,7 +72,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/1)
+    (0/6)
   </span>
 </td>
 <td class="coverageStat">
@@ -80,7 +80,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/2)
+    (0/20)
   </span>
 </td>
 </tr>
@@ -94,9 +94,24 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package jp.co.yumemi.droidtraining
 &nbsp;
-&nbsp;import androidx.lifecycle.ViewModel
+&nbsp;import android.app.Application
+&nbsp;import jp.co.yumemi.droidtraining.di.applyModules
+&nbsp;import org.koin.android.ext.koin.androidContext
+&nbsp;import org.koin.android.ext.koin.androidLogger
+&nbsp;import org.koin.core.context.startKoin
 &nbsp;
-<b class="nc">&nbsp;class MainViewModel : ViewModel()</b>
+<b class="nc">&nbsp;class YumemiApplication : Application() {</b>
+&nbsp;
+&nbsp;    override fun onCreate() {
+<b class="nc">&nbsp;        super.onCreate()</b>
+&nbsp;
+<b class="nc">&nbsp;        startKoin {</b>
+<b class="nc">&nbsp;            androidContext(this@YumemiApplication)</b>
+<b class="nc">&nbsp;            androidLogger()</b>
+<b class="nc">&nbsp;            applyModules()</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
 </code>
 </pre>
 </div>
@@ -120,7 +135,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-16 09:53</div>
+    <div style="float:right;">generated on 2024-08-19 04:17</div>
 </div>
 </body>
 </html>

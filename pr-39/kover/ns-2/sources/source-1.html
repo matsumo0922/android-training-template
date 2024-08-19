@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>app Coverage Report > ApiModuleKt</title>
+  <title>app Coverage Report > ApiModule</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -22,7 +22,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     <a href="../index.html">jp.co.yumemi.api.di</a>
 </div>
 
-<h1>Coverage Summary for Class: ApiModuleKt (jp.co.yumemi.api.di)</h1>
+<h1>Coverage Summary for Class: ApiModule (jp.co.yumemi.api.di)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -49,7 +49,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 </th>
 </tr>
 <tr>
-  <td class="name">ApiModuleKt</td>
+  <td class="name">ApiModule</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -63,7 +63,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/3)
+    (0/1)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -72,7 +72,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/3)
+    (0/1)
   </span>
 </td>
 <td class="coverageStat">
@@ -80,7 +80,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/14)
+    (0/2)
   </span>
 </td>
 </tr>
@@ -94,14 +94,12 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package jp.co.yumemi.api.di
 &nbsp;
-&nbsp;import jp.co.yumemi.api.YumemiWeather
-&nbsp;import org.koin.dsl.module
+&nbsp;import org.koin.core.annotation.ComponentScan
+&nbsp;import org.koin.core.annotation.Module
 &nbsp;
-<b class="nc">&nbsp;val apiModule = module {</b>
-<b class="nc">&nbsp;    single {</b>
-<b class="nc">&nbsp;        YumemiWeather()</b>
-&nbsp;    }
-&nbsp;}
+<b class="nc">&nbsp;@Module</b>
+&nbsp;@ComponentScan(&quot;jp.co.yumemi.api&quot;)
+&nbsp;class ApiModule
 </code>
 </pre>
 </div>
@@ -125,7 +123,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-16 09:53</div>
+    <div style="float:right;">generated on 2024-08-19 04:17</div>
 </div>
 </body>
 </html>
