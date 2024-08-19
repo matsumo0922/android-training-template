@@ -19,6 +19,8 @@ import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
 
 @Composable
 internal fun MainActionButtonsSection(
+    onClickReload: () -> Unit,
+    onClickNext: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -28,13 +30,13 @@ internal fun MainActionButtonsSection(
         MainActionButton(
             modifier = Modifier.weight(1f),
             text = stringResource(R.string.main_weather_action_reload),
-            onClick = {},
+            onClick = onClickReload,
         )
 
         MainActionButton(
             modifier = Modifier.weight(1f),
             text = stringResource(R.string.main_weather_action_next),
-            onClick = {},
+            onClick = onClickNext,
         )
     }
 }
@@ -66,6 +68,9 @@ private fun MainActionButton(
 @Composable
 private fun MainActionButtonsSectionPreview() {
     YumemiTheme {
-        MainActionButtonsSection()
+        MainActionButtonsSection(
+            onClickReload = {},
+            onClickNext = {},
+        )
     }
 }

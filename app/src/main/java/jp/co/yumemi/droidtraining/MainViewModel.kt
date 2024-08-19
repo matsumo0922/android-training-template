@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import jp.co.yumemi.api.YumemiWeather
 import jp.co.yumemi.droidtraining.core.common.suspendRunCatching
+import jp.co.yumemi.droidtraining.core.model.Weather
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -20,8 +21,15 @@ class MainViewModel(
 
     fun reloadWeather() {
         viewModelScope.launch {
-            suspendRunCatching { yumemiWeather.fetchSimpleWeather() }.onSuccess { weather ->
-                _uiState.value = uiState.value.copy(weather = weather)
+            suspendRunCatching {
+                val text = yumemiWeather.fetchSimpleWeather()
+                val weather = Weather.fromString(text)
+
+                MainWeatherUiState(
+                    weather = weather
+                )
+            }.onSuccess {
+                _uiState.value = it
             }
         }
     }
@@ -29,5 +37,5 @@ class MainViewModel(
 
 @Stable
 data class MainWeatherUiState(
-    val weather: String = "",
+    val weather: Weather = Weather.Sunny,
 )
