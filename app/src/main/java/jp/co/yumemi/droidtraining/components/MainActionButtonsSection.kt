@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import jp.co.yumemi.droidtraining.core.ui.R
+import jp.co.yumemi.droidtraining.R
 import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
 import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
 

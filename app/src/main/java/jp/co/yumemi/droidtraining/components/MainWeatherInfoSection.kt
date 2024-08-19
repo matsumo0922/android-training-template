@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import jp.co.yumemi.droidtraining.R
 import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
 import jp.co.yumemi.droidtraining.core.ui.center
 import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
@@ -24,7 +25,7 @@ internal fun MainWeatherInfoSection(
             modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(1f),
-            painter = painterResource(jp.co.yumemi.droidtraining.core.ui.R.drawable.vec_sunny),
+            painter = painterResource(R.drawable.vec_sunny),
             contentDescription = "Weather Icon",
         )
 
