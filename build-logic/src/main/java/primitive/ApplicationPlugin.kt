@@ -1,12 +1,17 @@
 package primitive
 
 import jp.co.yumemi.droidtraining.androidApplication
+import jp.co.yumemi.droidtraining.bundle
+import jp.co.yumemi.droidtraining.configureKsp
+import jp.co.yumemi.droidtraining.implementation
+import jp.co.yumemi.droidtraining.ksp
+import jp.co.yumemi.droidtraining.library
 import jp.co.yumemi.droidtraining.libs
 import jp.co.yumemi.droidtraining.setupAndroid
 import jp.co.yumemi.droidtraining.version
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.internal.impldep.com.jcraft.jsch.ConfigRepository.defaultConfig
+import org.gradle.kotlin.dsl.dependencies
 
 class ApplicationPlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -19,6 +24,7 @@ class ApplicationPlugin : Plugin<Project> {
 
             androidApplication {
                 setupAndroid()
+                configureKsp()
 
                 compileSdk = libs.version("compileSdk").toInt()
                 defaultConfig.targetSdk = libs.version("targetSdk").toInt()
@@ -30,6 +36,12 @@ class ApplicationPlugin : Plugin<Project> {
                     versionName = libs.version("versionName")
                     versionCode = libs.version("versionCode").toInt()
                 }
+            }
+
+            dependencies {
+                implementation(project.dependencies.platform(libs.library("koin-bom")))
+                implementation(libs.bundle("koin"))
+                ksp(libs.library("koin-ksp-compiler"))
             }
         }
     }
