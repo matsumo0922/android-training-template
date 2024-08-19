@@ -13,6 +13,7 @@ dependencies {
     implementation(project(":api"))
     implementation(project(":core:ui"))
     implementation(project(":core:model"))
+    implementation(project(":core:common"))
 
     implementation(libs.bundles.ui.implementations)
 
