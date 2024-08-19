@@ -26,7 +26,7 @@ class MainViewModel(
                 val weather = Weather.fromString(text)
 
                 MainWeatherUiState(
-                    weather = weather
+                    weather = weather,
                 )
             }.onSuccess {
                 _uiState.value = it
