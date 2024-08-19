@@ -110,6 +110,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;
 &nbsp;@Single
 &nbsp;class YumemiWeather(
+&nbsp;    private val context: Context,
 &nbsp;    private val random: Random = Random.Default,
 &nbsp;) {
 &nbsp;
@@ -122,7 +123,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;        return fetchSimpleWeather()
 &nbsp;    }
 &nbsp;
-&nbsp;    suspend fun fetchWeatherAsync(context: Context): String {
+&nbsp;    suspend fun fetchWeatherAsync(): String {
 &nbsp;        if (context.mainLooper.isCurrentThread) {
 &nbsp;            throw NetworkOnMainThreadException()
 &nbsp;        }
@@ -154,7 +155,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;        return responseAdapter.toJson(response)
 &nbsp;    }
 &nbsp;
-&nbsp;    suspend fun fetchJsonWeatherAsync(context: Context, json: String): String {
+&nbsp;    suspend fun fetchJsonWeatherAsync(json: String): String {
 &nbsp;        if (context.mainLooper.isCurrentThread) {
 &nbsp;            throw NetworkOnMainThreadException()
 &nbsp;        }
@@ -189,7 +190,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-19 04:17</div>
+    <div style="float:right;">generated on 2024-08-19 04:21</div>
 </div>
 </body>
 </html>

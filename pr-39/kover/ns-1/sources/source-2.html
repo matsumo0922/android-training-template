@@ -65,18 +65,18 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 </td>
 <td class="coverageStat">
   <span class="percent">
-    78.6%
+    79.3%
   </span>
   <span class="absValue">
-    (22/28)
+    (23/29)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    68.4%
+    68.8%
   </span>
   <span class="absValue">
-    (104/152)
+    (108/157)
   </span>
 </td>
 </tr>
@@ -108,18 +108,18 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 </td>
 <td class="coverageStat">
   <span class="percent">
-    78.6%
+    79.3%
   </span>
   <span class="absValue">
-    (22/28)
+    (23/29)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    68.4%
+    68.8%
   </span>
   <span class="absValue">
-    (104/152)
+    (108/157)
   </span>
 </td>
 </tr>
@@ -148,6 +148,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;
 &nbsp;@Single
 &nbsp;class YumemiWeather(
+<b class="fc">&nbsp;    private val context: Context,</b>
 <b class="fc">&nbsp;    private val random: Random = Random.Default,</b>
 &nbsp;) {
 &nbsp;
@@ -160,7 +161,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 <b class="fc">&nbsp;        return fetchSimpleWeather()</b>
 &nbsp;    }
 &nbsp;
-&nbsp;    suspend fun fetchWeatherAsync(context: Context): String {
+&nbsp;    suspend fun fetchWeatherAsync(): String {
 <b class="nc">&nbsp;        if (context.mainLooper.isCurrentThread) {</b>
 <b class="nc">&nbsp;            throw NetworkOnMainThreadException()</b>
 &nbsp;        }
@@ -192,7 +193,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 <b class="fc">&nbsp;        return responseAdapter.toJson(response)</b>
 &nbsp;    }
 &nbsp;
-&nbsp;    suspend fun fetchJsonWeatherAsync(context: Context, json: String): String {
+&nbsp;    suspend fun fetchJsonWeatherAsync(json: String): String {
 <b class="pc">&nbsp;        if (context.mainLooper.isCurrentThread) {</b>
 <b class="fc">&nbsp;            throw NetworkOnMainThreadException()</b>
 &nbsp;        }
@@ -227,7 +228,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-19 04:17</div>
+    <div style="float:right;">generated on 2024-08-19 04:21</div>
 </div>
 </body>
 </html>
