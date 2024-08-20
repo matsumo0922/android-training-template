@@ -15,6 +15,7 @@ dependencies {
     implementation(project(":core:model"))
 
     implementation(libs.bundles.ui.implementations)
+    implementation(libs.compose.constraint.layout)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
