@@ -15,7 +15,7 @@ import java.util.Date
 import kotlin.random.Random
 
 @Single
-class YumemiWeather(
+class YumemiWeatherSource(
     private val context: Context,
     private val random: Random = Random.Default,
 ) {

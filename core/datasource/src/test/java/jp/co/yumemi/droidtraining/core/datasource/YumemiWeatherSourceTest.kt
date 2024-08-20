@@ -19,10 +19,10 @@ import kotlin.random.Random
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [30])
-class YumemiWeatherTest {
+class YumemiWeatherSourceTest {
 
     private val random = mockk<Random>()
-    private lateinit var yumemiWeather: YumemiWeather
+    private lateinit var yumemiWeatherSource: YumemiWeatherSource
 
     private val weathers = listOf("sunny", "cloudy", "rainy")
 
@@ -40,7 +40,7 @@ class YumemiWeatherTest {
     @Before
     fun setup() {
         val context = RuntimeEnvironment.getApplication()
-        yumemiWeather = YumemiWeather(context, random)
+        yumemiWeatherSource = YumemiWeatherSource(context, random)
         moshi = Moshi.Builder()
             .add(Date::class.java, DateAdapter())
             .build()
@@ -50,7 +50,7 @@ class YumemiWeatherTest {
     fun fetchSimpleWeather() {
         weathers.forEachIndexed { index, expected ->
             every { random.nextInt(any()) } returns index
-            val value = yumemiWeather.fetchSimpleWeather()
+            val value = yumemiWeatherSource.fetchSimpleWeather()
             Truth.assertThat(value).isEqualTo(expected)
         }
     }
@@ -59,21 +59,21 @@ class YumemiWeatherTest {
     fun fetchThrowsWeather() {
         every { random.nextInt(any(), any()) } returns 0
         every { random.nextInt(any()) } returns 0
-        val value = yumemiWeather.fetchThrowsWeather()
+        val value = yumemiWeatherSource.fetchThrowsWeather()
         Truth.assertThat(value).isEqualTo("sunny")
     }
 
     @Test(expected = UnknownException::class)
     fun fetchThrowsWeather_throwError() {
         every { random.nextInt(any(), any()) } returns 4
-        yumemiWeather.fetchThrowsWeather()
+        yumemiWeatherSource.fetchThrowsWeather()
     }
 
     @Test
     fun fetchJsonWeather() {
         every { random.nextInt(any(), any()) } returns 0
         every { random.nextInt(any()) } returns 0
-        val value = yumemiWeather.fetchJsonWeather(testRequest)
+        val value = yumemiWeatherSource.fetchJsonWeather(testRequest)
         val responseAdapter = moshi.adapter(WeatherResponse::class.java)
         val response = responseAdapter.fromJson(value)!!
         Truth.assertThat(response.maxTemp).isEqualTo(0)
@@ -83,6 +83,6 @@ class YumemiWeatherTest {
 
     @Test(expected = NetworkOnMainThreadException::class)
     fun fetchJsonWeatherAsync() = runTest {
-        yumemiWeather.fetchJsonWeatherAsync(testRequest)
+        yumemiWeatherSource.fetchJsonWeatherAsync(testRequest)
     }
 }
