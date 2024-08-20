@@ -23,6 +23,7 @@ import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
 import jp.co.yumemi.droidtraining.core.ui.bold
 import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
 
+@Suppress("ModifierMissing")
 @Composable
 fun SimpleAlertDialog(
     title: String,
@@ -126,4 +127,3 @@ private fun SimpleAlertDialogPreviewCaution() {
         )
     }
 }
-
