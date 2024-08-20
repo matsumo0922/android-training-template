@@ -1,68 +1,99 @@
 package jp.co.yumemi.droidtraining.core.ui.components
 
-import androidx.compose.material3.AlertDialog
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
+import jp.co.yumemi.droidtraining.core.ui.bold
 import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
 
 @Composable
 fun SimpleAlertDialog(
-    title: String? = null,
-    message: String? = null,
+    title: String,
+    message: String,
     positiveButtonText: String? = null,
     negativeButtonText: String? = null,
     onPositiveButtonClick: () -> Unit = {},
     onNegativeButtonClick: () -> Unit = {},
+    isCaution: Boolean = false,
     onDismissRequest: () -> Unit,
 ) {
-    AlertDialog(
-        title = title?.letComposable {
-            Text(
-                text = it,
-                style = MaterialTheme.typography.titleMedium,
-            )
-        },
-        text = message?.letComposable {
-            Text(
-                text = it,
-                style = MaterialTheme.typography.bodyMedium,
-            )
-        },
-        confirmButton = {
-            if (positiveButtonText != null) {
-                TextButton(
-                    onClick = {
-                        onPositiveButtonClick.invoke()
-                        onDismissRequest.invoke()
-                    }
-                ) {
-                    Text(positiveButtonText)
-                }
-            }
-        },
-        dismissButton = {
-            if (negativeButtonText != null) {
-                TextButton(
-                    onClick = {
-                        onNegativeButtonClick.invoke()
-                        onDismissRequest.invoke()
-                    },
-                ) {
-                    Text(negativeButtonText)
-                }
-            }
-        },
+    Dialog(
         onDismissRequest = onDismissRequest,
-    )
-}
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .clip(RoundedCornerShape(16.dp))
+                .background(MaterialTheme.colorScheme.surface)
+                .padding(24.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                text = title,
+                style = MaterialTheme.typography.titleMedium.bold(),
+                color = MaterialTheme.colorScheme.onSurface,
+            )
 
-private fun <T> (T).letComposable(f: @Composable (T) -> Unit): (@Composable () -> Unit)? {
-    return run {
-        {
-            f(this)
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                text = message,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+
+            Row(
+                modifier = Modifier
+                    .padding(top = 8.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                if (negativeButtonText != null) {
+                    OutlinedButton(
+                        modifier = Modifier.weight(1f),
+                        shape = RoundedCornerShape(4.dp),
+                        onClick = {
+                            onNegativeButtonClick.invoke()
+                            onDismissRequest.invoke()
+                        },
+                    ) {
+                        Text(text = negativeButtonText)
+                    }
+                }
+
+                if (positiveButtonText != null) {
+                    Button(
+                        modifier = Modifier.weight(1f),
+                        shape = RoundedCornerShape(4.dp),
+                        colors = ButtonDefaults.buttonColors(if (isCaution) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary),
+                        onClick = {
+                            onPositiveButtonClick.invoke()
+                            onDismissRequest.invoke()
+                        },
+                    ) {
+                        Text(text = positiveButtonText)
+                    }
+                }
+            }
         }
     }
 }
@@ -76,8 +107,21 @@ private fun SimpleAlertDialogPreview() {
             message = "Message",
             positiveButtonText = "Positive",
             negativeButtonText = "Negative",
-            onPositiveButtonClick = {},
-            onNegativeButtonClick = {},
+            onDismissRequest = {},
+        )
+    }
+}
+
+@ComponentPreviews
+@Composable
+private fun SimpleAlertDialogPreviewCaution() {
+    YumemiTheme {
+        SimpleAlertDialog(
+            title = "Title",
+            message = "Message",
+            positiveButtonText = "Positive",
+            negativeButtonText = "Negative",
+            isCaution = true,
             onDismissRequest = {},
         )
     }

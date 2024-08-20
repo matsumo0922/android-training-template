@@ -51,6 +51,8 @@ class MainActivity : AppCompatActivity() {
                 MainScreen(
                     modifier = Modifier.fillMaxSize(),
                     uiState = uiState,
+                    viewEvent = viewEvent,
+                    onResetViewEvent = viewModel::resetViewEvent,
                     onClickReload = viewModel::reloadWeather,
                     onClickNext = { /* do noting */ },
                 )

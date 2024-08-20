@@ -40,6 +40,12 @@ class MainViewModel(
             }
         }
     }
+
+    fun resetViewEvent() {
+        viewModelScope.launch {
+            _viewEvent.send(MainWeatherViewEvent.Idle)
+        }
+    }
 }
 
 @Stable
