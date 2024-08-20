@@ -314,13 +314,13 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;    onClickNext: () -&gt; Unit,
 <b class="nc">&nbsp;    modifier: Modifier = Modifier,</b>
 <b class="nc">&nbsp;) {</b>
-<b class="nc">&nbsp;    var isDisplayedError by remember { mutableStateOf(false) }</b>
+<b class="nc">&nbsp;    var isErrorDisplayed by remember { mutableStateOf(false) }</b>
 &nbsp;
 <b class="nc">&nbsp;    LaunchedEffect(viewEvent) {</b>
 <b class="nc">&nbsp;        when (viewEvent) {</b>
 <b class="nc">&nbsp;            MainWeatherViewEvent.Idle -&gt; Unit</b>
 <b class="nc">&nbsp;            MainWeatherViewEvent.ShowError -&gt; {</b>
-<b class="nc">&nbsp;                isDisplayedError = true</b>
+<b class="nc">&nbsp;                isErrorDisplayed = true</b>
 &nbsp;            }
 &nbsp;        }
 &nbsp;    }
@@ -361,7 +361,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;        }
 &nbsp;    }
 &nbsp;
-<b class="nc">&nbsp;    if (isDisplayedError) {</b>
+<b class="nc">&nbsp;    if (isErrorDisplayed) {</b>
 <b class="nc">&nbsp;        SimpleAlertDialog(</b>
 <b class="nc">&nbsp;            title = stringResource(R.string.error_title_common),</b>
 <b class="nc">&nbsp;            message = stringResource(R.string.error_message_common),</b>
@@ -372,7 +372,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;            },
 <b class="nc">&nbsp;            onDismissRequest = {</b>
 <b class="nc">&nbsp;                onResetViewEvent.invoke()</b>
-<b class="nc">&nbsp;                isDisplayedError = false</b>
+<b class="nc">&nbsp;                isErrorDisplayed = false</b>
 &nbsp;            },
 &nbsp;        )
 &nbsp;    }
@@ -415,7 +415,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-20 03:13</div>
+    <div style="float:right;">generated on 2024-08-20 05:09</div>
 </div>
 </body>
 </html>
