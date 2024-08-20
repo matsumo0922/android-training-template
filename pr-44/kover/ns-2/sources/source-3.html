@@ -104,7 +104,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/73)
+    (0/75)
   </span>
 </td>
   </tr>
@@ -235,7 +235,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/456)
+    (0/458)
   </span>
 </td>
 </tr>
@@ -248,6 +248,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package jp.co.yumemi.droidtraining.components
 &nbsp;
+&nbsp;import androidx.compose.animation.AnimatedVisibility
 &nbsp;import androidx.compose.foundation.layout.Box
 &nbsp;import androidx.compose.foundation.layout.fillMaxSize
 &nbsp;import androidx.compose.foundation.layout.padding
@@ -263,7 +264,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;import jp.co.yumemi.droidtraining.R
 &nbsp;import jp.co.yumemi.droidtraining.core.model.Weather
 &nbsp;import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
-&nbsp;import jp.co.yumemi.droidtraining.core.ui.components.LoadingView
+&nbsp;import jp.co.yumemi.droidtraining.core.ui.components.LoadingScreen
 &nbsp;import jp.co.yumemi.droidtraining.core.ui.components.SimpleAlertDialog
 &nbsp;import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
 &nbsp;
@@ -312,10 +313,14 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;                )
 &nbsp;            }
 &nbsp;
-<b class="nc">&nbsp;            LoadingView(</b>
+<b class="nc">&nbsp;            AnimatedVisibility(</b>
 <b class="nc">&nbsp;                modifier = Modifier.fillMaxSize(),</b>
 <b class="nc">&nbsp;                visible = screenState is MainWeatherScreenState.Loading,</b>
-&nbsp;            )
+&nbsp;            ) {
+&nbsp;                LoadingScreen(
+&nbsp;                    modifier = Modifier.fillMaxSize(),
+&nbsp;                )
+&nbsp;            }
 <b class="nc">&nbsp;        }</b>
 &nbsp;    }
 &nbsp;
@@ -332,7 +337,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;    }
 <b class="nc">&nbsp;}</b>
 &nbsp;
-<b class="nc">&nbsp;@ComponentPreviews</b>
+&nbsp;@ComponentPreviews
 &nbsp;@Composable
 <b class="nc">&nbsp;private fun MainScreenPreview() {</b>
 <b class="nc">&nbsp;    YumemiTheme {</b>
@@ -369,7 +374,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-20 05:24</div>
+    <div style="float:right;">generated on 2024-08-20 15:39</div>
 </div>
 </body>
 </html>
