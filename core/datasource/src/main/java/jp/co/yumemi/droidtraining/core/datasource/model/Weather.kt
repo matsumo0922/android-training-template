@@ -1,4 +1,4 @@
-package jp.co.yumemi.api.model
+package jp.co.yumemi.droidtraining.core.datasource.model
 
 internal enum class Weather {
     Sunny, Cloudy, Rainy, Snow

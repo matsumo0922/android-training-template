@@ -1,4 +1,4 @@
-package jp.co.yumemi.api.model
+package jp.co.yumemi.droidtraining.core.datasource.model
 
 import com.squareup.moshi.JsonClass
 import java.util.Date

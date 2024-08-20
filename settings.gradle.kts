@@ -18,7 +18,7 @@ dependencyResolutionManagement {
 }
 
 include(":app")
-include(":api")
+include(":core:datasource")
 include(":core:ui")
 include(":core:model")
 include(":core:common")
