@@ -97,7 +97,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/119)
+    (0/118)
   </span>
 </td>
   </tr>
@@ -177,7 +177,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/218)
+    (0/217)
   </span>
 </td>
 </tr>
@@ -222,7 +222,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 <b class="nc">&nbsp;            val darkScrim = Color.argb(0x80, 0x1b, 0x1b, 0x1b)</b>
 &nbsp;
 <b class="nc">&nbsp;            val uiState by viewModel.uiState.collectAsStateWithLifecycle()</b>
-<b class="nc">&nbsp;            val viewEvent by viewModel.viewEvent.collectAsStateWithLifecycle(MainWeatherViewEvent.Idle)</b>
+<b class="nc">&nbsp;            val screenState by viewModel.screenState.collectAsStateWithLifecycle()</b>
 &nbsp;
 &nbsp;            // LaunchedEffect は Dispatch が必要なので、起動時は DisposableEffect の方が若干早く実行される（らしい）
 &nbsp;            // FYI: https://github.com/android/nowinandroid/pull/330/files#r999831539
@@ -241,8 +241,8 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 <b class="nc">&nbsp;                MainScreen(</b>
 <b class="nc">&nbsp;                    modifier = Modifier.fillMaxSize(),</b>
 <b class="nc">&nbsp;                    uiState = uiState,</b>
-<b class="nc">&nbsp;                    viewEvent = viewEvent,</b>
-<b class="nc">&nbsp;                    onResetViewEvent = viewModel::resetViewEvent,</b>
+<b class="nc">&nbsp;                    screenState = screenState,</b>
+<b class="nc">&nbsp;                    onResetViewEvent = viewModel::resetScreenState,</b>
 <b class="nc">&nbsp;                    onClickReload = viewModel::reloadWeather,</b>
 <b class="nc">&nbsp;                    onClickNext = { /* do noting */ },</b>
 &nbsp;                )
@@ -273,7 +273,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-20 03:35</div>
+    <div style="float:right;">generated on 2024-08-20 05:24</div>
 </div>
 </body>
 </html>

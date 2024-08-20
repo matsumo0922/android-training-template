@@ -104,7 +104,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/75)
+    (0/73)
   </span>
 </td>
   </tr>
@@ -235,7 +235,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/458)
+    (0/456)
   </span>
 </td>
 </tr>
@@ -248,21 +248,18 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package jp.co.yumemi.droidtraining.components
 &nbsp;
-&nbsp;import androidx.compose.animation.AnimatedVisibility
-&nbsp;import androidx.compose.foundation.background
 &nbsp;import androidx.compose.foundation.layout.Box
 &nbsp;import androidx.compose.foundation.layout.fillMaxSize
 &nbsp;import androidx.compose.foundation.layout.padding
 &nbsp;import androidx.compose.material3.Scaffold
 &nbsp;import androidx.compose.runtime.Composable
 &nbsp;import androidx.compose.ui.Modifier
-&nbsp;import androidx.compose.ui.graphics.Color
 &nbsp;import androidx.compose.ui.res.stringResource
 &nbsp;import androidx.compose.ui.unit.dp
 &nbsp;import androidx.constraintlayout.compose.ConstraintLayout
 &nbsp;import androidx.constraintlayout.compose.Dimension
+&nbsp;import jp.co.yumemi.droidtraining.MainWeatherScreenState
 &nbsp;import jp.co.yumemi.droidtraining.MainWeatherUiState
-&nbsp;import jp.co.yumemi.droidtraining.MainWeatherViewEvent
 &nbsp;import jp.co.yumemi.droidtraining.R
 &nbsp;import jp.co.yumemi.droidtraining.core.model.Weather
 &nbsp;import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
@@ -273,7 +270,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;@Composable
 &nbsp;internal fun MainScreen(
 &nbsp;    uiState: MainWeatherUiState,
-&nbsp;    viewEvent: MainWeatherViewEvent,
+&nbsp;    screenState: MainWeatherScreenState,
 &nbsp;    onResetViewEvent: () -&gt; Unit,
 &nbsp;    onClickReload: () -&gt; Unit,
 &nbsp;    onClickNext: () -&gt; Unit,
@@ -315,20 +312,14 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;                )
 &nbsp;            }
 &nbsp;
-<b class="nc">&nbsp;            AnimatedVisibility(</b>
+<b class="nc">&nbsp;            LoadingView(</b>
 <b class="nc">&nbsp;                modifier = Modifier.fillMaxSize(),</b>
-<b class="nc">&nbsp;                visible = viewEvent is MainWeatherViewEvent.Loading,</b>
-&nbsp;            ) {
-&nbsp;                LoadingView(
-&nbsp;                    modifier = Modifier
-&nbsp;                        .fillMaxSize()
-&nbsp;                        .background(Color.Black.copy(alpha = 0.5f)),
-&nbsp;                )
-&nbsp;            }
+<b class="nc">&nbsp;                visible = screenState is MainWeatherScreenState.Loading,</b>
+&nbsp;            )
 <b class="nc">&nbsp;        }</b>
 &nbsp;    }
 &nbsp;
-<b class="nc">&nbsp;    if (viewEvent is MainWeatherViewEvent.ShowError) {</b>
+<b class="nc">&nbsp;    if (screenState is MainWeatherScreenState.Error) {</b>
 <b class="nc">&nbsp;        SimpleAlertDialog(</b>
 <b class="nc">&nbsp;            title = stringResource(R.string.error_title_common),</b>
 <b class="nc">&nbsp;            message = stringResource(R.string.error_message_common),</b>
@@ -341,14 +332,14 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;    }
 <b class="nc">&nbsp;}</b>
 &nbsp;
-&nbsp;@ComponentPreviews
+<b class="nc">&nbsp;@ComponentPreviews</b>
 &nbsp;@Composable
 <b class="nc">&nbsp;private fun MainScreenPreview() {</b>
 <b class="nc">&nbsp;    YumemiTheme {</b>
 &nbsp;        MainScreen(
 &nbsp;            modifier = Modifier.fillMaxSize(),
 &nbsp;            uiState = MainWeatherUiState(weather = Weather.Snowy),
-&nbsp;            viewEvent = MainWeatherViewEvent.Idle,
+&nbsp;            screenState = MainWeatherScreenState.Idle,
 &nbsp;            onResetViewEvent = {},
 &nbsp;            onClickReload = {},
 &nbsp;            onClickNext = {},
@@ -378,7 +369,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-20 03:35</div>
+    <div style="float:right;">generated on 2024-08-20 05:24</div>
 </div>
 </body>
 </html>
