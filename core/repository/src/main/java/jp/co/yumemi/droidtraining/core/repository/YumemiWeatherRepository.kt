@@ -17,27 +17,27 @@ interface YumemiWeatherRepository {
 
 @Single
 class YumemiWeatherRepositoryImpl(
-    private val yumemiWeatherSource: YumemiWeatherSource,
+    private val weatherSource: YumemiWeatherSource,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : YumemiWeatherRepository {
 
     override suspend fun fetchSimpleWeather(): Weather = withContext(ioDispatcher) {
-        Weather.valueOf(yumemiWeatherSource.fetchSimpleWeather())
+        Weather.valueOf(weatherSource.fetchSimpleWeather())
     }
 
     override suspend fun fetchWeatherAsync(): Weather = withContext(ioDispatcher) {
-        Weather.valueOf(yumemiWeatherSource.fetchWeatherAsync())
+        Weather.valueOf(weatherSource.fetchWeatherAsync())
     }
 
     override suspend fun fetchThrowsWeather(): Weather = withContext(ioDispatcher) {
-        Weather.valueOf(yumemiWeatherSource.fetchThrowsWeather())
+        Weather.valueOf(weatherSource.fetchThrowsWeather())
     }
 
     override suspend fun fetchJsonWeather(json: String): Weather = withContext(ioDispatcher) {
-        Weather.valueOf(yumemiWeatherSource.fetchJsonWeather(json))
+        Weather.valueOf(weatherSource.fetchJsonWeather(json))
     }
 
     override suspend fun fetchJsonWeatherAsync(json: String): Weather = withContext(ioDispatcher) {
-        Weather.valueOf(yumemiWeatherSource.fetchJsonWeatherAsync(json))
+        Weather.valueOf(weatherSource.fetchJsonWeatherAsync(json))
     }
 }
