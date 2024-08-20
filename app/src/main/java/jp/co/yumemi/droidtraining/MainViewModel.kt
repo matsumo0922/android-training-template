@@ -3,8 +3,8 @@ package jp.co.yumemi.droidtraining
 import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import jp.co.yumemi.droidtraining.core.datasource.YumemiWeather
 import jp.co.yumemi.droidtraining.core.common.suspendRunCatching
+import jp.co.yumemi.droidtraining.core.datasource.YumemiWeather
 import jp.co.yumemi.droidtraining.core.model.Weather
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

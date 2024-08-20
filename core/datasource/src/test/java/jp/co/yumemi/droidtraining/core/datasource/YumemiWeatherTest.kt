@@ -1,4 +1,4 @@
-package jp.co.yumemi.datasource
+package jp.co.yumemi.droidtraining.core.datasource
 
 import android.os.NetworkOnMainThreadException
 import com.google.common.truth.Truth
@@ -7,8 +7,6 @@ import io.mockk.every
 import io.mockk.mockk
 import jp.co.yumemi.droidtraining.core.datasource.model.DateAdapter
 import jp.co.yumemi.droidtraining.core.datasource.model.WeatherResponse
-import jp.co.yumemi.droidtraining.core.datasource.UnknownException
-import jp.co.yumemi.droidtraining.core.datasource.YumemiWeather
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
