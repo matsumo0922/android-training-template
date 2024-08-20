@@ -13,8 +13,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import jp.co.yumemi.droidtraining.MainWeatherScreenState
 import jp.co.yumemi.droidtraining.MainWeatherUiState
-import jp.co.yumemi.droidtraining.MainWeatherViewEvent
 import jp.co.yumemi.droidtraining.R
 import jp.co.yumemi.droidtraining.core.model.Weather
 import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
@@ -25,7 +25,7 @@ import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
 @Composable
 internal fun MainScreen(
     uiState: MainWeatherUiState,
-    viewEvent: MainWeatherViewEvent,
+    screenState: MainWeatherScreenState,
     onResetViewEvent: () -> Unit,
     onClickReload: () -> Unit,
     onClickNext: () -> Unit,
@@ -69,7 +69,7 @@ internal fun MainScreen(
 
             AnimatedVisibility(
                 modifier = Modifier.fillMaxSize(),
-                visible = viewEvent is MainWeatherViewEvent.Loading,
+                visible = screenState is MainWeatherScreenState.Loading,
             ) {
                 LoadingView(
                     modifier = Modifier
@@ -80,7 +80,7 @@ internal fun MainScreen(
         }
     }
 
-    if (viewEvent is MainWeatherViewEvent.ShowError) {
+    if (screenState is MainWeatherScreenState.Error) {
         SimpleAlertDialog(
             title = stringResource(R.string.error_title_common),
             message = stringResource(R.string.error_message_common),
@@ -100,7 +100,7 @@ private fun MainScreenPreview() {
         MainScreen(
             modifier = Modifier.fillMaxSize(),
             uiState = MainWeatherUiState(weather = Weather.Snowy),
-            viewEvent = MainWeatherViewEvent.Idle,
+            screenState = MainWeatherScreenState.Idle,
             onResetViewEvent = {},
             onClickReload = {},
             onClickNext = {},
