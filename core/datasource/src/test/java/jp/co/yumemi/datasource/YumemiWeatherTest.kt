@@ -1,12 +1,12 @@
-package jp.co.yumemi.repository
+package jp.co.yumemi.datasource
 
 import android.os.NetworkOnMainThreadException
 import com.google.common.truth.Truth
 import com.squareup.moshi.Moshi
 import io.mockk.every
 import io.mockk.mockk
-import jp.co.yumemi.repository.model.DateAdapter
-import jp.co.yumemi.repository.model.WeatherResponse
+import jp.co.yumemi.datasource.model.DateAdapter
+import jp.co.yumemi.datasource.model.WeatherResponse
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test

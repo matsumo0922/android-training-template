@@ -1,4 +1,4 @@
-package jp.co.yumemi.repository.di
+package jp.co.yumemi.datasource.di
 
 import org.koin.core.annotation.ComponentScan
 import org.koin.core.annotation.Module

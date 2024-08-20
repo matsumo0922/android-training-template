@@ -1,4 +1,4 @@
-package jp.co.yumemi.repository.model
+package jp.co.yumemi.datasource.model
 
 import com.squareup.moshi.JsonClass
 import java.util.Date

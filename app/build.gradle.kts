@@ -10,7 +10,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:repository"))
+    implementation(project(":core:datasource"))
     implementation(project(":core:ui"))
     implementation(project(":core:model"))
     implementation(project(":core:common"))

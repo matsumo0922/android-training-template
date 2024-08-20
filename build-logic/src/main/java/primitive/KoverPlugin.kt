@@ -15,7 +15,7 @@ class KoverPlugin : Plugin<Project> {
 
             if (isApplicationProject()) {
                 dependencies {
-                    "kover"(project(":core:repository"))
+                    "kover"(project(":core:datasource"))
                     "kover"(project(":core:model"))
                     "kover"(project(":core:ui"))
                 }
