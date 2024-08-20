@@ -5,6 +5,6 @@ import org.koin.core.annotation.Module
 import org.koin.core.annotation.Named
 
 @Module
-@Named("ApiModule")
-@ComponentScan("jp.co.yumemi.api")
-class ApiModule
+@Named("DataSourceModule")
+@ComponentScan("jp.co.yumemi.datasource")
+class DataSourceModule
