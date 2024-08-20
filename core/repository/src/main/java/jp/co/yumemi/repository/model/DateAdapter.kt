@@ -1,4 +1,4 @@
-package jp.co.yumemi.api.model
+package jp.co.yumemi.repository.model
 
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.JsonReader

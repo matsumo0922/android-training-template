@@ -1,6 +1,6 @@
 package jp.co.yumemi.droidtraining.di
 
-import jp.co.yumemi.api.di.ApiModule
+import jp.co.yumemi.repository.di.ApiModule
 import org.koin.core.KoinApplication
 import org.koin.ksp.generated.module
 

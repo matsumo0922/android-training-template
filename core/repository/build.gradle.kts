@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "jp.co.yumemi.api"
+    namespace = "jp.co.yumemi.repository"
 }
 
 dependencies {
