@@ -63,28 +63,28 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;
 &nbsp;@Single
 &nbsp;class YumemiWeatherRepositoryImpl(
-&nbsp;    private val yumemiWeatherSource: YumemiWeatherSource,
+&nbsp;    private val weatherSource: YumemiWeatherSource,
 &nbsp;    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 &nbsp;) : YumemiWeatherRepository {
 &nbsp;
 &nbsp;    override suspend fun fetchSimpleWeather(): Weather = withContext(ioDispatcher) {
-&nbsp;        Weather.valueOf(yumemiWeatherSource.fetchSimpleWeather())
+&nbsp;        Weather.valueOf(weatherSource.fetchSimpleWeather())
 &nbsp;    }
 &nbsp;
 &nbsp;    override suspend fun fetchWeatherAsync(): Weather = withContext(ioDispatcher) {
-&nbsp;        Weather.valueOf(yumemiWeatherSource.fetchWeatherAsync())
+&nbsp;        Weather.valueOf(weatherSource.fetchWeatherAsync())
 &nbsp;    }
 &nbsp;
 &nbsp;    override suspend fun fetchThrowsWeather(): Weather = withContext(ioDispatcher) {
-&nbsp;        Weather.valueOf(yumemiWeatherSource.fetchThrowsWeather())
+&nbsp;        Weather.valueOf(weatherSource.fetchThrowsWeather())
 &nbsp;    }
 &nbsp;
 &nbsp;    override suspend fun fetchJsonWeather(json: String): Weather = withContext(ioDispatcher) {
-&nbsp;        Weather.valueOf(yumemiWeatherSource.fetchJsonWeather(json))
+&nbsp;        Weather.valueOf(weatherSource.fetchJsonWeather(json))
 &nbsp;    }
 &nbsp;
 &nbsp;    override suspend fun fetchJsonWeatherAsync(json: String): Weather = withContext(ioDispatcher) {
-&nbsp;        Weather.valueOf(yumemiWeatherSource.fetchJsonWeatherAsync(json))
+&nbsp;        Weather.valueOf(weatherSource.fetchJsonWeatherAsync(json))
 &nbsp;    }
 &nbsp;}
 </code>
@@ -110,7 +110,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-20 07:00</div>
+    <div style="float:right;">generated on 2024-08-20 07:07</div>
 </div>
 </body>
 </html>

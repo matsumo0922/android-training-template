@@ -267,28 +267,28 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;
 &nbsp;@Single
 &nbsp;class YumemiWeatherRepositoryImpl(
-<b class="nc">&nbsp;    private val yumemiWeatherSource: YumemiWeatherSource,</b>
+<b class="nc">&nbsp;    private val weatherSource: YumemiWeatherSource,</b>
 <b class="nc">&nbsp;    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,</b>
 &nbsp;) : YumemiWeatherRepository {
 &nbsp;
 <b class="nc">&nbsp;    override suspend fun fetchSimpleWeather(): Weather = withContext(ioDispatcher) {</b>
-<b class="nc">&nbsp;        Weather.valueOf(yumemiWeatherSource.fetchSimpleWeather())</b>
+<b class="nc">&nbsp;        Weather.valueOf(weatherSource.fetchSimpleWeather())</b>
 &nbsp;    }
 &nbsp;
 <b class="nc">&nbsp;    override suspend fun fetchWeatherAsync(): Weather = withContext(ioDispatcher) {</b>
-<b class="nc">&nbsp;        Weather.valueOf(yumemiWeatherSource.fetchWeatherAsync())</b>
+<b class="nc">&nbsp;        Weather.valueOf(weatherSource.fetchWeatherAsync())</b>
 &nbsp;    }
 &nbsp;
 <b class="nc">&nbsp;    override suspend fun fetchThrowsWeather(): Weather = withContext(ioDispatcher) {</b>
-<b class="nc">&nbsp;        Weather.valueOf(yumemiWeatherSource.fetchThrowsWeather())</b>
+<b class="nc">&nbsp;        Weather.valueOf(weatherSource.fetchThrowsWeather())</b>
 &nbsp;    }
 &nbsp;
 <b class="nc">&nbsp;    override suspend fun fetchJsonWeather(json: String): Weather = withContext(ioDispatcher) {</b>
-<b class="nc">&nbsp;        Weather.valueOf(yumemiWeatherSource.fetchJsonWeather(json))</b>
+<b class="nc">&nbsp;        Weather.valueOf(weatherSource.fetchJsonWeather(json))</b>
 &nbsp;    }
 &nbsp;
 <b class="nc">&nbsp;    override suspend fun fetchJsonWeatherAsync(json: String): Weather = withContext(ioDispatcher) {</b>
-<b class="nc">&nbsp;        Weather.valueOf(yumemiWeatherSource.fetchJsonWeatherAsync(json))</b>
+<b class="nc">&nbsp;        Weather.valueOf(weatherSource.fetchJsonWeatherAsync(json))</b>
 &nbsp;    }
 &nbsp;}
 </code>
@@ -314,7 +314,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-20 07:00</div>
+    <div style="float:right;">generated on 2024-08-20 07:07</div>
 </div>
 </body>
 </html>
