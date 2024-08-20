@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Common -->
+    <string name="close">Close</string>
+
     <!-- Main -->
     <string name="main_weather_action_reload">Reload</string>
     <string name="main_weather_action_next">Next</string>
+
+    <!-- Error -->
+    <string name="error_title_common">Error</string>
+    <string name="error_message_common">An error has occurred.</string>
 </resources>

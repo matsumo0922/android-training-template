@@ -4,11 +4,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import jp.co.yumemi.droidtraining.MainWeatherUiState
+import jp.co.yumemi.droidtraining.MainWeatherViewEvent
 import jp.co.yumemi.droidtraining.core.model.Weather
 import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
 import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
@@ -16,10 +22,22 @@ import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
 @Composable
 internal fun MainScreen(
     uiState: MainWeatherUiState,
+    viewEvent: MainWeatherViewEvent,
     onClickReload: () -> Unit,
     onClickNext: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    var isDisplayedError by remember { mutableStateOf(false) }
+
+    LaunchedEffect(viewEvent) {
+        when (viewEvent) {
+            MainWeatherViewEvent.Idle -> Unit
+            MainWeatherViewEvent.ShowError -> {
+                isDisplayedError = true
+            }
+        }
+    }
+
     Scaffold(modifier) {
         ConstraintLayout(
             modifier = Modifier
@@ -64,6 +82,7 @@ private fun MainScreenPreview() {
         MainScreen(
             modifier = Modifier.fillMaxSize(),
             uiState = MainWeatherUiState(weather = Weather.Snowy),
+            viewEvent = MainWeatherViewEvent.Idle,
             onClickReload = {},
             onClickNext = {},
         )

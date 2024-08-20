@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
             val darkScrim = Color.argb(0x80, 0x1b, 0x1b, 0x1b)
 
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+            val viewEvent by viewModel.viewEvent.collectAsStateWithLifecycle(MainWeatherViewEvent.Idle)
 
             // LaunchedEffect は Dispatch が必要なので、起動時は DisposableEffect の方が若干早く実行される（らしい）
             // FYI: https://github.com/android/nowinandroid/pull/330/files#r999831539
