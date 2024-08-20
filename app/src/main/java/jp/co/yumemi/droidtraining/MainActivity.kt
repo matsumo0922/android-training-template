@@ -33,6 +33,8 @@ class MainActivity : AppCompatActivity() {
 
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
+            // LaunchedEffect は Dispatch が必要なので、起動時は DisposableEffect の方が若干早く実行される（らしい）
+            // FYI: https://github.com/android/nowinandroid/pull/330/files#r999831539
             DisposableEffect(shouldUseDarkTheme) {
                 enableEdgeToEdge(
                     statusBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) { shouldUseDarkTheme },
