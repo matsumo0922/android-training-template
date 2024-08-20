@@ -31,13 +31,13 @@ internal fun MainScreen(
     onClickNext: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    var isDisplayedError by remember { mutableStateOf(false) }
+    var isErrorDisplayed by remember { mutableStateOf(false) }
 
     LaunchedEffect(viewEvent) {
         when (viewEvent) {
             MainWeatherViewEvent.Idle -> Unit
             MainWeatherViewEvent.ShowError -> {
-                isDisplayedError = true
+                isErrorDisplayed = true
             }
         }
     }
@@ -78,7 +78,7 @@ internal fun MainScreen(
         }
     }
 
-    if (isDisplayedError) {
+    if (isErrorDisplayed) {
         SimpleAlertDialog(
             title = stringResource(R.string.error_title_common),
             message = stringResource(R.string.error_message_common),
@@ -89,7 +89,7 @@ internal fun MainScreen(
             },
             onDismissRequest = {
                 onResetViewEvent.invoke()
-                isDisplayedError = false
+                isErrorDisplayed = false
             },
         )
     }

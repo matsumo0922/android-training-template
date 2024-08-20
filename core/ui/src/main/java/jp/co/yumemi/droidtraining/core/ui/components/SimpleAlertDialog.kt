@@ -1,6 +1,5 @@
 package jp.co.yumemi.droidtraining.core.ui.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,6 +11,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -38,60 +38,61 @@ fun SimpleAlertDialog(
     Dialog(
         onDismissRequest = onDismissRequest,
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .clip(RoundedCornerShape(16.dp))
-                .background(MaterialTheme.colorScheme.surface)
-                .padding(24.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            Text(
-                modifier = Modifier.fillMaxWidth(),
-                text = title,
-                style = MaterialTheme.typography.titleMedium.bold(),
-                color = MaterialTheme.colorScheme.onSurface,
-            )
-
-            Text(
-                modifier = Modifier.fillMaxWidth(),
-                text = message,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-
-            Row(
+        Surface {
+            Column(
                 modifier = Modifier
-                    .padding(top = 8.dp)
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                verticalAlignment = Alignment.CenterVertically,
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .clip(RoundedCornerShape(16.dp))
+                    .padding(24.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
-                if (negativeButtonText != null) {
-                    OutlinedButton(
-                        modifier = Modifier.weight(1f),
-                        shape = RoundedCornerShape(4.dp),
-                        onClick = {
-                            onNegativeButtonClick.invoke()
-                            onDismissRequest.invoke()
-                        },
-                    ) {
-                        Text(text = negativeButtonText)
-                    }
-                }
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = title,
+                    style = MaterialTheme.typography.titleMedium.bold(),
+                    color = MaterialTheme.colorScheme.onSurface,
+                )
 
-                if (positiveButtonText != null) {
-                    Button(
-                        modifier = Modifier.weight(1f),
-                        shape = RoundedCornerShape(4.dp),
-                        colors = ButtonDefaults.buttonColors(if (isCaution) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary),
-                        onClick = {
-                            onPositiveButtonClick.invoke()
-                            onDismissRequest.invoke()
-                        },
-                    ) {
-                        Text(text = positiveButtonText)
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = message,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+
+                Row(
+                    modifier = Modifier
+                        .padding(top = 8.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    if (negativeButtonText != null) {
+                        OutlinedButton(
+                            modifier = Modifier.weight(1f),
+                            shape = RoundedCornerShape(4.dp),
+                            onClick = {
+                                onNegativeButtonClick.invoke()
+                                onDismissRequest.invoke()
+                            },
+                        ) {
+                            Text(text = negativeButtonText)
+                        }
+                    }
+
+                    if (positiveButtonText != null) {
+                        Button(
+                            modifier = Modifier.weight(1f),
+                            shape = RoundedCornerShape(4.dp),
+                            colors = ButtonDefaults.buttonColors(if (isCaution) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary),
+                            onClick = {
+                                onPositiveButtonClick.invoke()
+                                onDismissRequest.invoke()
+                            },
+                        ) {
+                            Text(text = positiveButtonText)
+                        }
                     }
                 }
             }
