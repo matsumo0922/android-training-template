@@ -5,9 +5,5 @@ plugins {
 }
 
 android {
-    namespace = "jp.co.yumemi.droidtraining.core.model"
-}
-
-dependencies {
-    implementation(project(":core:common"))
+    namespace = "jp.co.yumemi.droidtraining.core.common"
 }

@@ -8,11 +8,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import jp.co.yumemi.droidtraining.MainWeatherUiState
+import jp.co.yumemi.droidtraining.core.model.Weather
 import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
 import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
 
 @Composable
 internal fun MainScreen(
+    uiState: MainWeatherUiState,
+    onClickReload: () -> Unit,
+    onClickNext: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(modifier) {
@@ -33,6 +38,7 @@ internal fun MainScreen(
                     width = Dimension.percent(0.5f)
                     height = Dimension.wrapContent
                 },
+                weather = uiState.weather,
             )
 
             MainActionButtonsSection(
@@ -44,6 +50,8 @@ internal fun MainScreen(
                     width = Dimension.fillToConstraints
                     height = Dimension.wrapContent
                 },
+                onClickReload = onClickReload,
+                onClickNext = onClickNext,
             )
         }
     }
@@ -53,6 +61,11 @@ internal fun MainScreen(
 @Composable
 private fun MainScreenPreview() {
     YumemiTheme {
-        MainScreen()
+        MainScreen(
+            modifier = Modifier.fillMaxSize(),
+            uiState = MainWeatherUiState(weather = Weather.Snowy),
+            onClickReload = {},
+            onClickNext = {},
+        )
     }
 }
