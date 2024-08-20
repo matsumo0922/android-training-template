@@ -1,14 +1,14 @@
 @file:Suppress("MemberVisibilityCanBePrivate")
 
-package jp.co.yumemi.datasource
+package jp.co.yumemi.droidtraining.core.datasource
 
 import android.content.Context
 import android.os.NetworkOnMainThreadException
 import com.squareup.moshi.Moshi
-import jp.co.yumemi.datasource.model.DateAdapter
-import jp.co.yumemi.datasource.model.Weather
-import jp.co.yumemi.datasource.model.WeatherRequest
-import jp.co.yumemi.datasource.model.WeatherResponse
+import jp.co.yumemi.droidtraining.core.datasource.model.DateAdapter
+import jp.co.yumemi.droidtraining.core.datasource.model.Weather
+import jp.co.yumemi.droidtraining.core.datasource.model.WeatherRequest
+import jp.co.yumemi.droidtraining.core.datasource.model.WeatherResponse
 import kotlinx.coroutines.delay
 import org.koin.core.annotation.Single
 import java.util.Date

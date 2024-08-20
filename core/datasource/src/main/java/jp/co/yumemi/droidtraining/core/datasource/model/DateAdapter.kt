@@ -1,4 +1,4 @@
-package jp.co.yumemi.datasource.model
+package jp.co.yumemi.droidtraining.core.datasource.model
 
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.JsonReader

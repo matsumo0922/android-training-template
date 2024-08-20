@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "jp.co.yumemi.datasource"
+    namespace = "jp.co.yumemi.droidtraining.core.datasource"
 }
 
 dependencies {
