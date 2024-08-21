@@ -140,12 +140,12 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;
 &nbsp;import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 &nbsp;import jp.co.yumemi.droidtraining.core.model.Weather
-&nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherResponse
+&nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherDetail
 &nbsp;import kotlinx.datetime.Instant
 &nbsp;
-<b class="nc">&nbsp;class WeatherResponsePreviewParameter : PreviewParameterProvider&lt;WeatherResponse&gt; {</b>
+<b class="nc">&nbsp;class WeatherResponsePreviewParameter : PreviewParameterProvider&lt;WeatherDetail&gt; {</b>
 &nbsp;
-&nbsp;    override val values: Sequence&lt;WeatherResponse&gt;
+&nbsp;    override val values: Sequence&lt;WeatherDetail&gt;
 <b class="nc">&nbsp;        get() = sequenceOf(</b>
 <b class="nc">&nbsp;            dummy,</b>
 <b class="nc">&nbsp;            dummy.copy(</b>
@@ -163,7 +163,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;        )
 &nbsp;
 &nbsp;    companion object {
-<b class="nc">&nbsp;        val dummy = WeatherResponse(</b>
+<b class="nc">&nbsp;        val dummy = WeatherDetail(</b>
 <b class="nc">&nbsp;            weather = Weather.Sunny,</b>
 <b class="nc">&nbsp;            maxTemp = 30,</b>
 <b class="nc">&nbsp;            minTemp = 20,</b>
@@ -195,7 +195,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-21 06:51</div>
+    <div style="float:right;">generated on 2024-08-21 07:35</div>
 </div>
 </body>
 </html>

@@ -172,7 +172,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;import androidx.compose.ui.unit.dp
 &nbsp;import jp.co.yumemi.droidtraining.R
 &nbsp;import jp.co.yumemi.droidtraining.core.model.Weather
-&nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherResponse
+&nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherDetail
 &nbsp;import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
 &nbsp;import jp.co.yumemi.droidtraining.core.ui.bold
 &nbsp;import jp.co.yumemi.droidtraining.core.ui.center
@@ -181,7 +181,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;
 &nbsp;@Composable
 &nbsp;internal fun MainWeatherInfoSection(
-&nbsp;    weather: WeatherResponse,
+&nbsp;    weather: WeatherDetail,
 <b class="nc">&nbsp;    modifier: Modifier = Modifier,</b>
 <b class="nc">&nbsp;) {</b>
 <b class="nc">&nbsp;    val weatherIcon = when (weather.weather) {</b>
@@ -231,7 +231,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;@ComponentPreviews
 &nbsp;@Composable
 &nbsp;private fun MainWeatherInfoSectionPreview(
-&nbsp;    @PreviewParameter(WeatherResponsePreviewParameter::class) weather: WeatherResponse,
+&nbsp;    @PreviewParameter(WeatherResponsePreviewParameter::class) weather: WeatherDetail,
 <b class="nc">&nbsp;) {</b>
 <b class="nc">&nbsp;    YumemiTheme {</b>
 <b class="nc">&nbsp;        MainWeatherInfoSection(</b>
@@ -262,7 +262,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-21 06:51</div>
+    <div style="float:right;">generated on 2024-08-21 07:35</div>
 </div>
 </body>
 </html>

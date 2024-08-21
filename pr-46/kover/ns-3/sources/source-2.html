@@ -114,8 +114,8 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package jp.co.yumemi.droidtraining.core.datasource
 &nbsp;
+&nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherDetail
 &nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherRequest
-&nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherResponse
 &nbsp;import kotlinx.serialization.json.Json
 &nbsp;import org.koin.core.annotation.Single
 &nbsp;
@@ -124,7 +124,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 <b class="nc">&nbsp;    private val dummyWeatherSource: DummyWeatherSource,</b>
 <b class="nc">&nbsp;    private val formatter: Json,</b>
 &nbsp;) {
-&nbsp;    suspend fun fetchWeather(request: WeatherRequest): WeatherResponse {
+&nbsp;    suspend fun fetchWeather(request: WeatherRequest): WeatherDetail {
 <b class="nc">&nbsp;        val requestJson = formatter.encodeToString(WeatherRequest.serializer(), request)</b>
 <b class="nc">&nbsp;        val resultJson = dummyWeatherSource.fetchJsonWeatherAsync(requestJson)</b>
 &nbsp;
@@ -154,7 +154,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-21 06:51</div>
+    <div style="float:right;">generated on 2024-08-21 07:35</div>
 </div>
 </body>
 </html>

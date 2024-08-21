@@ -99,8 +99,8 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;import androidx.lifecycle.viewModelScope
 &nbsp;import jp.co.yumemi.droidtraining.core.common.serializer.toInstantInTokyo
 &nbsp;import jp.co.yumemi.droidtraining.core.common.suspendRunCatching
+&nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherDetail
 &nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherRequest
-&nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherResponse
 &nbsp;import jp.co.yumemi.droidtraining.core.repository.YumemiWeatherRepository
 &nbsp;import kotlinx.coroutines.flow.MutableStateFlow
 &nbsp;import kotlinx.coroutines.flow.asStateFlow
@@ -144,7 +144,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;
 &nbsp;@Stable
 &nbsp;data class MainWeatherUiState(
-<b class="nc">&nbsp;    val weather: WeatherResponse? = null,</b>
+<b class="nc">&nbsp;    val weather: WeatherDetail? = null,</b>
 &nbsp;)
 &nbsp;
 &nbsp;@Stable
@@ -176,7 +176,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-21 06:51</div>
+    <div style="float:right;">generated on 2024-08-21 07:35</div>
 </div>
 </body>
 </html>

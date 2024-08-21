@@ -139,15 +139,15 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 <code class="sourceCode" id="sourceCode">&nbsp;package jp.co.yumemi.droidtraining.core.repository
 &nbsp;
 &nbsp;import jp.co.yumemi.droidtraining.core.datasource.DummyWeatherWrapperSource
+&nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherDetail
 &nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherRequest
-&nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherResponse
 &nbsp;import kotlinx.coroutines.CoroutineDispatcher
 &nbsp;import kotlinx.coroutines.Dispatchers
 &nbsp;import kotlinx.coroutines.withContext
 &nbsp;import org.koin.core.annotation.Single
 &nbsp;
 &nbsp;interface YumemiWeatherRepository {
-&nbsp;    suspend fun fetchWeather(request: WeatherRequest): WeatherResponse
+&nbsp;    suspend fun fetchWeather(request: WeatherRequest): WeatherDetail
 &nbsp;}
 &nbsp;
 &nbsp;@Single
@@ -156,7 +156,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 <b class="nc">&nbsp;    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,</b>
 &nbsp;) : YumemiWeatherRepository {
 &nbsp;
-<b class="nc">&nbsp;    override suspend fun fetchWeather(request: WeatherRequest): WeatherResponse = withContext(ioDispatcher) {</b>
+<b class="nc">&nbsp;    override suspend fun fetchWeather(request: WeatherRequest): WeatherDetail = withContext(ioDispatcher) {</b>
 <b class="nc">&nbsp;        weatherSource.fetchWeather(request)</b>
 &nbsp;    }
 &nbsp;}
@@ -183,7 +183,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-21 06:51</div>
+    <div style="float:right;">generated on 2024-08-21 07:35</div>
 </div>
 </body>
 </html>
