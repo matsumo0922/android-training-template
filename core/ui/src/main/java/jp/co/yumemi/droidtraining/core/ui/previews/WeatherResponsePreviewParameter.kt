@@ -27,8 +27,8 @@ class WeatherResponsePreviewParameter : PreviewParameterProvider<WeatherDetail> 
     companion object {
         val dummy = WeatherDetail(
             weather = Weather.Sunny,
-            maxTemp = 30,
-            minTemp = 20,
+            maxTemp = 30.0,
+            minTemp = 20.0,
             date = Instant.parse("2022-01-01T00:00:00Z"),
             area = "東京",
         )
