@@ -1,6 +1,6 @@
 package jp.co.yumemi.droidtraining.core.repository
 
-import jp.co.yumemi.droidtraining.core.datasource.YumemiWeatherSource
+import jp.co.yumemi.droidtraining.core.datasource.DummyWeatherSource
 import jp.co.yumemi.droidtraining.core.model.Weather
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +13,7 @@ interface YumemiWeatherRepository {
 
 @Single
 class YumemiWeatherRepositoryImpl(
-    private val weatherSource: YumemiWeatherSource,
+    private val weatherSource: DummyWeatherSource,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : YumemiWeatherRepository {
 
