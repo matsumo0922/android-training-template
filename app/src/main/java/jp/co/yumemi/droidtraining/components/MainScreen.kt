@@ -1,5 +1,6 @@
 package jp.co.yumemi.droidtraining.components
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -14,7 +15,7 @@ import jp.co.yumemi.droidtraining.MainWeatherScreenState
 import jp.co.yumemi.droidtraining.MainWeatherUiState
 import jp.co.yumemi.droidtraining.R
 import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
-import jp.co.yumemi.droidtraining.core.ui.components.LoadingView
+import jp.co.yumemi.droidtraining.core.ui.components.LoadingScreen
 import jp.co.yumemi.droidtraining.core.ui.components.SimpleAlertDialog
 import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
 import jp.co.yumemi.droidtraining.core.ui.previews.WeatherResponsePreviewParameter
@@ -76,10 +77,14 @@ internal fun MainScreen(
                 )
             }
 
-            LoadingView(
+            AnimatedVisibility(
                 modifier = Modifier.fillMaxSize(),
                 visible = screenState is MainWeatherScreenState.Loading,
-            )
+            ) {
+                LoadingScreen(
+                    modifier = Modifier.fillMaxSize(),
+                )
+            }
         }
     }
 
