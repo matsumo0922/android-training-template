@@ -2,12 +2,12 @@ package jp.co.yumemi.droidtraining.core.ui.previews
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import jp.co.yumemi.droidtraining.core.model.Weather
-import jp.co.yumemi.droidtraining.core.model.WeatherResponse
+import jp.co.yumemi.droidtraining.core.model.WeatherDetail
 import kotlinx.datetime.Instant
 
-class WeatherResponsePreviewParameter : PreviewParameterProvider<WeatherResponse> {
+class WeatherResponsePreviewParameter : PreviewParameterProvider<WeatherDetail> {
 
-    override val values: Sequence<WeatherResponse>
+    override val values: Sequence<WeatherDetail>
         get() = sequenceOf(
             dummy,
             dummy.copy(
@@ -25,7 +25,7 @@ class WeatherResponsePreviewParameter : PreviewParameterProvider<WeatherResponse
         )
 
     companion object {
-        val dummy = WeatherResponse(
+        val dummy = WeatherDetail(
             weather = Weather.Sunny,
             maxTemp = 30,
             minTemp = 20,

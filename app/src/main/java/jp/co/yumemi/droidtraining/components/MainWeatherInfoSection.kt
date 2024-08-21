@@ -16,7 +16,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import jp.co.yumemi.droidtraining.R
 import jp.co.yumemi.droidtraining.core.model.Weather
-import jp.co.yumemi.droidtraining.core.model.WeatherResponse
+import jp.co.yumemi.droidtraining.core.model.WeatherDetail
 import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
 import jp.co.yumemi.droidtraining.core.ui.bold
 import jp.co.yumemi.droidtraining.core.ui.center
@@ -25,7 +25,7 @@ import jp.co.yumemi.droidtraining.core.ui.previews.WeatherResponsePreviewParamet
 
 @Composable
 internal fun MainWeatherInfoSection(
-    weather: WeatherResponse,
+    weather: WeatherDetail,
     modifier: Modifier = Modifier,
 ) {
     val weatherIcon = when (weather.weather) {
@@ -75,7 +75,7 @@ internal fun MainWeatherInfoSection(
 @ComponentPreviews
 @Composable
 private fun MainWeatherInfoSectionPreview(
-    @PreviewParameter(WeatherResponsePreviewParameter::class) weather: WeatherResponse,
+    @PreviewParameter(WeatherResponsePreviewParameter::class) weather: WeatherDetail,
 ) {
     YumemiTheme {
         MainWeatherInfoSection(
