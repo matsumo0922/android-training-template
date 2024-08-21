@@ -74,7 +74,6 @@ fun SimpleAlertDialog(
                             shape = RoundedCornerShape(4.dp),
                             onClick = {
                                 onNegativeButtonClick.invoke()
-                                onDismissRequest.invoke()
                             },
                         ) {
                             Text(text = negativeButtonText)
@@ -88,7 +87,6 @@ fun SimpleAlertDialog(
                             colors = ButtonDefaults.buttonColors(if (isCaution) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary),
                             onClick = {
                                 onPositiveButtonClick.invoke()
-                                onDismissRequest.invoke()
                             },
                         ) {
                             Text(text = positiveButtonText)
