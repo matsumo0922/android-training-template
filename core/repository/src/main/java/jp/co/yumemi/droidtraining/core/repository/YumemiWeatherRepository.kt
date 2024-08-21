@@ -8,11 +8,7 @@ import kotlinx.coroutines.withContext
 import org.koin.core.annotation.Single
 
 interface YumemiWeatherRepository {
-    suspend fun fetchSimpleWeather(): Weather
-    suspend fun fetchWeatherAsync(): Weather
-    suspend fun fetchThrowsWeather(): Weather
-    suspend fun fetchJsonWeather(json: String): Weather
-    suspend fun fetchJsonWeatherAsync(json: String): Weather
+    suspend fun fetchWeather(): Weather
 }
 
 @Single
@@ -21,23 +17,7 @@ class YumemiWeatherRepositoryImpl(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : YumemiWeatherRepository {
 
-    override suspend fun fetchSimpleWeather(): Weather = withContext(ioDispatcher) {
-        Weather.valueOf(weatherSource.fetchSimpleWeather())
-    }
-
-    override suspend fun fetchWeatherAsync(): Weather = withContext(ioDispatcher) {
-        Weather.valueOf(weatherSource.fetchWeatherAsync())
-    }
-
-    override suspend fun fetchThrowsWeather(): Weather = withContext(ioDispatcher) {
+    override suspend fun fetchWeather(): Weather = withContext(ioDispatcher) {
         Weather.valueOf(weatherSource.fetchThrowsWeather())
-    }
-
-    override suspend fun fetchJsonWeather(json: String): Weather = withContext(ioDispatcher) {
-        Weather.valueOf(weatherSource.fetchJsonWeather(json))
-    }
-
-    override suspend fun fetchJsonWeatherAsync(json: String): Weather = withContext(ioDispatcher) {
-        Weather.valueOf(weatherSource.fetchJsonWeatherAsync(json))
     }
 }

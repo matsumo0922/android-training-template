@@ -27,7 +27,7 @@ class MainViewModel(
             _screenState.value = MainWeatherScreenState.Loading
             _screenState.value = suspendRunCatching {
                 _uiState.value = MainWeatherUiState(
-                    weather = weatherRepository.fetchWeatherAsync(),
+                    weather = weatherRepository.fetchWeather(),
                 )
             }.fold(
                 onSuccess = { MainWeatherScreenState.Idle },
