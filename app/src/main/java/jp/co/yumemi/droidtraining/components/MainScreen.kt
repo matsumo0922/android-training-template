@@ -37,22 +37,30 @@ internal fun MainScreen(
             ) {
                 val (weatherInfoSection, actionButtonsSection) = createRefs()
 
-                MainWeatherInfoSection(
-                    modifier = Modifier.constrainAs(weatherInfoSection) {
-                        top.linkTo(parent.top)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                        bottom.linkTo(parent.bottom)
+                if (uiState.weather != null) {
+                    MainWeatherInfoSection(
+                        modifier = Modifier.constrainAs(weatherInfoSection) {
+                            top.linkTo(parent.top)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                            bottom.linkTo(parent.bottom)
 
-                        width = Dimension.percent(0.5f)
-                        height = Dimension.wrapContent
-                    },
-                    weather = uiState.weather,
-                )
+                            width = Dimension.percent(0.5f)
+                            height = Dimension.wrapContent
+                        },
+                        weather = uiState.weather,
+                    )
+                }
 
                 MainActionButtonsSection(
                     modifier = Modifier.constrainAs(actionButtonsSection) {
-                        top.linkTo(weatherInfoSection.bottom, 80.dp)
+                        if (uiState.weather != null) {
+                            top.linkTo(weatherInfoSection.bottom, 80.dp)
+                        } else {
+                            top.linkTo(parent.top)
+                            bottom.linkTo(parent.bottom)
+                        }
+
                         start.linkTo(weatherInfoSection.start)
                         end.linkTo(weatherInfoSection.end)
 
