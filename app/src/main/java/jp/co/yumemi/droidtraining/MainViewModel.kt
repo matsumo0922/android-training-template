@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import jp.co.yumemi.droidtraining.core.common.serializer.toInstantInTokyo
 import jp.co.yumemi.droidtraining.core.common.suspendRunCatching
-import jp.co.yumemi.droidtraining.core.model.WeatherRequest
 import jp.co.yumemi.droidtraining.core.model.WeatherDetail
+import jp.co.yumemi.droidtraining.core.model.WeatherRequest
 import jp.co.yumemi.droidtraining.core.repository.YumemiWeatherRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

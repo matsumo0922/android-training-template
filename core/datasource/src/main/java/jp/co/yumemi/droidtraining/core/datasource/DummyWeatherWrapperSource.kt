@@ -1,7 +1,7 @@
 package jp.co.yumemi.droidtraining.core.datasource
 
-import jp.co.yumemi.droidtraining.core.model.WeatherRequest
 import jp.co.yumemi.droidtraining.core.model.WeatherDetail
+import jp.co.yumemi.droidtraining.core.model.WeatherRequest
 import kotlinx.serialization.json.Json
 import org.koin.core.annotation.Single
 

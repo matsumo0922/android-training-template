@@ -38,12 +38,12 @@ fun SimpleAlertDialog(
         onDismissRequest = onDismissRequest,
     ) {
         Surface(
-            modifier = Modifier
-                .clip(RoundedCornerShape(16.dp))
-                .padding(24.dp),
+            modifier = Modifier.clip(RoundedCornerShape(16.dp)),
         ) {
             Column(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .padding(24.dp)
+                    .fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 Text(
