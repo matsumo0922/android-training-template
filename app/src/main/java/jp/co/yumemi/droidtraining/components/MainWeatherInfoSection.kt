@@ -1,6 +1,7 @@
 package jp.co.yumemi.droidtraining.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -11,47 +12,59 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.dp
 import jp.co.yumemi.droidtraining.R
 import jp.co.yumemi.droidtraining.core.model.Weather
+import jp.co.yumemi.droidtraining.core.model.WeatherDetail
 import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
+import jp.co.yumemi.droidtraining.core.ui.bold
 import jp.co.yumemi.droidtraining.core.ui.center
 import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
+import jp.co.yumemi.droidtraining.core.ui.previews.WeatherResponsePreviewParameter
 
 @Composable
 internal fun MainWeatherInfoSection(
-    weather: Weather,
+    weather: WeatherDetail,
     modifier: Modifier = Modifier,
 ) {
-    val weatherIcon = when (weather) {
+    val weatherIcon = when (weather.weather) {
         Weather.Sunny -> R.drawable.vec_sunny
         Weather.Cloudy -> R.drawable.vec_cloudy
         Weather.Rainy -> R.drawable.vec_rainy
         Weather.Snowy -> R.drawable.vec_snowy
-        Weather.Unknown -> null
     }
 
-    Column(modifier) {
-        if (weatherIcon != null) {
-            Image(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1f),
-                painter = painterResource(weatherIcon),
-                contentDescription = "Weather Icon",
-            )
-        }
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = weather.area,
+            style = MaterialTheme.typography.titleMedium.bold().center(),
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+
+        Image(
+            modifier = Modifier
+                .fillMaxWidth()
+                .aspectRatio(1f),
+            painter = painterResource(weatherIcon),
+            contentDescription = "Weather Icon",
+        )
 
         Row {
             Text(
                 modifier = Modifier.weight(1f),
-                text = "10℃",
+                text = "${weather.minTemp}℃",
                 style = MaterialTheme.typography.bodyMedium.center(),
                 color = Color.Blue,
             )
 
             Text(
                 modifier = Modifier.weight(1f),
-                text = "20℃",
+                text = "${weather.maxTemp}℃",
                 style = MaterialTheme.typography.bodyMedium.center(),
                 color = Color.Red,
             )
@@ -61,50 +74,12 @@ internal fun MainWeatherInfoSection(
 
 @ComponentPreviews
 @Composable
-private fun MainWeatherInfoSectionPreviewSunny() {
+private fun MainWeatherInfoSectionPreview(
+    @PreviewParameter(WeatherResponsePreviewParameter::class) weather: WeatherDetail,
+) {
     YumemiTheme {
         MainWeatherInfoSection(
-            weather = Weather.Sunny,
-        )
-    }
-}
-
-@ComponentPreviews
-@Composable
-private fun MainWeatherInfoSectionPreviewCloudy() {
-    YumemiTheme {
-        MainWeatherInfoSection(
-            weather = Weather.Cloudy,
-        )
-    }
-}
-
-@ComponentPreviews
-@Composable
-private fun MainWeatherInfoSectionPreviewRainy() {
-    YumemiTheme {
-        MainWeatherInfoSection(
-            weather = Weather.Rainy,
-        )
-    }
-}
-
-@ComponentPreviews
-@Composable
-private fun MainWeatherInfoSectionPreviewSnowy() {
-    YumemiTheme {
-        MainWeatherInfoSection(
-            weather = Weather.Snowy,
-        )
-    }
-}
-
-@ComponentPreviews
-@Composable
-private fun MainWeatherInfoSectionPreviewUnknown() {
-    YumemiTheme {
-        MainWeatherInfoSection(
-            weather = Weather.Unknown,
+            weather = weather,
         )
     }
 }
