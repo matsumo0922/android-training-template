@@ -54,11 +54,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;import org.koin.core.annotation.Single
 &nbsp;
 &nbsp;interface YumemiWeatherRepository {
-&nbsp;    suspend fun fetchSimpleWeather(): Weather
-&nbsp;    suspend fun fetchWeatherAsync(): Weather
-&nbsp;    suspend fun fetchThrowsWeather(): Weather
-&nbsp;    suspend fun fetchJsonWeather(json: String): Weather
-&nbsp;    suspend fun fetchJsonWeatherAsync(json: String): Weather
+&nbsp;    suspend fun fetchWeather(): Weather
 &nbsp;}
 &nbsp;
 &nbsp;@Single
@@ -67,24 +63,8 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 &nbsp;) : YumemiWeatherRepository {
 &nbsp;
-&nbsp;    override suspend fun fetchSimpleWeather(): Weather = withContext(ioDispatcher) {
-&nbsp;        Weather.valueOf(weatherSource.fetchSimpleWeather())
-&nbsp;    }
-&nbsp;
-&nbsp;    override suspend fun fetchWeatherAsync(): Weather = withContext(ioDispatcher) {
-&nbsp;        Weather.valueOf(weatherSource.fetchWeatherAsync())
-&nbsp;    }
-&nbsp;
-&nbsp;    override suspend fun fetchThrowsWeather(): Weather = withContext(ioDispatcher) {
+&nbsp;    override suspend fun fetchWeather(): Weather = withContext(ioDispatcher) {
 &nbsp;        Weather.valueOf(weatherSource.fetchThrowsWeather())
-&nbsp;    }
-&nbsp;
-&nbsp;    override suspend fun fetchJsonWeather(json: String): Weather = withContext(ioDispatcher) {
-&nbsp;        Weather.valueOf(weatherSource.fetchJsonWeather(json))
-&nbsp;    }
-&nbsp;
-&nbsp;    override suspend fun fetchJsonWeatherAsync(json: String): Weather = withContext(ioDispatcher) {
-&nbsp;        Weather.valueOf(weatherSource.fetchJsonWeatherAsync(json))
 &nbsp;    }
 &nbsp;}
 </code>
@@ -110,7 +90,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-20 07:07</div>
+    <div style="float:right;">generated on 2024-08-21 03:41</div>
 </div>
 </body>
 </html>

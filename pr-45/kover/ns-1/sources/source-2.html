@@ -235,7 +235,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 <b class="nc">&nbsp;            _screenState.value = MainWeatherScreenState.Loading</b>
 <b class="nc">&nbsp;            _screenState.value = suspendRunCatching {</b>
 <b class="nc">&nbsp;                _uiState.value = MainWeatherUiState(</b>
-<b class="nc">&nbsp;                    weather = weatherRepository.fetchWeatherAsync(),</b>
+<b class="nc">&nbsp;                    weather = weatherRepository.fetchWeather(),</b>
 &nbsp;                )
 <b class="nc">&nbsp;            }.fold(</b>
 <b class="nc">&nbsp;                onSuccess = { MainWeatherScreenState.Idle },</b>
@@ -285,7 +285,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-20 07:07</div>
+    <div style="float:right;">generated on 2024-08-21 03:41</div>
 </div>
 </body>
 </html>
