@@ -15,7 +15,7 @@ class WeatherDetailMapper {
             maxTemp = entity.main.tempMax,
             minTemp = entity.main.tempMin,
             date = Instant.fromEpochSeconds(entity.dt, 0),
-            area = entity.name
+            area = entity.name,
         )
     }
 

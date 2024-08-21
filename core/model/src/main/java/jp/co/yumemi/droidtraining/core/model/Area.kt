@@ -16,7 +16,8 @@ enum class Area(val id: Int) {
     NAHA(1856035),
     NEW_YORK(5128581),
     LONDON(2643743),
-    UNKNOWN(-1);
+    UNKNOWN(-1),
+    ;
 
     companion object {
         fun fromId(id: Int): Area {
@@ -24,5 +25,3 @@ enum class Area(val id: Int) {
         }
     }
 }
-
-
