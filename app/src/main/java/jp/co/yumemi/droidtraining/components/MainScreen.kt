@@ -13,11 +13,11 @@ import androidx.constraintlayout.compose.Dimension
 import jp.co.yumemi.droidtraining.MainWeatherScreenState
 import jp.co.yumemi.droidtraining.MainWeatherUiState
 import jp.co.yumemi.droidtraining.R
-import jp.co.yumemi.droidtraining.core.model.Weather
 import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
 import jp.co.yumemi.droidtraining.core.ui.components.LoadingView
 import jp.co.yumemi.droidtraining.core.ui.components.SimpleAlertDialog
 import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
+import jp.co.yumemi.droidtraining.core.ui.previews.WeatherResponsePreviewParameter
 
 @Composable
 internal fun MainScreen(
@@ -56,16 +56,20 @@ internal fun MainScreen(
                     modifier = Modifier.constrainAs(actionButtonsSection) {
                         if (uiState.weather != null) {
                             top.linkTo(weatherInfoSection.bottom, 80.dp)
+                            start.linkTo(weatherInfoSection.start)
+                            end.linkTo(weatherInfoSection.end)
+
+                            width = Dimension.fillToConstraints
+                            height = Dimension.wrapContent
                         } else {
                             top.linkTo(parent.top)
                             bottom.linkTo(parent.bottom)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+
+                            width = Dimension.percent(0.5f)
+                            height = Dimension.wrapContent
                         }
-
-                        start.linkTo(weatherInfoSection.start)
-                        end.linkTo(weatherInfoSection.end)
-
-                        width = Dimension.fillToConstraints
-                        height = Dimension.wrapContent
                     },
                     onClickReload = onClickReload,
                     onClickNext = onClickNext,
@@ -98,7 +102,22 @@ private fun MainScreenPreview() {
     YumemiTheme {
         MainScreen(
             modifier = Modifier.fillMaxSize(),
-            uiState = MainWeatherUiState(weather = Weather.Snowy),
+            uiState = MainWeatherUiState(WeatherResponsePreviewParameter.dummy),
+            screenState = MainWeatherScreenState.Idle,
+            onResetViewEvent = {},
+            onClickReload = {},
+            onClickNext = {},
+        )
+    }
+}
+
+@ComponentPreviews
+@Composable
+private fun MainScreenPreviewDefault() {
+    YumemiTheme {
+        MainScreen(
+            modifier = Modifier.fillMaxSize(),
+            uiState = MainWeatherUiState(null),
             screenState = MainWeatherScreenState.Idle,
             onResetViewEvent = {},
             onClickReload = {},

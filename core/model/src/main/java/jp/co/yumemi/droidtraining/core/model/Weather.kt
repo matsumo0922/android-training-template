@@ -5,8 +5,15 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 enum class Weather {
-    @SerialName("sunny") Sunny,
-    @SerialName("cloudy") Cloudy,
-    @SerialName("rainy") Rainy,
-    @SerialName("snow") Snowy;
+    @SerialName("sunny")
+    Sunny,
+
+    @SerialName("cloudy")
+    Cloudy,
+
+    @SerialName("rainy")
+    Rainy,
+
+    @SerialName("snow")
+    Snowy,
 }

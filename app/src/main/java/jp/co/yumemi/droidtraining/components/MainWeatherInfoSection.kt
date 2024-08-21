@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import jp.co.yumemi.droidtraining.R
 import jp.co.yumemi.droidtraining.core.model.Weather
@@ -20,6 +21,7 @@ import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
 import jp.co.yumemi.droidtraining.core.ui.bold
 import jp.co.yumemi.droidtraining.core.ui.center
 import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
+import jp.co.yumemi.droidtraining.core.ui.previews.WeatherResponsePreviewParameter
 
 @Composable
 internal fun MainWeatherInfoSection(
@@ -39,7 +41,7 @@ internal fun MainWeatherInfoSection(
     ) {
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = weather.weather.name,
+            text = weather.area,
             style = MaterialTheme.typography.titleMedium.bold().center(),
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -72,50 +74,12 @@ internal fun MainWeatherInfoSection(
 
 @ComponentPreviews
 @Composable
-private fun MainWeatherInfoSectionPreviewSunny() {
+private fun MainWeatherInfoSectionPreview(
+    @PreviewParameter(WeatherResponsePreviewParameter::class) weather: WeatherResponse,
+) {
     YumemiTheme {
         MainWeatherInfoSection(
-            weather = Weather.Sunny,
-        )
-    }
-}
-
-@ComponentPreviews
-@Composable
-private fun MainWeatherInfoSectionPreviewCloudy() {
-    YumemiTheme {
-        MainWeatherInfoSection(
-            weather = Weather.Cloudy,
-        )
-    }
-}
-
-@ComponentPreviews
-@Composable
-private fun MainWeatherInfoSectionPreviewRainy() {
-    YumemiTheme {
-        MainWeatherInfoSection(
-            weather = Weather.Rainy,
-        )
-    }
-}
-
-@ComponentPreviews
-@Composable
-private fun MainWeatherInfoSectionPreviewSnowy() {
-    YumemiTheme {
-        MainWeatherInfoSection(
-            weather = Weather.Snowy,
-        )
-    }
-}
-
-@ComponentPreviews
-@Composable
-private fun MainWeatherInfoSectionPreviewUnknown() {
-    YumemiTheme {
-        MainWeatherInfoSection(
-            weather = Weather.Unknown,
+            weather = weather,
         )
     }
 }
