@@ -21,8 +21,6 @@ import org.koin.test.KoinTest
 
 class YumemiWeatherSourceTest : FunSpec(), KoinTest {
 
-    override fun extensions() = listOf(KoinExtension(DataSourceModule().module))
-
     init {
         test("fetchWeather should return expected WeatherDetailEntity") {
             // Arrange
@@ -38,6 +36,8 @@ class YumemiWeatherSourceTest : FunSpec(), KoinTest {
         }
     }
 
+    override fun extensions() = listOf(KoinExtension(DataSourceModule().module))
+
     private fun loadResource(fileName: String): String {
         return ClassLoader.getSystemResourceAsStream(fileName)
             .bufferedReader()
@@ -49,7 +49,7 @@ class YumemiWeatherSourceTest : FunSpec(), KoinTest {
             respond(
                 content = response,
                 status = HttpStatusCode.OK,
-                headers = headersOf("Content-Type" to listOf(ContentType.Application.Json.toString()))
+                headers = headersOf("Content-Type" to listOf(ContentType.Application.Json.toString())),
             )
         }
 

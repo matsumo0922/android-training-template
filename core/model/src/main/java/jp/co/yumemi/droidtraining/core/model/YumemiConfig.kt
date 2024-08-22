@@ -5,7 +5,7 @@ data class YumemiConfig(
 ) {
     companion object {
         val DEFAULT = YumemiConfig(
-            openWeatherMapApiKey = ""
+            openWeatherMapApiKey = "",
         )
     }
 }
