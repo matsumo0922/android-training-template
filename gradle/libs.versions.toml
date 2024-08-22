@@ -41,6 +41,7 @@ ktor = "2.3.12"
 
 # Testing
 kotest = "5.9.0"
+kotestKoin = "1.3.0"
 mockk = "1.13.11"
 
 # Other
@@ -125,6 +126,7 @@ ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 kotest-junit = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest" }
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+kotest-extensions-koin = { module = "io.kotest.extensions:kotest-extensions-koin", version.ref = "kotestKoin" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 
 # Other
@@ -175,5 +177,6 @@ testing = [
     "kotest-junit",
     "kotest-property",
     "kotest-assertions-core",
+    "kotest-extensions-koin",
     "mockk",
 ]
