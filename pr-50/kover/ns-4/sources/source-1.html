@@ -63,7 +63,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/3)
+    (0/7)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -72,7 +72,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/8)
+    (0/14)
   </span>
 </td>
 <td class="coverageStat">
@@ -80,7 +80,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/25)
+    (0/58)
   </span>
 </td>
 </tr>
@@ -94,6 +94,10 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package jp.co.yumemi.droidtraining.core.datasource.di
 &nbsp;
+&nbsp;import io.ktor.client.HttpClient
+&nbsp;import io.ktor.client.plugins.HttpRequestRetry
+&nbsp;import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+&nbsp;import io.ktor.serialization.kotlinx.json.json
 &nbsp;import kotlinx.serialization.json.Json
 &nbsp;import org.koin.core.annotation.ComponentScan
 &nbsp;import org.koin.core.annotation.Module
@@ -113,6 +117,18 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 <b class="nc">&nbsp;        coerceInputValues = true</b>
 <b class="nc">&nbsp;        encodeDefaults = true</b>
 <b class="nc">&nbsp;        explicitNulls = false</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Single
+<b class="nc">&nbsp;    fun provideHttpClient() = HttpClient {</b>
+<b class="nc">&nbsp;        install(ContentNegotiation) {</b>
+<b class="nc">&nbsp;            json(provideJsonFormatter())</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        install(HttpRequestRetry) {</b>
+<b class="nc">&nbsp;            maxRetries = 3</b>
+<b class="nc">&nbsp;            exponentialDelay()</b>
+&nbsp;        }
 &nbsp;    }
 &nbsp;}
 </code>
@@ -138,7 +154,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-22 02:59</div>
+    <div style="float:right;">generated on 2024-08-22 03:29</div>
 </div>
 </body>
 </html>

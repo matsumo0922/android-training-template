@@ -52,7 +52,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/3)
+    (0/4)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -61,7 +61,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/8)
+    (0/9)
   </span>
 </td>
 <td class="coverageStat">
@@ -69,10 +69,80 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/62)
+    (0/79)
   </span>
 </td>
 </tr>
+  <tr>
+    <td class="name">MainViewModel$nextWeather$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/59)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">MainViewModel$nextWeather$1$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/40)
+  </span>
+</td>
+  </tr>
   <tr>
     <td class="name">MainViewModel$reloadWeather$1</td>
 <td class="coverageStat">
@@ -104,7 +174,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/57)
+    (0/59)
   </span>
 </td>
   </tr>
@@ -118,13 +188,12 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     (0/1)
   </span>
 </td>
-    <td class="coverageStat"/>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/4)
+    (0/2)
   </span>
 </td>
 <td class="coverageStat">
@@ -132,7 +201,15 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/28)
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/31)
   </span>
 </td>
   </tr>
@@ -171,7 +248,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/6)
+    (0/9)
   </span>
 </td>
 <td class="coverageStat">
@@ -179,7 +256,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/2)
+    (0/10)
   </span>
 </td>
 <td class="coverageStat">
@@ -187,7 +264,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/18)
+    (0/24)
   </span>
 </td>
 <td class="coverageStat">
@@ -195,7 +272,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/152)
+    (0/273)
   </span>
 </td>
 </tr>
@@ -211,10 +288,9 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;import androidx.compose.runtime.Stable
 &nbsp;import androidx.lifecycle.ViewModel
 &nbsp;import androidx.lifecycle.viewModelScope
-&nbsp;import jp.co.yumemi.droidtraining.core.common.serializer.toInstantInTokyo
 &nbsp;import jp.co.yumemi.droidtraining.core.common.suspendRunCatching
+&nbsp;import jp.co.yumemi.droidtraining.core.model.Area
 &nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherDetail
-&nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherRequest
 &nbsp;import jp.co.yumemi.droidtraining.core.repository.YumemiWeatherRepository
 &nbsp;import kotlinx.coroutines.flow.MutableStateFlow
 &nbsp;import kotlinx.coroutines.flow.asStateFlow
@@ -232,15 +308,26 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 <b class="nc">&nbsp;    val uiState = _uiState.asStateFlow()</b>
 <b class="nc">&nbsp;    val screenState = _screenState.asStateFlow()</b>
 &nbsp;
-&nbsp;    fun reloadWeather() {
+&nbsp;    fun reloadWeather(currentArea: Area?) {
 <b class="nc">&nbsp;        viewModelScope.launch {</b>
 <b class="nc">&nbsp;            _screenState.value = MainWeatherScreenState.Loading</b>
 <b class="nc">&nbsp;            _screenState.value = suspendRunCatching {</b>
-<b class="nc">&nbsp;                val request = WeatherRequest(&quot;tokyo&quot;, &quot;2020-04-01T12:00&quot;.toInstantInTokyo())</b>
-<b class="nc">&nbsp;                val result = weatherRepository.fetchWeather(request)</b>
-&nbsp;
 <b class="nc">&nbsp;                _uiState.value = MainWeatherUiState(</b>
-<b class="nc">&nbsp;                    weather = result,</b>
+<b class="nc">&nbsp;                    weather = weatherRepository.fetchWeather(currentArea ?: Area.TOKYO),</b>
+&nbsp;                )
+<b class="nc">&nbsp;            }.fold(</b>
+<b class="nc">&nbsp;                onSuccess = { MainWeatherScreenState.Idle },</b>
+<b class="nc">&nbsp;                onFailure = { MainWeatherScreenState.Error },</b>
+&nbsp;            )
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    fun nextWeather(currentArea: Area?) {
+<b class="nc">&nbsp;        viewModelScope.launch {</b>
+<b class="nc">&nbsp;            _screenState.value = MainWeatherScreenState.Loading</b>
+<b class="nc">&nbsp;            _screenState.value = suspendRunCatching {</b>
+<b class="nc">&nbsp;                _uiState.value = MainWeatherUiState(</b>
+<b class="nc">&nbsp;                    weather = weatherRepository.fetchWeather(currentArea?.let { Area.next(it) } ?: Area.TOKYO),</b>
 &nbsp;                )
 <b class="nc">&nbsp;            }.fold(</b>
 <b class="nc">&nbsp;                onSuccess = { MainWeatherScreenState.Idle },</b>
@@ -290,7 +377,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-22 02:59</div>
+    <div style="float:right;">generated on 2024-08-22 03:29</div>
 </div>
 </body>
 </html>

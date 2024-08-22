@@ -97,10 +97,9 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;import androidx.compose.runtime.Stable
 &nbsp;import androidx.lifecycle.ViewModel
 &nbsp;import androidx.lifecycle.viewModelScope
-&nbsp;import jp.co.yumemi.droidtraining.core.common.serializer.toInstantInTokyo
 &nbsp;import jp.co.yumemi.droidtraining.core.common.suspendRunCatching
+&nbsp;import jp.co.yumemi.droidtraining.core.model.Area
 &nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherDetail
-&nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherRequest
 &nbsp;import jp.co.yumemi.droidtraining.core.repository.YumemiWeatherRepository
 &nbsp;import kotlinx.coroutines.flow.MutableStateFlow
 &nbsp;import kotlinx.coroutines.flow.asStateFlow
@@ -118,15 +117,26 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 &nbsp;    val uiState = _uiState.asStateFlow()
 &nbsp;    val screenState = _screenState.asStateFlow()
 &nbsp;
-&nbsp;    fun reloadWeather() {
+&nbsp;    fun reloadWeather(currentArea: Area?) {
 &nbsp;        viewModelScope.launch {
 &nbsp;            _screenState.value = MainWeatherScreenState.Loading
 &nbsp;            _screenState.value = suspendRunCatching {
-&nbsp;                val request = WeatherRequest(&quot;tokyo&quot;, &quot;2020-04-01T12:00&quot;.toInstantInTokyo())
-&nbsp;                val result = weatherRepository.fetchWeather(request)
-&nbsp;
 &nbsp;                _uiState.value = MainWeatherUiState(
-&nbsp;                    weather = result,
+&nbsp;                    weather = weatherRepository.fetchWeather(currentArea ?: Area.TOKYO),
+&nbsp;                )
+&nbsp;            }.fold(
+&nbsp;                onSuccess = { MainWeatherScreenState.Idle },
+&nbsp;                onFailure = { MainWeatherScreenState.Error },
+&nbsp;            )
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    fun nextWeather(currentArea: Area?) {
+&nbsp;        viewModelScope.launch {
+&nbsp;            _screenState.value = MainWeatherScreenState.Loading
+&nbsp;            _screenState.value = suspendRunCatching {
+&nbsp;                _uiState.value = MainWeatherUiState(
+&nbsp;                    weather = weatherRepository.fetchWeather(currentArea?.let { Area.next(it) } ?: Area.TOKYO),
 &nbsp;                )
 &nbsp;            }.fold(
 &nbsp;                onSuccess = { MainWeatherScreenState.Idle },
@@ -176,7 +186,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-22 02:59</div>
+    <div style="float:right;">generated on 2024-08-22 03:29</div>
 </div>
 </body>
 </html>

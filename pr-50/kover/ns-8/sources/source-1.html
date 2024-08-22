@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>app Coverage Report > RepositoryModule</title>
+  <title>app Coverage Report > YumemiWeatherRepositoryImpl</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -19,18 +19,15 @@
 <div class="breadCrumbs">
 Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">jp.co.yumemi.droidtraining.core.repository.di</a>
+    <a href="../index.html">jp.co.yumemi.droidtraining.core.repository</a>
 </div>
 
-<h1>Coverage Summary for Class: RepositoryModule (jp.co.yumemi.droidtraining.core.repository.di)</h1>
+<h1>Coverage Summary for Class: YumemiWeatherRepositoryImpl (jp.co.yumemi.droidtraining.core.repository)</h1>
 
 <table class="coverageStats">
+
 <tr>
   <th class="name">Class</th>
-<th class="coverageStat 
-">
-  Class, %
-</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -49,15 +46,35 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 </th>
 </tr>
 <tr>
-  <td class="name">RepositoryModule</td>
+  <td class="name">YumemiWeatherRepositoryImpl</td>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/1)
+    (0/2)
   </span>
 </td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/23)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">YumemiWeatherRepositoryImpl$fetchWeather$2</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -72,7 +89,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/1)
+    (0/2)
   </span>
 </td>
 <td class="coverageStat">
@@ -80,11 +97,38 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/2)
+    (0/19)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/42)
   </span>
 </td>
 </tr>
-
 </table>
 
 <br/>
@@ -92,16 +136,33 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package jp.co.yumemi.droidtraining.core.repository.di
+<code class="sourceCode" id="sourceCode">&nbsp;package jp.co.yumemi.droidtraining.core.repository
 &nbsp;
-&nbsp;import org.koin.core.annotation.ComponentScan
-&nbsp;import org.koin.core.annotation.Module
-&nbsp;import org.koin.core.annotation.Named
+&nbsp;import jp.co.yumemi.droidtraining.core.datasource.YumemiWeatherSource
+&nbsp;import jp.co.yumemi.droidtraining.core.model.Area
+&nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherDetail
+&nbsp;import jp.co.yumemi.droidtraining.core.repository.mapper.WeatherDetailMapper
+&nbsp;import kotlinx.coroutines.CoroutineDispatcher
+&nbsp;import kotlinx.coroutines.Dispatchers
+&nbsp;import kotlinx.coroutines.withContext
+&nbsp;import org.koin.core.annotation.Single
 &nbsp;
-<b class="nc">&nbsp;@Module</b>
-&nbsp;@Named(&quot;RepositoryModule&quot;)
-&nbsp;@ComponentScan(&quot;jp.co.yumemi.droidtraining.core.repository&quot;)
-&nbsp;class RepositoryModule
+&nbsp;interface YumemiWeatherRepository {
+&nbsp;    suspend fun fetchWeather(area: Area): WeatherDetail
+&nbsp;}
+&nbsp;
+&nbsp;@Single
+&nbsp;class YumemiWeatherRepositoryImpl(
+<b class="nc">&nbsp;    private val weatherSource: YumemiWeatherSource,</b>
+<b class="nc">&nbsp;    private val weatherDetailMapper: WeatherDetailMapper,</b>
+<b class="nc">&nbsp;    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,</b>
+&nbsp;) : YumemiWeatherRepository {
+&nbsp;
+<b class="nc">&nbsp;    override suspend fun fetchWeather(area: Area): WeatherDetail = withContext(ioDispatcher) {</b>
+<b class="nc">&nbsp;        val entity = weatherSource.fetchWeather(area)</b>
+<b class="nc">&nbsp;        weatherDetailMapper.asWeatherDetail(entity)</b>
+&nbsp;    }
+&nbsp;}
 </code>
 </pre>
 </div>
@@ -125,7 +186,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-22 02:59</div>
+    <div style="float:right;">generated on 2024-08-22 03:29</div>
 </div>
 </body>
 </html>
