@@ -19,6 +19,7 @@ class ApplicationPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply("com.android.application")
                 apply("kotlin-android")
+                apply("kotlinx-serialization")
                 apply("com.google.devtools.ksp")
             }
 

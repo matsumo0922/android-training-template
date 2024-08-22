@@ -6,6 +6,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -14,21 +18,24 @@ import androidx.constraintlayout.compose.Dimension
 import jp.co.yumemi.droidtraining.MainWeatherScreenState
 import jp.co.yumemi.droidtraining.MainWeatherUiState
 import jp.co.yumemi.droidtraining.R
-import jp.co.yumemi.droidtraining.core.model.Weather
+import jp.co.yumemi.droidtraining.core.model.Area
 import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
 import jp.co.yumemi.droidtraining.core.ui.components.LoadingScreen
 import jp.co.yumemi.droidtraining.core.ui.components.SimpleAlertDialog
 import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
+import jp.co.yumemi.droidtraining.core.ui.previews.WeatherResponsePreviewParameter
 
 @Composable
 internal fun MainScreen(
     uiState: MainWeatherUiState,
     screenState: MainWeatherScreenState,
     onResetViewEvent: () -> Unit,
-    onClickReload: () -> Unit,
-    onClickNext: () -> Unit,
+    onClickReload: (Area?) -> Unit,
+    onClickNext: (Area?) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    var lastClickedButtonType by remember { mutableStateOf(ButtonType.RELOAD) }
+
     Scaffold(modifier) {
         Box {
             ConstraintLayout(
@@ -38,30 +45,48 @@ internal fun MainScreen(
             ) {
                 val (weatherInfoSection, actionButtonsSection) = createRefs()
 
-                MainWeatherInfoSection(
-                    modifier = Modifier.constrainAs(weatherInfoSection) {
-                        top.linkTo(parent.top)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                        bottom.linkTo(parent.bottom)
+                if (uiState.weather != null) {
+                    MainWeatherInfoSection(
+                        modifier = Modifier.constrainAs(weatherInfoSection) {
+                            top.linkTo(parent.top)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                            bottom.linkTo(parent.bottom)
 
-                        width = Dimension.percent(0.5f)
-                        height = Dimension.wrapContent
-                    },
-                    weather = uiState.weather,
-                )
+                            width = Dimension.percent(0.5f)
+                            height = Dimension.wrapContent
+                        },
+                        weather = uiState.weather,
+                    )
+                }
 
                 MainActionButtonsSection(
                     modifier = Modifier.constrainAs(actionButtonsSection) {
-                        top.linkTo(weatherInfoSection.bottom, 80.dp)
-                        start.linkTo(weatherInfoSection.start)
-                        end.linkTo(weatherInfoSection.end)
+                        if (uiState.weather != null) {
+                            top.linkTo(weatherInfoSection.bottom, 80.dp)
+                            start.linkTo(weatherInfoSection.start)
+                            end.linkTo(weatherInfoSection.end)
 
-                        width = Dimension.fillToConstraints
-                        height = Dimension.wrapContent
+                            width = Dimension.fillToConstraints
+                            height = Dimension.wrapContent
+                        } else {
+                            top.linkTo(parent.top)
+                            bottom.linkTo(parent.bottom)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+
+                            width = Dimension.percent(0.5f)
+                            height = Dimension.wrapContent
+                        }
                     },
-                    onClickReload = onClickReload,
-                    onClickNext = onClickNext,
+                    onClickReload = {
+                        lastClickedButtonType = ButtonType.RELOAD
+                        onClickReload.invoke(uiState.weather?.area)
+                    },
+                    onClickNext = {
+                        lastClickedButtonType = ButtonType.NEXT
+                        onClickNext.invoke(uiState.weather?.area)
+                    },
                 )
             }
 
@@ -82,11 +107,20 @@ internal fun MainScreen(
             message = stringResource(R.string.error_message_common),
             positiveButtonText = stringResource(R.string.main_weather_action_reload),
             negativeButtonText = stringResource(R.string.close),
-            onPositiveButtonClick = onClickReload,
+            onPositiveButtonClick = {
+                when (lastClickedButtonType) {
+                    ButtonType.RELOAD -> onClickReload(uiState.weather?.area)
+                    ButtonType.NEXT -> onClickNext(uiState.weather?.area)
+                }
+            },
             onNegativeButtonClick = onResetViewEvent,
             onDismissRequest = onResetViewEvent,
         )
     }
+}
+
+private enum class ButtonType {
+    RELOAD, NEXT
 }
 
 @ComponentPreviews
@@ -95,7 +129,22 @@ private fun MainScreenPreview() {
     YumemiTheme {
         MainScreen(
             modifier = Modifier.fillMaxSize(),
-            uiState = MainWeatherUiState(weather = Weather.Snowy),
+            uiState = MainWeatherUiState(WeatherResponsePreviewParameter.dummy),
+            screenState = MainWeatherScreenState.Idle,
+            onResetViewEvent = {},
+            onClickReload = {},
+            onClickNext = {},
+        )
+    }
+}
+
+@ComponentPreviews
+@Composable
+private fun MainScreenPreviewDefault() {
+    YumemiTheme {
+        MainScreen(
+            modifier = Modifier.fillMaxSize(),
+            uiState = MainWeatherUiState(null),
             screenState = MainWeatherScreenState.Idle,
             onResetViewEvent = {},
             onClickReload = {},

@@ -1,75 +1,37 @@
-@file:Suppress("MemberVisibilityCanBePrivate")
-
 package jp.co.yumemi.droidtraining.core.datasource
 
-import android.content.Context
-import android.os.NetworkOnMainThreadException
-import com.squareup.moshi.Moshi
-import jp.co.yumemi.droidtraining.core.datasource.model.DateAdapter
-import jp.co.yumemi.droidtraining.core.datasource.model.Weather
-import jp.co.yumemi.droidtraining.core.datasource.model.WeatherRequest
-import jp.co.yumemi.droidtraining.core.datasource.model.WeatherResponse
-import kotlinx.coroutines.delay
+import io.ktor.client.HttpClient
+import io.ktor.client.call.body
+import io.ktor.client.request.HttpRequestBuilder
+import io.ktor.client.request.get
+import io.ktor.client.request.parameter
+import io.ktor.client.request.url
+import jp.co.yumemi.droidtraining.core.model.Area
+import jp.co.yumemi.droidtraining.core.model.YumemiConfig
+import jp.co.yumemi.droidtraining.core.model.entity.WeatherDetailEntity
+import org.koin.core.annotation.Provided
 import org.koin.core.annotation.Single
-import java.util.Date
-import kotlin.random.Random
 
 @Single
 class YumemiWeatherSource(
-    private val context: Context,
-    private val random: Random = Random.Default,
+    private val client: HttpClient,
+    @Provided private val config: YumemiConfig,
 ) {
-
-    fun fetchSimpleWeather(): String = Weather.values().random(random).name.lowercase()
-
-    fun fetchThrowsWeather(): String {
-        if ((0..4).random(random) == 4) {
-            throw UnknownException()
-        }
-        return fetchSimpleWeather()
+    suspend fun fetchWeather(area: Area): WeatherDetailEntity {
+        return client.get {
+            url("$API/weather")
+            parameter("id", area.id)
+            defaultParameters()
+        }.body()
     }
 
-    suspend fun fetchWeatherAsync(): String {
-        if (context.mainLooper.isCurrentThread) {
-            throw NetworkOnMainThreadException()
-        }
-
-        delay(3_000)
-
-        return fetchThrowsWeather()
+    private fun HttpRequestBuilder.defaultParameters() {
+        parameter("appid", config.openWeatherMapApiKey)
+        parameter("lang", "ja")
+        parameter("units", "metric")
     }
 
-    fun fetchJsonWeather(json: String): String {
-        val moshi = Moshi.Builder()
-            .add(Date::class.java, DateAdapter())
-            .build()
-
-        val requestAdapter = moshi.adapter(WeatherRequest::class.java)
-        val request = requestAdapter.fromJson(json) ?: throw IllegalArgumentException("Failed to parse the JSON into a WeatherRequest object.")
-
-        val responseAdapter = moshi.adapter(WeatherResponse::class.java)
-
-        val maxTemp = (10..40).random(random)
-        val minTemp = (-40..maxTemp).random(random)
-        val response = WeatherResponse(
-            weather = fetchThrowsWeather(),
-            maxTemp = maxTemp,
-            minTemp = minTemp,
-            date = request.date,
-            area = request.area,
-        )
-        return responseAdapter.toJson(response)
-    }
-
-    suspend fun fetchJsonWeatherAsync(json: String): String {
-        if (context.mainLooper.isCurrentThread) {
-            throw NetworkOnMainThreadException()
-        }
-
-        delay(3_000)
-
-        return fetchJsonWeather(json)
+    companion object {
+        private const val API = "https://api.openweathermap.org/data/2.5"
     }
 }
-
-class UnknownException : Throwable()

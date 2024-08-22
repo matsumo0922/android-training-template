@@ -7,3 +7,7 @@ plugins {
 android {
     namespace = "jp.co.yumemi.droidtraining.core.common"
 }
+
+dependencies {
+    api(libs.bundles.infra.api)
+}

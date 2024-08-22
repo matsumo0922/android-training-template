@@ -6,6 +6,19 @@ Androidアプリ開発の基礎復習・実務スキルを身に付けるため�
 このAndroidプロジェクトは[android-training-template](https://github.com/yumemi-inc/android-training-template)からセットアップされました.  
 課題の詳細や進め方は元のリポジトリのREADMEを参照してください.
 
+# セットアップ
+
+このアプリは OpenWeatherMap API を利用して天気情報を取得するため、APIキーが必要です。
+[OpenWeatherMap](https://home.openweathermap.org/users/sign_up)にアカウント登録を行い、APIキーを取得してください。
+
+
+取得した APIキーを `local.properties` に以下のように設定してください。
+ここで設定した値が BuildConfig に反映され、`YumemiConfig` として DI 可能になります。
+
+```
+OPEN_WEATHER_MAP_API_KEY="YOUR_API_KEY"
+```
+
 # アーキテクチャ
 アプリのアーキテクチャ図です。一部現在は実装されていないモジュールが存在しますが、今後の課題で実装される予定です。
 
