@@ -21,6 +21,9 @@ dependencies {
     implementation(libs.moshi)
     ksp(libs.moshi.codegen)
 
+    // Ktor
+    implementation(libs.bundles.ktor)
+
     // Test
     testImplementation(libs.junit)
     testImplementation(libs.truth)

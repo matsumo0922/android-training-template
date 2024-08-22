@@ -7,9 +7,10 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class WeatherDetail(
     val weather: Weather,
-    val maxTemp: Int,
-    val minTemp: Int,
+    val maxTemp: Double,
+    val minTemp: Double,
     @Serializable(with = InstantSerializer::class)
     val date: Instant,
-    val area: String,
+    val area: Area,
+    val areaName: String,
 )

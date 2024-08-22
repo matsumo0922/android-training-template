@@ -1,5 +1,9 @@
 package jp.co.yumemi.droidtraining.core.datasource.di
 
+import io.ktor.client.HttpClient
+import io.ktor.client.plugins.HttpRequestRetry
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import org.koin.core.annotation.ComponentScan
 import org.koin.core.annotation.Module
@@ -19,5 +23,17 @@ class DataSourceModule {
         coerceInputValues = true
         encodeDefaults = true
         explicitNulls = false
+    }
+
+    @Single
+    fun provideHttpClient() = HttpClient {
+        install(ContentNegotiation) {
+            json(provideJsonFormatter())
+        }
+
+        install(HttpRequestRetry) {
+            maxRetries = 3
+            exponentialDelay()
+        }
     }
 }

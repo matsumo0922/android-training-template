@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="jp.co.yumemi.droidtraining">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".YumemiApplication"
         android:allowBackup="true"

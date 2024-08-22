@@ -36,6 +36,9 @@ koinAnnotations = "1.4.0-RC3"
 # Moshi
 moshi = "1.13.0"
 
+# Ktor
+ktor = "2.3.12"
+
 # Testing
 junit = "4.13.2"
 truth = "1.1.5"
@@ -113,6 +116,13 @@ koin-ksp-compiler = { module = "io.insert-koin:koin-ksp-compiler", version.ref =
 moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
 moshi-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
 
+# Ktor
+ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
+ktor-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktot-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+
 # Testing
 junit = { module = "junit:junit", version.ref = "junit" }
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
@@ -152,4 +162,12 @@ koin = [
     "koin-compose",
     "koin-android",
     "koin-annotations",
+]
+
+ktor = [
+    "ktor-core",
+    "ktor-android",
+    "ktor-content-negotiation",
+    "ktor-serialization-json",
+    "ktot-logging",
 ]

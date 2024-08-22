@@ -33,6 +33,7 @@ internal fun MainWeatherInfoSection(
         Weather.Cloudy -> R.drawable.vec_cloudy
         Weather.Rainy -> R.drawable.vec_rainy
         Weather.Snowy -> R.drawable.vec_snowy
+        else -> null
     }
 
     Column(
@@ -41,30 +42,32 @@ internal fun MainWeatherInfoSection(
     ) {
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = weather.area,
+            text = weather.areaName,
             style = MaterialTheme.typography.titleMedium.bold().center(),
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
 
-        Image(
-            modifier = Modifier
-                .fillMaxWidth()
-                .aspectRatio(1f),
-            painter = painterResource(weatherIcon),
-            contentDescription = "Weather Icon",
-        )
+        if (weatherIcon != null) {
+            Image(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .aspectRatio(1f),
+                painter = painterResource(weatherIcon),
+                contentDescription = "Weather Icon",
+            )
+        }
 
         Row {
             Text(
                 modifier = Modifier.weight(1f),
-                text = "${weather.minTemp}℃",
+                text = "%.2f℃".format(weather.minTemp),
                 style = MaterialTheme.typography.bodyMedium.center(),
                 color = Color.Blue,
             )
 
             Text(
                 modifier = Modifier.weight(1f),
-                text = "${weather.maxTemp}℃",
+                text = "%.2f℃".format(weather.maxTemp),
                 style = MaterialTheme.typography.bodyMedium.center(),
                 color = Color.Red,
             )
