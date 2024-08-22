@@ -40,7 +40,8 @@ moshi = "1.13.0"
 ktor = "2.3.12"
 
 # Testing
-mockk = "1.13.7"
+kotest = "5.9.0"
+mockk = "1.13.11"
 
 # Other
 detekt = "1.23.6"
@@ -106,6 +107,7 @@ koin-android = { module = "io.insert-koin:koin-android" }
 koin-compose = { module = "io.insert-koin:koin-androidx-compose" }
 koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koinAnnotations" }
 koin-ksp-compiler = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koinAnnotations" }
+koin-test = { module = "io.insert-koin:koin-test" }
 
 # Moshi
 moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
@@ -116,9 +118,13 @@ ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
-ktot-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 
 # Testing
+kotest-junit = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
+kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest" }
+kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 
 # Other
@@ -159,5 +165,15 @@ ktor = [
     "ktor-android",
     "ktor-content-negotiation",
     "ktor-serialization-json",
-    "ktot-logging",
+    "ktor-logging",
+]
+
+testing = [
+    "kotlinx-coroutines-test",
+    "koin-test",
+    "ktor-mock",
+    "kotest-junit",
+    "kotest-property",
+    "kotest-assertions-core",
+    "mockk",
 ]
