@@ -25,9 +25,6 @@ dependencies {
     implementation(libs.bundles.ktor)
 
     // Test
-    testImplementation(libs.junit)
-    testImplementation(libs.truth)
     testImplementation(libs.kotlinx.coroutines.test)
-    testImplementation(libs.robolectric)
     testImplementation(libs.mockk)
 }
