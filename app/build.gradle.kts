@@ -33,10 +33,6 @@ dependencies {
 
     implementation(libs.bundles.ui.implementations)
     implementation(libs.compose.constraint.layout)
-
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso)
 }
 
 fun MapProperty<String, BuildConfigField<out Serializable>>.putBuildConfig(
