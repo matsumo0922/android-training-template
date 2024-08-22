@@ -22,7 +22,9 @@ data class WeatherDetailEntity(
     @SerialName("name")
     val name: String,
     @SerialName("rain")
-    val rain: Rain,
+    val rain: Rain?,
+    @SerialName("snow")
+    val snow: Snow?,
     @SerialName("sys")
     val sys: Sys,
     @SerialName("timezone")
@@ -71,7 +73,17 @@ data class WeatherDetailEntity(
     @Serializable
     data class Rain(
         @SerialName("1h")
-        val h: Double,
+        val oneHr: Double?,
+        @SerialName("3h")
+        val threeHr: Double?,
+    )
+
+    @Serializable
+    data class Snow(
+        @SerialName("1h")
+        val oneHr: Double?,
+        @SerialName("3h")
+        val threeHr: Double?,
     )
 
     @Serializable
@@ -79,13 +91,13 @@ data class WeatherDetailEntity(
         @SerialName("country")
         val country: String,
         @SerialName("id")
-        val id: Int,
+        val id: Long?,
         @SerialName("sunrise")
         val sunrise: Int,
         @SerialName("sunset")
         val sunset: Int,
         @SerialName("type")
-        val type: Int,
+        val type: Int?,
     )
 
     @Serializable

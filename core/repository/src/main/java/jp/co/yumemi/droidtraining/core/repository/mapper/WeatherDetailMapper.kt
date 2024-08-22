@@ -1,5 +1,6 @@
 package jp.co.yumemi.droidtraining.core.repository.mapper
 
+import jp.co.yumemi.droidtraining.core.model.Area
 import jp.co.yumemi.droidtraining.core.model.Weather
 import jp.co.yumemi.droidtraining.core.model.WeatherDetail
 import jp.co.yumemi.droidtraining.core.model.entity.WeatherDetailEntity
@@ -15,7 +16,8 @@ class WeatherDetailMapper {
             maxTemp = entity.main.tempMax,
             minTemp = entity.main.tempMin,
             date = Instant.fromEpochSeconds(entity.dt, 0),
-            area = entity.name,
+            area = Area.fromId(entity.id),
+            areaName = entity.name,
         )
     }
 

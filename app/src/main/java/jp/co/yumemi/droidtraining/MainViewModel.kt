@@ -23,12 +23,26 @@ class MainViewModel(
     val uiState = _uiState.asStateFlow()
     val screenState = _screenState.asStateFlow()
 
-    fun reloadWeather() {
+    fun reloadWeather(currentArea: Area?) {
         viewModelScope.launch {
             _screenState.value = MainWeatherScreenState.Loading
             _screenState.value = suspendRunCatching {
                 _uiState.value = MainWeatherUiState(
-                    weather = weatherRepository.fetchWeather(Area.TOKYO),
+                    weather = weatherRepository.fetchWeather(currentArea ?: Area.TOKYO),
+                )
+            }.fold(
+                onSuccess = { MainWeatherScreenState.Idle },
+                onFailure = { MainWeatherScreenState.Error },
+            )
+        }
+    }
+
+    fun nextWeather(currentArea: Area?) {
+        viewModelScope.launch {
+            _screenState.value = MainWeatherScreenState.Loading
+            _screenState.value = suspendRunCatching {
+                _uiState.value = MainWeatherUiState(
+                    weather = weatherRepository.fetchWeather(currentArea?.let { Area.next(it) } ?: Area.TOKYO),
                 )
             }.fold(
                 onSuccess = { MainWeatherScreenState.Idle },

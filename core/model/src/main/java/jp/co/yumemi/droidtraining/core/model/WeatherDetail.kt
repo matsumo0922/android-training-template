@@ -11,5 +11,6 @@ data class WeatherDetail(
     val minTemp: Double,
     @Serializable(with = InstantSerializer::class)
     val date: Instant,
-    val area: String,
+    val area: Area,
+    val areaName: String,
 )

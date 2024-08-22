@@ -42,7 +42,7 @@ internal fun MainWeatherInfoSection(
     ) {
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = weather.area,
+            text = weather.areaName,
             style = MaterialTheme.typography.titleMedium.bold().center(),
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )

@@ -1,6 +1,6 @@
 package jp.co.yumemi.droidtraining.core.model
 
-enum class Area(val id: Int) {
+enum class Area(val id: Long) {
     SAPPORO(2128295),
     KUSHIRO(2129376),
     SENDAI(2111149),
@@ -20,8 +20,14 @@ enum class Area(val id: Int) {
     ;
 
     companion object {
-        fun fromId(id: Int): Area {
+        fun fromId(id: Long): Area {
             return entries.find { it.id == id } ?: UNKNOWN
+        }
+
+        fun next(currentArea: Area): Area {
+            val areas = entries.toMutableList().apply { remove(UNKNOWN) }
+            val nextIndex = (currentArea.ordinal + 1) % areas.size
+            return areas[nextIndex]
         }
     }
 }

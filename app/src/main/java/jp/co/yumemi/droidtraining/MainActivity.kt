@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                     screenState = screenState,
                     onResetViewEvent = viewModel::resetScreenState,
                     onClickReload = viewModel::reloadWeather,
-                    onClickNext = { /* do noting */ },
+                    onClickNext = viewModel::nextWeather,
                 )
             }
         }
