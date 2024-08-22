@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,13 +29,17 @@ internal fun MainActionButtonsSection(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         MainActionButton(
-            modifier = Modifier.weight(1f),
+            modifier = Modifier
+                .testTag("reload_button")
+                .weight(1f),
             text = stringResource(R.string.main_weather_action_reload),
             onClick = onClickReload,
         )
 
         MainActionButton(
-            modifier = Modifier.weight(1f),
+            modifier = Modifier
+                .testTag("next_button")
+                .weight(1f),
             text = stringResource(R.string.main_weather_action_next),
             onClick = onClickNext,
         )

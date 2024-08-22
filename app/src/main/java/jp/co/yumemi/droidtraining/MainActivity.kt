@@ -8,18 +8,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import jp.co.yumemi.droidtraining.components.MainScreen
 import jp.co.yumemi.droidtraining.core.model.ThemeConfig
 import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
 import jp.co.yumemi.droidtraining.core.ui.shouldUseDarkTheme
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
-
-    private val viewModel by viewModel<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,9 +25,6 @@ class MainActivity : AppCompatActivity() {
 
             val lightScrim = Color.argb(0xe6, 0xFF, 0xFF, 0xFF)
             val darkScrim = Color.argb(0x80, 0x1b, 0x1b, 0x1b)
-
-            val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-            val screenState by viewModel.screenState.collectAsStateWithLifecycle()
 
             // LaunchedEffect は Dispatch が必要なので、起動時は DisposableEffect の方が若干早く実行される（らしい）
             // FYI: https://github.com/android/nowinandroid/pull/330/files#r999831539
@@ -50,11 +42,6 @@ class MainActivity : AppCompatActivity() {
             ) {
                 MainScreen(
                     modifier = Modifier.fillMaxSize(),
-                    uiState = uiState,
-                    screenState = screenState,
-                    onResetViewEvent = viewModel::resetScreenState,
-                    onClickReload = viewModel::reloadWeather,
-                    onClickNext = viewModel::nextWeather,
                 )
             }
         }
