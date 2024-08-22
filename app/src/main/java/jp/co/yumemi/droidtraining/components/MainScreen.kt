@@ -120,7 +120,7 @@ internal fun MainScreen(
 }
 
 private enum class ButtonType {
-    RELOAD, NEXT;
+    RELOAD, NEXT
 }
 
 @ComponentPreviews
