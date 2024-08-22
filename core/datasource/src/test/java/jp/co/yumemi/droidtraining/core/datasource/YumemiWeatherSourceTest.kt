@@ -26,7 +26,7 @@ class YumemiWeatherSourceTest : FunSpec(), KoinTest {
             // Arrange
             val response = loadResource("dummy_weather_detail.json")
             val client = setupMockClient(response)
-            val source = YumemiWeatherSource(client, YumemiConfig.DEFAULT)
+            val source = YumemiWeatherSource(client, YumemiConfig(""))
 
             // Act
             val result = source.fetchWeather(Area.TOKYO)
