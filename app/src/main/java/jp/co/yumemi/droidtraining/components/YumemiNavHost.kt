@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import jp.co.yumemi.android.code_check.core.ui.animation.NavigateAnimation
+import jp.co.yumemi.droidtraining.core.ui.animation.NavigateAnimation
 import jp.co.yumemi.droidtraining.feature.detail.detailScreen
 import jp.co.yumemi.droidtraining.feature.home.HomeRoute
 import jp.co.yumemi.droidtraining.feature.home.homeScreen

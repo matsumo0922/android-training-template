@@ -14,12 +14,12 @@ import androidx.compose.ui.test.performClick
 import androidx.test.platform.app.InstrumentationRegistry
 import io.mockk.coEvery
 import io.mockk.mockk
-import jp.co.yumemi.droidtraining.feature.home.HomeScreen
 import jp.co.yumemi.droidtraining.core.model.Area
 import jp.co.yumemi.droidtraining.core.model.Weather
 import jp.co.yumemi.droidtraining.core.model.WeatherDetail
 import jp.co.yumemi.droidtraining.core.repository.YumemiWeatherRepository
 import jp.co.yumemi.droidtraining.di.applyModules
+import jp.co.yumemi.droidtraining.feature.home.HomeScreen
 import jp.co.yumemi.droidtraining.feature.home.HomeViewModel
 import kotlinx.datetime.Instant
 import org.junit.Before

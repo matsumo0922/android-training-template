@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.core.ui.animation
+package jp.co.yumemi.droidtraining.core.ui.animation
 
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.tween
