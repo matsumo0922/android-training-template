@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import jp.co.yumemi.droidtraining.core.ui.animation.NavigateAnimation
 import jp.co.yumemi.droidtraining.feature.detail.detailScreen
+import jp.co.yumemi.droidtraining.feature.detail.navigateToDetail
 import jp.co.yumemi.droidtraining.feature.home.HomeRoute
 import jp.co.yumemi.droidtraining.feature.home.homeScreen
 
@@ -24,7 +25,12 @@ fun YumemiNavHost(
         popEnterTransition = { NavigateAnimation.Horizontal.popEnter },
         popExitTransition = { NavigateAnimation.Horizontal.popExit },
     ) {
-        homeScreen()
-        detailScreen()
+        homeScreen(
+            navigateToDetail = navController::navigateToDetail,
+        )
+
+        detailScreen(
+            terminate = navController::popBackStack,
+        )
     }
 }
