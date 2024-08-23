@@ -21,14 +21,24 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import jp.co.yumemi.droidtraining.core.model.WeatherForecast
 import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
 import jp.co.yumemi.droidtraining.core.ui.colors.tempMaxColor
 import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
+import jp.co.yumemi.droidtraining.core.ui.previews.WeatherForecastPreviewParameter
+import kotlinx.datetime.Instant
+import kotlinx.datetime.toJavaInstant
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 @Composable
 internal fun DetailWeatherItem(
+    dayWeather: WeatherForecast.DayWeather,
     onClickWeather: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -48,19 +58,20 @@ internal fun DetailWeatherItem(
         ) {
             Text(
                 modifier = Modifier.weight(3f),
-                text = "8月28日(水)",
+                text = dayWeather.date.formatDate(),
                 style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.onSurface,
             )
 
             WeatherIcon(
                 modifier = Modifier.weight(2f),
+                dayWeather = dayWeather,
             )
 
             TempItem(
                 modifier = Modifier.weight(5f),
-                minTemp = 24f,
-                maxTemp = 31f,
+                minTemp = dayWeather.minTemp,
+                maxTemp = dayWeather.maxTemp,
             )
         }
     }
@@ -68,22 +79,27 @@ internal fun DetailWeatherItem(
 
 @Composable
 private fun WeatherIcon(
+    dayWeather: WeatherForecast.DayWeather,
     modifier: Modifier = Modifier,
 ) {
+    val precipitation = dayWeather.rain ?: dayWeather.snow
+
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Text(
-            text = "62%",
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.primary,
-        )
+        if (precipitation != null && precipitation >= 1) {
+            Text(
+                text = "${precipitation.toInt()}%",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.primary,
+            )
+        }
 
         AsyncImage(
             modifier = Modifier.size(60.dp),
-            model = "https://openweathermap.org/img/wn/10d@4x.png",
+            model = dayWeather.iconUrl,
             contentDescription = "晴れのち雨",
         )
     }
@@ -111,7 +127,7 @@ private fun TempItem(
                 modifier = Modifier.weight(1f),
                 value = minTemp..maxTemp,
                 onValueChange = { /* do nothing */ },
-                valueRange = 20f..40f,
+                valueRange = 2f..35f,
                 enabled = false,
                 startThumb = { },
                 endThumb = { },
@@ -130,12 +146,21 @@ private fun TempItem(
     }
 }
 
+private fun Instant.formatDate(): String {
+    return LocalDateTime
+        .ofInstant(this.toJavaInstant(), ZoneId.of("UTC"))
+        .format(DateTimeFormatter.ofPattern("M/d: H:mm", Locale.US))
+}
+
 @ComponentPreviews
 @Composable
-private fun DetailWeatherItemPreview() {
+private fun DetailWeatherItemPreview(
+    @PreviewParameter(WeatherForecastPreviewParameter::class) weatherForecast: WeatherForecast,
+) {
     YumemiTheme {
         DetailWeatherItem(
             modifier = Modifier.fillMaxWidth(),
+            dayWeather = weatherForecast.dayWeathers.first(),
             onClickWeather = {},
         )
     }

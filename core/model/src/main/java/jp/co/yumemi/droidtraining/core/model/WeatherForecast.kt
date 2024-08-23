@@ -13,9 +13,12 @@ data class WeatherForecast(
     @Serializable
     data class DayWeather(
         val weather: Weather,
-        val maxTemp: Double,
-        val minTemp: Double,
+        val iconUrl: String,
+        val maxTemp: Float,
+        val minTemp: Float,
         @Serializable(with = InstantSerializer::class)
         val date: Instant,
+        val rain: Float?,
+        val snow: Float?,
     )
 }

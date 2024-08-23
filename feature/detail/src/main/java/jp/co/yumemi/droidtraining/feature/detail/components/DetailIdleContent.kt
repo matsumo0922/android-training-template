@@ -3,31 +3,56 @@ package jp.co.yumemi.droidtraining.feature.detail.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.TopAppBarScrollBehavior
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
+import jp.co.yumemi.droidtraining.feature.detail.DetailUiState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun DetailIdleContent(
-    scrollBehavior: TopAppBarScrollBehavior,
+    uiState: DetailUiState,
+    onClickBack: () -> Unit,
     onClickWeather: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    LazyColumn(
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+
+    Scaffold(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-        contentPadding = PaddingValues(16.dp),
-    ) {
-        items(5) {
-            DetailWeatherItem(
+        topBar = {
+            DetailTopAppBar(
                 modifier = Modifier.fillMaxWidth(),
-                onClickWeather = onClickWeather,
+                areaName = uiState.weatherForecast.areaName,
+                scrollBehavior = scrollBehavior,
+                onClickBack = onClickBack,
             )
+        },
+    ) { padding ->
+        LazyColumn(
+            modifier = modifier
+                .padding(padding)
+                .nestedScroll(scrollBehavior.nestedScrollConnection),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            contentPadding = PaddingValues(16.dp),
+        ) {
+            items(
+                items = uiState.weatherForecast.dayWeathers,
+                key = { it.date.toString() },
+            ) {
+                DetailWeatherItem(
+                    modifier = Modifier.fillMaxWidth(),
+                    dayWeather = it,
+                    onClickWeather = onClickWeather,
+                )
+            }
         }
     }
 }

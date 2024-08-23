@@ -30,9 +30,12 @@ class WeatherDetailMapper {
             dayWeathers = entity.list.map {
                 WeatherForecast.DayWeather(
                     weather = asWeatherType(it.weather.first().id),
-                    maxTemp = it.main.tempMax,
-                    minTemp = it.main.tempMin,
+                    iconUrl = "https://openweathermap.org/img/wn/${it.weather.first().icon}@4x.png",
+                    maxTemp = it.main.tempMax.toFloat(),
+                    minTemp = it.main.tempMin.toFloat(),
                     date = Instant.fromEpochSeconds(it.dt, 0),
+                    rain = it.rain?.oneHr?.toFloat() ?: it.rain?.threeHr?.toFloat(),
+                    snow = it.snow?.oneHr?.toFloat() ?: it.snow?.threeHr?.toFloat(),
                 )
             }
         )
