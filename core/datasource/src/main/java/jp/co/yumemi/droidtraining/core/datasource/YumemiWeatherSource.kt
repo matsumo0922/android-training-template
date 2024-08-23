@@ -9,6 +9,7 @@ import io.ktor.client.request.url
 import jp.co.yumemi.droidtraining.core.model.Area
 import jp.co.yumemi.droidtraining.core.model.YumemiConfig
 import jp.co.yumemi.droidtraining.core.model.entity.WeatherDetailEntity
+import jp.co.yumemi.droidtraining.core.model.entity.WeatherForecastEntity
 import org.koin.core.annotation.Provided
 import org.koin.core.annotation.Single
 
@@ -20,6 +21,14 @@ class YumemiWeatherSource(
     suspend fun fetchWeather(area: Area): WeatherDetailEntity {
         return client.get {
             url("$API/weather")
+            parameter("id", area.id)
+            defaultParameters()
+        }.body()
+    }
+
+    suspend fun fetchWeatherForecast(area: Area): WeatherForecastEntity {
+        return client.get {
+            url("$API/forecast")
             parameter("id", area.id)
             defaultParameters()
         }.body()

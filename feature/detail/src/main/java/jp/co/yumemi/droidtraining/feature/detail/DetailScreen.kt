@@ -22,6 +22,7 @@ import jp.co.yumemi.droidtraining.core.ui.components.LoadingScreen
 import jp.co.yumemi.droidtraining.feature.detail.components.DetailIdleContent
 import jp.co.yumemi.droidtraining.feature.detail.components.DetailTopAppBar
 import org.koin.androidx.compose.koinViewModel
+import org.koin.core.parameter.parametersOf
 
 @Suppress("UnusedParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -30,7 +31,9 @@ internal fun DetailScreen(
     area: Area,
     terminate: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: DetailViewModel = koinViewModel(),
+    viewModel: DetailViewModel = koinViewModel {
+        parametersOf(area)
+    },
 ) {
     val screenState by viewModel.screenState.collectAsStateWithLifecycle()
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
@@ -45,10 +48,10 @@ internal fun DetailScreen(
                 onClickBack = terminate,
             )
         },
-    ) {
+    ) { padding ->
         AnimatedContent(
             modifier = Modifier
-                .padding(it)
+                .padding(padding)
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.surface),
             targetState = screenState,
@@ -68,6 +71,7 @@ internal fun DetailScreen(
                 is DetailScreenState.Loading -> {
                     LoadingScreen(
                         modifier = Modifier.fillMaxWidth(),
+                        containerColor = MaterialTheme.colorScheme.surface
                     )
                 }
 
