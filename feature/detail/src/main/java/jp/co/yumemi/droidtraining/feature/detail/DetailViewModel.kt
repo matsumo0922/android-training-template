@@ -19,7 +19,7 @@ data object DetailUiState
 
 @Stable
 sealed interface DetailScreenState {
-    data class Idle(val uiState: DetailUiState): DetailScreenState
-    data object Loading: DetailScreenState
-    data object Error: DetailScreenState
+    data class Idle(val uiState: DetailUiState) : DetailScreenState
+    data object Loading : DetailScreenState
+    data object Error : DetailScreenState
 }

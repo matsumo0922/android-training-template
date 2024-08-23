@@ -23,6 +23,7 @@ import jp.co.yumemi.droidtraining.feature.detail.components.DetailIdleContent
 import jp.co.yumemi.droidtraining.feature.detail.components.DetailTopAppBar
 import org.koin.androidx.compose.koinViewModel
 
+@Suppress("UnusedParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun DetailScreen(
@@ -41,7 +42,7 @@ internal fun DetailScreen(
                 modifier = Modifier.fillMaxWidth(),
                 areaName = "名古屋",
                 scrollBehavior = scrollBehavior,
-                onClickBack = terminate
+                onClickBack = terminate,
             )
         },
     ) {

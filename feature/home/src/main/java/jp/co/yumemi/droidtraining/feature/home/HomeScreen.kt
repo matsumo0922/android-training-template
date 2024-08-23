@@ -105,10 +105,6 @@ internal fun HomeScreen(
     }
 }
 
-private enum class ButtonType {
-    RELOAD, NEXT
-}
-
 @ComponentPreviews
 @Composable
 private fun MainScreenPreview() {

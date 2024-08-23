@@ -54,7 +54,7 @@ internal fun DetailWeatherItem(
             )
 
             WeatherIcon(
-                modifier = Modifier.weight(2f)
+                modifier = Modifier.weight(2f),
             )
 
             TempItem(
@@ -118,7 +118,7 @@ private fun TempItem(
                 colors = SliderDefaults.colors(
                     disabledActiveTrackColor = MaterialTheme.colorScheme.primary,
                     disabledInactiveTrackColor = MaterialTheme.colorScheme.primaryContainer,
-                )
+                ),
             )
         }
 
