@@ -43,7 +43,6 @@ dependencies {
     implementation(project(":core:common"))
 
     implementation(libs.bundles.ui.implementations)
-    implementation(libs.compose.constraint.layout)
 
     androidTestImplementation(platform(libs.koin.bom))
     androidTestImplementation(platform(libs.compose.bom))

@@ -1,4 +1,4 @@
-package jp.co.yumemi.droidtraining.components
+package jp.co.yumemi.droidtraining.feature.home.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -15,7 +15,6 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import jp.co.yumemi.droidtraining.R
 import jp.co.yumemi.droidtraining.core.model.Weather
 import jp.co.yumemi.droidtraining.core.model.WeatherDetail
 import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
@@ -23,6 +22,7 @@ import jp.co.yumemi.droidtraining.core.ui.bold
 import jp.co.yumemi.droidtraining.core.ui.center
 import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
 import jp.co.yumemi.droidtraining.core.ui.previews.WeatherResponsePreviewParameter
+import jp.co.yumemi.droidtraining.feature.home.R
 
 @Composable
 internal fun MainWeatherInfoSection(

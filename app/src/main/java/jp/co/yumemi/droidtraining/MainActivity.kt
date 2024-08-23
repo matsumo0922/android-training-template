@@ -9,9 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
-import jp.co.yumemi.droidtraining.components.MainScreen
+import jp.co.yumemi.droidtraining.components.YumemiApp
 import jp.co.yumemi.droidtraining.core.model.ThemeConfig
-import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
 import jp.co.yumemi.droidtraining.core.ui.shouldUseDarkTheme
 
 class MainActivity : AppCompatActivity() {
@@ -36,14 +35,10 @@ class MainActivity : AppCompatActivity() {
                 onDispose { }
             }
 
-            YumemiTheme(
+            YumemiApp(
+                modifier = Modifier.fillMaxSize(),
                 themeConfig = themeConfig,
-                enableDynamicTheme = false,
-            ) {
-                MainScreen(
-                    modifier = Modifier.fillMaxSize(),
-                )
-            }
+            )
         }
     }
 }

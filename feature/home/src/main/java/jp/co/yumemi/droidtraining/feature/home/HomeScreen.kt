@@ -1,4 +1,4 @@
-package jp.co.yumemi.droidtraining.components
+package jp.co.yumemi.droidtraining.feature.home
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Box
@@ -16,19 +16,18 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import jp.co.yumemi.droidtraining.MainViewModel
-import jp.co.yumemi.droidtraining.MainWeatherScreenState
-import jp.co.yumemi.droidtraining.R
 import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
 import jp.co.yumemi.droidtraining.core.ui.components.LoadingScreen
 import jp.co.yumemi.droidtraining.core.ui.components.SimpleAlertDialog
 import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
+import jp.co.yumemi.droidtraining.feature.home.components.MainActionButtonsSection
+import jp.co.yumemi.droidtraining.feature.home.components.MainWeatherInfoSection
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-internal fun MainScreen(
+internal fun HomeScreen(
     modifier: Modifier = Modifier,
-    viewModel: MainViewModel = koinViewModel(),
+    viewModel: HomeViewModel = koinViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val screenState by viewModel.screenState.collectAsStateWithLifecycle()
@@ -91,7 +90,7 @@ internal fun MainScreen(
 
             AnimatedVisibility(
                 modifier = Modifier.fillMaxSize(),
-                visible = screenState is MainWeatherScreenState.Loading,
+                visible = screenState is HomeWeatherScreenState.Loading,
             ) {
                 LoadingScreen(
                     modifier = Modifier.fillMaxSize(),
@@ -100,7 +99,7 @@ internal fun MainScreen(
         }
     }
 
-    if (screenState is MainWeatherScreenState.Error) {
+    if (screenState is HomeWeatherScreenState.Error) {
         SimpleAlertDialog(
             title = stringResource(R.string.error_title_common),
             message = stringResource(R.string.error_message_common),
@@ -126,7 +125,7 @@ private enum class ButtonType {
 @Composable
 private fun MainScreenPreview() {
     YumemiTheme {
-        MainScreen(
+        HomeScreen(
             modifier = Modifier.fillMaxSize(),
         )
     }
