@@ -33,6 +33,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":feature:home"))
+    implementation(project(":feature:detail"))
+
     implementation(project(":core:repository"))
     implementation(project(":core:datasource"))
     implementation(project(":core:ui"))
