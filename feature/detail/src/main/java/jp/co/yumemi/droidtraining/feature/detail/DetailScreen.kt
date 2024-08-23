@@ -51,7 +51,7 @@ internal fun DetailScreen(
             is DetailScreenState.Loading -> {
                 LoadingScreen(
                     modifier = Modifier.fillMaxWidth(),
-                    containerColor = MaterialTheme.colorScheme.surface
+                    containerColor = MaterialTheme.colorScheme.surface,
                 )
             }
 

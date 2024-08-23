@@ -37,7 +37,7 @@ class WeatherDetailMapper {
                     rain = it.rain?.oneHr?.toFloat() ?: it.rain?.threeHr?.toFloat(),
                     snow = it.snow?.oneHr?.toFloat() ?: it.snow?.threeHr?.toFloat(),
                 )
-            }
+            },
         )
     }
 

@@ -6,7 +6,7 @@ import jp.co.yumemi.droidtraining.core.model.Weather
 import jp.co.yumemi.droidtraining.core.model.WeatherForecast
 import kotlinx.datetime.Instant
 
-class WeatherForecastPreviewParameter: PreviewParameterProvider<WeatherForecast> {
+class WeatherForecastPreviewParameter : PreviewParameterProvider<WeatherForecast> {
 
     override val values: Sequence<WeatherForecast>
         get() = sequenceOf(dummy)

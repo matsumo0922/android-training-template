@@ -1,6 +1,5 @@
 package jp.co.yumemi.droidtraining.core.model.entity
 
-
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -15,7 +14,7 @@ data class WeatherForecastEntity(
     @SerialName("list")
     val list: List<DayWeather>,
     @SerialName("message")
-    val message: Int
+    val message: Int,
 ) {
     @Serializable
     data class City(
@@ -34,14 +33,14 @@ data class WeatherForecastEntity(
         @SerialName("sunset")
         val sunset: Int,
         @SerialName("timezone")
-        val timezone: Int
+        val timezone: Int,
     ) {
         @Serializable
         data class Coord(
             @SerialName("lat")
             val lat: Double,
             @SerialName("lon")
-            val lon: Double
+            val lon: Double,
         )
     }
 
@@ -66,12 +65,12 @@ data class WeatherForecastEntity(
         @SerialName("weather")
         val weather: List<Weather>,
         @SerialName("wind")
-        val wind: Wind
+        val wind: Wind,
     ) {
         @Serializable
         data class Clouds(
             @SerialName("all")
-            val all: Int
+            val all: Int,
         )
 
         @Serializable
@@ -93,7 +92,7 @@ data class WeatherForecastEntity(
             @SerialName("temp_max")
             val tempMax: Double,
             @SerialName("temp_min")
-            val tempMin: Double
+            val tempMin: Double,
         )
 
         @Serializable
@@ -121,7 +120,7 @@ data class WeatherForecastEntity(
             @SerialName("id")
             val id: Long,
             @SerialName("main")
-            val main: String
+            val main: String,
         )
 
         @Serializable
@@ -131,7 +130,7 @@ data class WeatherForecastEntity(
             @SerialName("gust")
             val gust: Double,
             @SerialName("speed")
-            val speed: Double
+            val speed: Double,
         )
     }
 }

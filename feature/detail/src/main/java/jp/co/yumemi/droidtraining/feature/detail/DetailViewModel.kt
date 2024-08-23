@@ -36,7 +36,7 @@ class DetailViewModel(
                 )
             }.fold(
                 onSuccess = { DetailScreenState.Idle(it) },
-                onFailure = { DetailScreenState.Error }
+                onFailure = { DetailScreenState.Error },
             )
         }
     }

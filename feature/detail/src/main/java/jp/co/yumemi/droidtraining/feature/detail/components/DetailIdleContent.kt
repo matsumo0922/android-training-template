@@ -2,6 +2,7 @@ package jp.co.yumemi.droidtraining.feature.detail.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -37,8 +38,9 @@ internal fun DetailIdleContent(
         },
     ) { padding ->
         LazyColumn(
-            modifier = modifier
+            modifier = Modifier
                 .padding(padding)
+                .fillMaxSize()
                 .nestedScroll(scrollBehavior.nestedScrollConnection),
             verticalArrangement = Arrangement.spacedBy(16.dp),
             contentPadding = PaddingValues(16.dp),
