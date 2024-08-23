@@ -12,7 +12,7 @@ compileSdk = "34"
 agp = "8.4.2"
 
 # Kotlin
-kotlin = "2.0.10"
+kotlin = "2.0.20"
 kotlinxCoroutines = "1.8.1"
 kotlinxDatetime = "0.6.0"
 kotlinxSerialization = "1.7.1"
@@ -24,6 +24,7 @@ androidxActivity = "1.9.1"
 androidxLifecycle = "2.8.4"
 androidxCompose = "2024.08.00"
 androidxComposeConstraintLayout = "1.0.1"
+androidxNavigation = "2.7.7"
 
 # Google
 material = "1.12.0"
@@ -88,6 +89,7 @@ androidx-activity-compose = { module = "androidx.activity:activity-compose", ver
 androidx-lifecycle-common = { module = "androidx.lifecycle:lifecycle-common", version.ref = "androidxLifecycle" }
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigation" }
 
 # Compose
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidxCompose" }
@@ -154,6 +156,7 @@ ui-implementations = [
     "androidx-lifecycle-common",
     "androidx-lifecycle-runtime-compose",
     "androidx-lifecycle-viewmodel-compose",
+    "androidx-navigation-compose",
     "compose-runtime",
     "compose-foundation",
     "compose-ui",
