@@ -1,0 +1,275 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > ButtonType</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">jp.co.yumemi.droidtraining.components</a>
+</div>
+
+<h1>Coverage Summary for Class: ButtonType (jp.co.yumemi.droidtraining.components)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">ButtonType</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package jp.co.yumemi.droidtraining.components
+&nbsp;
+&nbsp;import androidx.compose.animation.AnimatedVisibility
+&nbsp;import androidx.compose.foundation.layout.Box
+&nbsp;import androidx.compose.foundation.layout.fillMaxSize
+&nbsp;import androidx.compose.foundation.layout.padding
+&nbsp;import androidx.compose.material3.Scaffold
+&nbsp;import androidx.compose.runtime.Composable
+&nbsp;import androidx.compose.runtime.getValue
+&nbsp;import androidx.compose.runtime.mutableStateOf
+&nbsp;import androidx.compose.runtime.remember
+&nbsp;import androidx.compose.runtime.setValue
+&nbsp;import androidx.compose.ui.Modifier
+&nbsp;import androidx.compose.ui.res.stringResource
+&nbsp;import androidx.compose.ui.unit.dp
+&nbsp;import androidx.constraintlayout.compose.ConstraintLayout
+&nbsp;import androidx.constraintlayout.compose.Dimension
+&nbsp;import jp.co.yumemi.droidtraining.MainWeatherScreenState
+&nbsp;import jp.co.yumemi.droidtraining.MainWeatherUiState
+&nbsp;import jp.co.yumemi.droidtraining.R
+&nbsp;import jp.co.yumemi.droidtraining.core.model.Area
+&nbsp;import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
+&nbsp;import jp.co.yumemi.droidtraining.core.ui.components.LoadingScreen
+&nbsp;import jp.co.yumemi.droidtraining.core.ui.components.SimpleAlertDialog
+&nbsp;import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
+&nbsp;import jp.co.yumemi.droidtraining.core.ui.previews.WeatherResponsePreviewParameter
+&nbsp;
+&nbsp;@Composable
+&nbsp;internal fun MainScreen(
+&nbsp;    uiState: MainWeatherUiState,
+&nbsp;    screenState: MainWeatherScreenState,
+&nbsp;    onResetViewEvent: () -&gt; Unit,
+&nbsp;    onClickReload: (Area?) -&gt; Unit,
+&nbsp;    onClickNext: (Area?) -&gt; Unit,
+&nbsp;    modifier: Modifier = Modifier,
+&nbsp;) {
+&nbsp;    var lastClickedButtonType by remember { mutableStateOf(ButtonType.RELOAD) }
+&nbsp;
+&nbsp;    Scaffold(modifier) {
+&nbsp;        Box {
+&nbsp;            ConstraintLayout(
+&nbsp;                modifier = Modifier
+&nbsp;                    .fillMaxSize()
+&nbsp;                    .padding(it),
+&nbsp;            ) {
+&nbsp;                val (weatherInfoSection, actionButtonsSection) = createRefs()
+&nbsp;
+&nbsp;                if (uiState.weather != null) {
+&nbsp;                    MainWeatherInfoSection(
+&nbsp;                        modifier = Modifier.constrainAs(weatherInfoSection) {
+&nbsp;                            top.linkTo(parent.top)
+&nbsp;                            start.linkTo(parent.start)
+&nbsp;                            end.linkTo(parent.end)
+&nbsp;                            bottom.linkTo(parent.bottom)
+&nbsp;
+&nbsp;                            width = Dimension.percent(0.5f)
+&nbsp;                            height = Dimension.wrapContent
+&nbsp;                        },
+&nbsp;                        weather = uiState.weather,
+&nbsp;                    )
+&nbsp;                }
+&nbsp;
+&nbsp;                MainActionButtonsSection(
+&nbsp;                    modifier = Modifier.constrainAs(actionButtonsSection) {
+&nbsp;                        if (uiState.weather != null) {
+&nbsp;                            top.linkTo(weatherInfoSection.bottom, 80.dp)
+&nbsp;                            start.linkTo(weatherInfoSection.start)
+&nbsp;                            end.linkTo(weatherInfoSection.end)
+&nbsp;
+&nbsp;                            width = Dimension.fillToConstraints
+&nbsp;                            height = Dimension.wrapContent
+&nbsp;                        } else {
+&nbsp;                            top.linkTo(parent.top)
+&nbsp;                            bottom.linkTo(parent.bottom)
+&nbsp;                            start.linkTo(parent.start)
+&nbsp;                            end.linkTo(parent.end)
+&nbsp;
+&nbsp;                            width = Dimension.percent(0.5f)
+&nbsp;                            height = Dimension.wrapContent
+&nbsp;                        }
+&nbsp;                    },
+&nbsp;                    onClickReload = {
+&nbsp;                        lastClickedButtonType = ButtonType.RELOAD
+&nbsp;                        onClickReload.invoke(uiState.weather?.area)
+&nbsp;                    },
+&nbsp;                    onClickNext = {
+&nbsp;                        lastClickedButtonType = ButtonType.NEXT
+&nbsp;                        onClickNext.invoke(uiState.weather?.area)
+&nbsp;                    },
+&nbsp;                )
+&nbsp;            }
+&nbsp;
+&nbsp;            AnimatedVisibility(
+&nbsp;                modifier = Modifier.fillMaxSize(),
+&nbsp;                visible = screenState is MainWeatherScreenState.Loading,
+&nbsp;            ) {
+&nbsp;                LoadingScreen(
+&nbsp;                    modifier = Modifier.fillMaxSize(),
+&nbsp;                )
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    if (screenState is MainWeatherScreenState.Error) {
+&nbsp;        SimpleAlertDialog(
+&nbsp;            title = stringResource(R.string.error_title_common),
+&nbsp;            message = stringResource(R.string.error_message_common),
+&nbsp;            positiveButtonText = stringResource(R.string.main_weather_action_reload),
+&nbsp;            negativeButtonText = stringResource(R.string.close),
+&nbsp;            onPositiveButtonClick = {
+&nbsp;                when (lastClickedButtonType) {
+&nbsp;                    ButtonType.RELOAD -&gt; onClickReload(uiState.weather?.area)
+&nbsp;                    ButtonType.NEXT -&gt; onClickNext(uiState.weather?.area)
+&nbsp;                }
+&nbsp;            },
+&nbsp;            onNegativeButtonClick = onResetViewEvent,
+&nbsp;            onDismissRequest = onResetViewEvent,
+&nbsp;        )
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;private enum class ButtonType {
+<b class="nc">&nbsp;    RELOAD, NEXT</b>
+&nbsp;}
+&nbsp;
+&nbsp;@ComponentPreviews
+&nbsp;@Composable
+&nbsp;private fun MainScreenPreview() {
+&nbsp;    YumemiTheme {
+&nbsp;        MainScreen(
+&nbsp;            modifier = Modifier.fillMaxSize(),
+&nbsp;            uiState = MainWeatherUiState(WeatherResponsePreviewParameter.dummy),
+&nbsp;            screenState = MainWeatherScreenState.Idle,
+&nbsp;            onResetViewEvent = {},
+&nbsp;            onClickReload = {},
+&nbsp;            onClickNext = {},
+&nbsp;        )
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;@ComponentPreviews
+&nbsp;@Composable
+&nbsp;private fun MainScreenPreviewDefault() {
+&nbsp;    YumemiTheme {
+&nbsp;        MainScreen(
+&nbsp;            modifier = Modifier.fillMaxSize(),
+&nbsp;            uiState = MainWeatherUiState(null),
+&nbsp;            screenState = MainWeatherScreenState.Idle,
+&nbsp;            onResetViewEvent = {},
+&nbsp;            onClickReload = {},
+&nbsp;            onClickNext = {},
+&nbsp;        )
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-08-23 02:23</div>
+</div>
+</body>
+</html>
