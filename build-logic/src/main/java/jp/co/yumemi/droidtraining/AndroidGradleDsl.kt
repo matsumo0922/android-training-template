@@ -42,6 +42,9 @@ fun Project.setupAndroid() {
 
         testOptions {
             unitTests.isIncludeAndroidResources = true
+            unitTests.all {
+                it.useJUnitPlatform()
+            }
         }
     }
 }
