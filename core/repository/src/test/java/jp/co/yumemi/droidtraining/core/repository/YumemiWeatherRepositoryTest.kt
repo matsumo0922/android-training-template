@@ -1,11 +1,13 @@
 package jp.co.yumemi.droidtraining.core.repository
 
 import io.kotest.core.spec.style.FunSpec
+import io.kotest.matchers.shouldBe
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import jp.co.yumemi.droidtraining.core.datasource.YumemiWeatherSource
 import jp.co.yumemi.droidtraining.core.model.Area
+import jp.co.yumemi.droidtraining.core.model.WeatherDetail
 import jp.co.yumemi.droidtraining.core.model.entity.WeatherDetailEntity
 import jp.co.yumemi.droidtraining.core.repository.mapper.WeatherDetailMapper
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -17,6 +19,7 @@ class YumemiWeatherRepositoryTest : FunSpec(), KoinTest {
     private val weatherDetailMapper = mockk<WeatherDetailMapper>()
     private val weatherSource = mockk<YumemiWeatherSource>()
     private val dummyWeatherDetailEntity = mockk<WeatherDetailEntity>()
+    private val dummyWeatherDetail = mockk<WeatherDetail>()
     private val testDispatcher = StandardTestDispatcher()
 
     init {
@@ -36,6 +39,23 @@ class YumemiWeatherRepositoryTest : FunSpec(), KoinTest {
             // Assert
             coVerify { weatherDetailMapper.asWeatherDetail(dummyWeatherDetailEntity) }
             coVerify { weatherSource.fetchWeather(area) }
+        }
+
+        test("fetchWeather should return the same value as the mapper") {
+            // Arrange
+            val area = Area.TOKYO
+            val repository = YumemiWeatherRepositoryImpl(weatherSource, weatherDetailMapper, testDispatcher)
+
+            coEvery { weatherDetailMapper.asWeatherDetail(dummyWeatherDetailEntity) } returns dummyWeatherDetail
+            coEvery { weatherSource.fetchWeather(area) } returns dummyWeatherDetailEntity
+
+            runTest(testDispatcher) {
+                // Act
+                val result = repository.fetchWeather(area)
+
+                // Assert
+                result shouldBe dummyWeatherDetail
+            }
         }
     }
 }
