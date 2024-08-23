@@ -14,12 +14,13 @@ import androidx.compose.ui.test.performClick
 import androidx.test.platform.app.InstrumentationRegistry
 import io.mockk.coEvery
 import io.mockk.mockk
-import jp.co.yumemi.droidtraining.components.MainScreen
 import jp.co.yumemi.droidtraining.core.model.Area
 import jp.co.yumemi.droidtraining.core.model.Weather
 import jp.co.yumemi.droidtraining.core.model.WeatherDetail
 import jp.co.yumemi.droidtraining.core.repository.YumemiWeatherRepository
 import jp.co.yumemi.droidtraining.di.applyModules
+import jp.co.yumemi.droidtraining.feature.home.HomeScreen
+import jp.co.yumemi.droidtraining.feature.home.HomeViewModel
 import kotlinx.datetime.Instant
 import org.junit.Before
 import org.junit.Rule
@@ -36,7 +37,7 @@ class MainScreenTest : KoinTest {
     val composeRule = createComposeRule()
 
     private val weatherRepository = mockk<YumemiWeatherRepository>()
-    private val viewModel = MainViewModel(weatherRepository)
+    private val viewModel = HomeViewModel(weatherRepository)
 
     private val instrumentationContext: Context = InstrumentationRegistry.getInstrumentation().targetContext
     private val application = instrumentationContext.applicationContext as Application
@@ -77,7 +78,7 @@ class MainScreenTest : KoinTest {
         coEvery { weatherRepository.fetchWeather(dummyWeatherDetail2.area) } returns dummyWeatherDetail2
 
         composeRule.setContent {
-            MainScreen(
+            HomeScreen(
                 modifier = Modifier.fillMaxSize(),
                 viewModel = viewModel,
             )
@@ -115,7 +116,7 @@ class MainScreenTest : KoinTest {
         coEvery { weatherRepository.fetchWeather(dummyWeatherDetail1.area) } throws Exception()
 
         composeRule.setContent {
-            MainScreen(
+            HomeScreen(
                 modifier = Modifier.fillMaxSize(),
                 viewModel = viewModel,
             )

@@ -1,4 +1,4 @@
-package jp.co.yumemi.droidtraining.components
+package jp.co.yumemi.droidtraining.feature.home.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,9 +14,9 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import jp.co.yumemi.droidtraining.R
 import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
 import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
+import jp.co.yumemi.droidtraining.feature.home.R
 
 @Composable
 internal fun MainActionButtonsSection(

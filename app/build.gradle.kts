@@ -33,6 +33,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":feature:home"))
+    implementation(project(":feature:detail"))
+
     implementation(project(":core:repository"))
     implementation(project(":core:datasource"))
     implementation(project(":core:ui"))
@@ -40,7 +43,6 @@ dependencies {
     implementation(project(":core:common"))
 
     implementation(libs.bundles.ui.implementations)
-    implementation(libs.compose.constraint.layout)
 
     androidTestImplementation(platform(libs.koin.bom))
     androidTestImplementation(platform(libs.compose.bom))
