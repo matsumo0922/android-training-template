@@ -42,6 +42,7 @@ fun Project.setupAndroid() {
 
         testOptions {
             unitTests.isIncludeAndroidResources = true
+            packagingOptions.jniLibs.useLegacyPackaging = true
             unitTests.all {
                 it.useJUnitPlatform()
             }

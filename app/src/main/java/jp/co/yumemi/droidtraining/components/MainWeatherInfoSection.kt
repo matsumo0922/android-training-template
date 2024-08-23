@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -41,7 +42,9 @@ internal fun MainWeatherInfoSection(
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .testTag("area_name")
+                .fillMaxWidth(),
             text = weather.areaName,
             style = MaterialTheme.typography.titleMedium.bold().center(),
             color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -50,6 +53,7 @@ internal fun MainWeatherInfoSection(
         if (weatherIcon != null) {
             Image(
                 modifier = Modifier
+                    .testTag("weather_icon")
                     .fillMaxWidth()
                     .aspectRatio(1f),
                 painter = painterResource(weatherIcon),
@@ -59,14 +63,18 @@ internal fun MainWeatherInfoSection(
 
         Row {
             Text(
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .testTag("min_temp")
+                    .weight(1f),
                 text = "%.2f℃".format(weather.minTemp),
                 style = MaterialTheme.typography.bodyMedium.center(),
                 color = Color.Blue,
             )
 
             Text(
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .testTag("max_temp")
+                    .weight(1f),
                 text = "%.2f℃".format(weather.maxTemp),
                 style = MaterialTheme.typography.bodyMedium.center(),
                 color = Color.Red,

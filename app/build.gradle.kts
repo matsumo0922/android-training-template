@@ -1,3 +1,4 @@
+
 import com.android.build.api.variant.BuildConfigField
 import org.jetbrains.kotlin.konan.properties.Properties
 import java.io.Serializable
@@ -22,6 +23,13 @@ android {
             it.buildConfigFields.putBuildConfig(localProperties, "OPEN_WEATHER_MAP_API_KEY")
         }
     }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/LICENSE.md"
+            excludes += "/META-INF/LICENSE-notice.md"
+        }
+    }
 }
 
 dependencies {
@@ -33,6 +41,10 @@ dependencies {
 
     implementation(libs.bundles.ui.implementations)
     implementation(libs.compose.constraint.layout)
+
+    androidTestImplementation(platform(libs.koin.bom))
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.bundles.android.testing)
 }
 
 fun MapProperty<String, BuildConfigField<out Serializable>>.putBuildConfig(

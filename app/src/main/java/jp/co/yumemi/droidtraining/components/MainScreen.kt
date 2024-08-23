@@ -15,25 +15,24 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import jp.co.yumemi.droidtraining.MainViewModel
 import jp.co.yumemi.droidtraining.MainWeatherScreenState
-import jp.co.yumemi.droidtraining.MainWeatherUiState
 import jp.co.yumemi.droidtraining.R
-import jp.co.yumemi.droidtraining.core.model.Area
 import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
 import jp.co.yumemi.droidtraining.core.ui.components.LoadingScreen
 import jp.co.yumemi.droidtraining.core.ui.components.SimpleAlertDialog
 import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
-import jp.co.yumemi.droidtraining.core.ui.previews.WeatherResponsePreviewParameter
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 internal fun MainScreen(
-    uiState: MainWeatherUiState,
-    screenState: MainWeatherScreenState,
-    onResetViewEvent: () -> Unit,
-    onClickReload: (Area?) -> Unit,
-    onClickNext: (Area?) -> Unit,
     modifier: Modifier = Modifier,
+    viewModel: MainViewModel = koinViewModel(),
 ) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val screenState by viewModel.screenState.collectAsStateWithLifecycle()
+
     var lastClickedButtonType by remember { mutableStateOf(ButtonType.RELOAD) }
 
     Scaffold(modifier) {
@@ -56,7 +55,7 @@ internal fun MainScreen(
                             width = Dimension.percent(0.5f)
                             height = Dimension.wrapContent
                         },
-                        weather = uiState.weather,
+                        weather = uiState.weather!!,
                     )
                 }
 
@@ -81,11 +80,11 @@ internal fun MainScreen(
                     },
                     onClickReload = {
                         lastClickedButtonType = ButtonType.RELOAD
-                        onClickReload.invoke(uiState.weather?.area)
+                        viewModel.reloadWeather(uiState.weather?.area)
                     },
                     onClickNext = {
                         lastClickedButtonType = ButtonType.NEXT
-                        onClickNext.invoke(uiState.weather?.area)
+                        viewModel.nextWeather(uiState.weather?.area)
                     },
                 )
             }
@@ -109,12 +108,12 @@ internal fun MainScreen(
             negativeButtonText = stringResource(R.string.close),
             onPositiveButtonClick = {
                 when (lastClickedButtonType) {
-                    ButtonType.RELOAD -> onClickReload(uiState.weather?.area)
-                    ButtonType.NEXT -> onClickNext(uiState.weather?.area)
+                    ButtonType.RELOAD -> viewModel.reloadWeather(uiState.weather?.area)
+                    ButtonType.NEXT -> viewModel.nextWeather(uiState.weather?.area)
                 }
             },
-            onNegativeButtonClick = onResetViewEvent,
-            onDismissRequest = onResetViewEvent,
+            onNegativeButtonClick = viewModel::resetScreenState,
+            onDismissRequest = viewModel::resetScreenState,
         )
     }
 }
@@ -129,26 +128,6 @@ private fun MainScreenPreview() {
     YumemiTheme {
         MainScreen(
             modifier = Modifier.fillMaxSize(),
-            uiState = MainWeatherUiState(WeatherResponsePreviewParameter.dummy),
-            screenState = MainWeatherScreenState.Idle,
-            onResetViewEvent = {},
-            onClickReload = {},
-            onClickNext = {},
-        )
-    }
-}
-
-@ComponentPreviews
-@Composable
-private fun MainScreenPreviewDefault() {
-    YumemiTheme {
-        MainScreen(
-            modifier = Modifier.fillMaxSize(),
-            uiState = MainWeatherUiState(null),
-            screenState = MainWeatherScreenState.Idle,
-            onResetViewEvent = {},
-            onClickReload = {},
-            onClickNext = {},
         )
     }
 }
