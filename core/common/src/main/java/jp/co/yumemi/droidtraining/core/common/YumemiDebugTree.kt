@@ -10,6 +10,7 @@ class YumemiDebugTree : Timber.DebugTree() {
         Log.println(priority, "AndroidTraining", "$message: ${getCallerInfo()}")
     }
 
+    @Suppress("ThrowingExceptionsWithoutMessageOrCause")
     private fun getCallerInfo(): String {
         val stackTrace = Throwable().stackTrace
 
