@@ -148,7 +148,7 @@ private fun TempItem(
 
 private fun Instant.formatDate(): String {
     return LocalDateTime
-        .ofInstant(this.toJavaInstant(), ZoneId.of("UTC"))
+        .ofInstant(this.toJavaInstant(), ZoneId.of("Asia/Tokyo"))
         .format(DateTimeFormatter.ofPattern("M/d: H:mm", Locale.US))
 }
 
