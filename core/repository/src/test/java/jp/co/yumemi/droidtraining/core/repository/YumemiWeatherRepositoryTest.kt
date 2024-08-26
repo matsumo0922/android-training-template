@@ -45,7 +45,7 @@ class YumemiWeatherRepositoryTest : FunSpec(), KoinTest {
             coVerify { weatherSource.fetchWeather(area) }
         }
 
-        test("fetchWeatherForecast should call datasource and mapper") {
+        test("fetchWeather should return the same value as the mapper") {
             // Arrange
             val area = Area.TOKYO
             val repository = YumemiWeatherRepositoryImpl(weatherSource, weatherDetailMapper, testDispatcher)
@@ -62,7 +62,7 @@ class YumemiWeatherRepositoryTest : FunSpec(), KoinTest {
             }
         }
 
-        test("fetchWeather should return the same value as the mapper") {
+        test("fetchWeatherForecast should call datasource and mapper") {
             // Arrange
             val area = Area.TOKYO
             val repository = YumemiWeatherRepositoryImpl(weatherSource, weatherDetailMapper, testDispatcher)
