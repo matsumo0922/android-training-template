@@ -127,7 +127,7 @@ private fun TempItem(
                 modifier = Modifier.weight(1f),
                 value = minTemp..maxTemp,
                 onValueChange = { /* do nothing */ },
-                valueRange = 2f..35f,
+                valueRange = 20f..35f,
                 enabled = false,
                 startThumb = { },
                 endThumb = { },
