@@ -72,7 +72,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/6)
+    (0/7)
   </span>
 </td>
 <td class="coverageStat">
@@ -80,7 +80,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
     0%
   </span>
   <span class="absValue">
-    (0/20)
+    (0/26)
   </span>
 </td>
 </tr>
@@ -95,15 +95,19 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 <code class="sourceCode" id="sourceCode">&nbsp;package jp.co.yumemi.droidtraining
 &nbsp;
 &nbsp;import android.app.Application
+&nbsp;import jp.co.yumemi.droidtraining.core.common.YumemiDebugTree
 &nbsp;import jp.co.yumemi.droidtraining.di.applyModules
 &nbsp;import org.koin.android.ext.koin.androidContext
 &nbsp;import org.koin.android.ext.koin.androidLogger
 &nbsp;import org.koin.core.context.startKoin
+&nbsp;import timber.log.Timber
 &nbsp;
 <b class="nc">&nbsp;class YumemiApplication : Application() {</b>
 &nbsp;
 &nbsp;    override fun onCreate() {
 <b class="nc">&nbsp;        super.onCreate()</b>
+&nbsp;
+<b class="nc">&nbsp;        Timber.plant(YumemiDebugTree())</b>
 &nbsp;
 <b class="nc">&nbsp;        startKoin {</b>
 <b class="nc">&nbsp;            androidContext(this@YumemiApplication)</b>
@@ -135,7 +139,7 @@ Current scope: app<span class="separator">|</span>    <a href="../../index.html"
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-08-26 02:41</div>
+    <div style="float:right;">generated on 2024-08-26 02:46</div>
 </div>
 </body>
 </html>
