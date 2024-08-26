@@ -153,7 +153,7 @@ private fun Instant.formatDate(): String {
 }
 
 private const val MAX_TEMP = 35f
-private const val MIN_TEMP = 20f
+private const val MIN_TEMP = 15f
 
 @ComponentPreviews
 @Composable
