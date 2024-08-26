@@ -8,11 +8,6 @@ plugins {
 
 android {
     namespace = "jp.co.yumemi.droidtraining.feature.home"
-
-    dependencies {
-        implementation(libs.bundles.ui.implementations)
-        implementation(libs.compose.constraint.layout)
-    }
 }
 
 kotlin {
@@ -23,6 +18,8 @@ kotlin {
             implementation(project(":core:ui"))
             implementation(project(":core:model"))
             implementation(project(":core:common"))
+
+            implementation(libs.compose.constraint.layout)
         }
     }
 }

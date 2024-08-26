@@ -8,10 +8,6 @@ plugins {
 
 android {
     namespace = "jp.co.yumemi.droidtraining.feature.detail"
-
-    dependencies {
-        implementation(libs.bundles.ui.implementations)
-    }
 }
 
 kotlin {

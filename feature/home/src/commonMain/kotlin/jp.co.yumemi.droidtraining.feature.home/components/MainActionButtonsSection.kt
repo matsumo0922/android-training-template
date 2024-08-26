@@ -16,7 +16,6 @@ import androidx.compose.ui.unit.sp
 import jp.co.yumemi.droidtraining.core.ui.Res
 import jp.co.yumemi.droidtraining.core.ui.main_weather_action_next
 import jp.co.yumemi.droidtraining.core.ui.main_weather_action_reload
-import jp.co.yumemi.droidtraining.feature.home.R
 import org.jetbrains.compose.resources.stringResource
 
 @Composable

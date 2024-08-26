@@ -7,7 +7,4 @@ import org.koin.core.annotation.Named
 @Module
 @Named("HomeModule")
 @ComponentScan("jp.co.yumemi.droidtraining.feature.home")
-class HomeModule {
-
-
-}
+class HomeModule

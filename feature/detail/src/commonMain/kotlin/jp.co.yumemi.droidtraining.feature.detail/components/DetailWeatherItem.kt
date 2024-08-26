@@ -142,10 +142,10 @@ private fun TempItem(
 fun Instant.formatDate(): String {
     val localDateTime = this.toLocalDateTime(TimeZone.of("Asia/Tokyo"))
 
-    val month = localDateTime.monthNumber
-    val day = localDateTime.dayOfMonth
-    val hour = localDateTime.hour
-    val minute = localDateTime.minute
+    val month = localDateTime.monthNumber.toString().padStart(2, '0')
+    val day = localDateTime.dayOfMonth.toString().padStart(2, '0')
+    val hour = localDateTime.hour.toString().padStart(2, '0')
+    val minute = localDateTime.minute.toString().padStart(2, '0')
 
     return "$month/$day: $hour:$minute"
 }
