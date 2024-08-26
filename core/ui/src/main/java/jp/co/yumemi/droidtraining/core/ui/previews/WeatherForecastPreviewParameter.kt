@@ -23,6 +23,7 @@ class WeatherForecastPreviewParameter : PreviewParameterProvider<WeatherForecast
                 date = Instant.parse("2022-08-16T06:05:00Z"),
                 rain = 35f,
                 snow = null,
+                description = "Sunny",
             ),
             WeatherForecast.DayWeather(
                 weather = Weather.Cloudy,
@@ -32,6 +33,7 @@ class WeatherForecastPreviewParameter : PreviewParameterProvider<WeatherForecast
                 date = Instant.parse("2022-08-17T06:25:00Z"),
                 rain = 50f,
                 snow = null,
+                description = "Cloudy",
             ),
         ),
     )

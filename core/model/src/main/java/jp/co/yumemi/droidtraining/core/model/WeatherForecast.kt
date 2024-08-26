@@ -20,5 +20,6 @@ data class WeatherForecast(
         val date: Instant,
         val rain: Float?,
         val snow: Float?,
+        val description: String,
     )
 }

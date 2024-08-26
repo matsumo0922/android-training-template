@@ -36,6 +36,7 @@ class WeatherDetailMapper {
                     date = Instant.fromEpochSeconds(it.dt, 0),
                     rain = it.rain?.oneHr?.toFloat() ?: it.rain?.threeHr?.toFloat(),
                     snow = it.snow?.oneHr?.toFloat() ?: it.snow?.threeHr?.toFloat(),
+                    description = it.weather.first().description,
                 )
             },
         )

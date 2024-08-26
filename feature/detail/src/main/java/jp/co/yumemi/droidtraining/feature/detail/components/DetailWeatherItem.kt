@@ -100,7 +100,7 @@ private fun WeatherIcon(
         AsyncImage(
             modifier = Modifier.size(60.dp),
             model = dayWeather.iconUrl,
-            contentDescription = "晴れのち雨",
+            contentDescription = dayWeather.description,
         )
     }
 }
