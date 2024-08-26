@@ -19,6 +19,17 @@ kotlin {
         commonMain.dependencies {
             implementation(project(":core:common"))
             implementation(project(":core:model"))
+
+            api(compose.runtime)
+            api(compose.runtimeSaveable)
+            api(compose.foundation)
+            api(compose.animation)
+            api(compose.animationGraphics)
+            api(compose.material)
+            api(compose.material3)
+            api(compose.ui)
+            api(compose.materialIconsExtended)
+            api(compose.components.resources)
         }
     }
 }

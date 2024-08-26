@@ -30,12 +30,6 @@ class LibraryPlugin : Plugin<Project> {
                 defaultConfig.targetSdk = libs.version("targetSdk").toInt()
                 buildFeatures.viewBinding = true
             }
-
-            dependencies {
-                implementation(project.dependencies.platform(libs.library("koin-bom")))
-                implementation(libs.bundle("koin"))
-                ksp(libs.library("koin-ksp-compiler"))
-            }
         }
     }
 }

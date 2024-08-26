@@ -20,8 +20,10 @@ import jp.co.yumemi.droidtraining.core.ui.components.SimpleAlertDialog
 import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
 import jp.co.yumemi.droidtraining.feature.home.components.MainActionButtonsSection
 import jp.co.yumemi.droidtraining.feature.home.components.MainWeatherInfoSection
-import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.annotation.KoinExperimentalAPI
 
+@OptIn(KoinExperimentalAPI::class)
 @Composable
 internal fun HomeScreen(
     onClickNext: (Area) -> Unit,

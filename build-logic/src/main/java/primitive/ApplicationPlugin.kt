@@ -37,12 +37,6 @@ class ApplicationPlugin : Plugin<Project> {
                     versionCode = libs.version("versionCode").toInt()
                 }
             }
-
-            dependencies {
-                implementation(project.dependencies.platform(libs.library("koin-bom")))
-                implementation(libs.bundle("koin"))
-                ksp(libs.library("koin-ksp-compiler"))
-            }
         }
     }
 }

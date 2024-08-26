@@ -19,7 +19,7 @@ interface YumemiWeatherRepository {
 class YumemiWeatherRepositoryImpl(
     private val weatherSource: YumemiWeatherSource,
     private val weatherDetailMapper: WeatherDetailMapper,
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) : YumemiWeatherRepository {
 
     override suspend fun fetchWeather(area: Area): WeatherDetail = withContext(ioDispatcher) {

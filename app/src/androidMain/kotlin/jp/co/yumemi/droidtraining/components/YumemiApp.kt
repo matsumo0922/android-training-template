@@ -16,7 +16,6 @@ fun YumemiApp(
     KoinContext {
         YumemiTheme(
             themeConfig = themeConfig,
-            enableDynamicTheme = false,
         ) {
             YumemiNavHost(
                 modifier = modifier.background(MaterialTheme.colorScheme.surface),

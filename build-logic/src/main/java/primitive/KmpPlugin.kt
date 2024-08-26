@@ -1,9 +1,13 @@
 package primitive
 
 import jp.co.yumemi.droidtraining.android
+import jp.co.yumemi.droidtraining.bundle
 import jp.co.yumemi.droidtraining.kotlin
+import jp.co.yumemi.droidtraining.library
+import jp.co.yumemi.droidtraining.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.dependencies
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 @OptIn(ExperimentalWasmDsl::class)
@@ -50,6 +54,19 @@ class KmpPlugin : Plugin<Project> {
                         isStatic = true
                     }
                 }
+
+                sourceSets.commonMain.dependencies {
+                    implementation(project.dependencies.platform(libs.library("koin-bom")))
+                    implementation(libs.bundle("koin"))
+                }
+            }
+
+            dependencies {
+                add("kspCommonMainMetadata", libs.library("koin-ksp-compiler"))
+                add("kspAndroid", libs.library("koin-ksp-compiler"))
+                add("kspIosX64", libs.library("koin-ksp-compiler"))
+                add("kspIosArm64", libs.library("koin-ksp-compiler"))
+                add("kspIosSimulatorArm64", libs.library("koin-ksp-compiler"))
             }
         }
     }

@@ -17,9 +17,11 @@ import jp.co.yumemi.droidtraining.core.model.Area
 import jp.co.yumemi.droidtraining.core.ui.components.LoadingScreen
 import jp.co.yumemi.droidtraining.core.ui.components.SimpleAlertDialog
 import jp.co.yumemi.droidtraining.feature.detail.components.DetailIdleContent
-import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.core.parameter.parametersOf
 
+@OptIn(KoinExperimentalAPI::class)
 @Composable
 internal fun DetailScreen(
     area: Area,
