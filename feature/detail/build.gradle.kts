@@ -17,4 +17,5 @@ dependencies {
     implementation(project(":core:common"))
 
     implementation(libs.bundles.ui.implementations)
+    implementation(libs.bundles.coil)
 }

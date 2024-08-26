@@ -23,26 +23,12 @@ class HomeViewModel(
     val uiState = _uiState.asStateFlow()
     val screenState = _screenState.asStateFlow()
 
-    fun reloadWeather(currentArea: Area?) {
+    fun reloadWeather() {
         viewModelScope.launch {
             _screenState.value = HomeWeatherScreenState.Loading
             _screenState.value = suspendRunCatching {
                 _uiState.value = HomeWeatherUiState(
-                    weather = weatherRepository.fetchWeather(currentArea ?: Area.TOKYO),
-                )
-            }.fold(
-                onSuccess = { HomeWeatherScreenState.Idle },
-                onFailure = { HomeWeatherScreenState.Error },
-            )
-        }
-    }
-
-    fun nextWeather(currentArea: Area?) {
-        viewModelScope.launch {
-            _screenState.value = HomeWeatherScreenState.Loading
-            _screenState.value = suspendRunCatching {
-                _uiState.value = HomeWeatherUiState(
-                    weather = weatherRepository.fetchWeather(currentArea?.let { Area.next(it) } ?: Area.TOKYO),
+                    weather = weatherRepository.fetchWeather(Area.entries.random()),
                 )
             }.fold(
                 onSuccess = { HomeWeatherScreenState.Idle },

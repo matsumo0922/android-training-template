@@ -40,6 +40,9 @@ moshi = "1.13.0"
 # Ktor
 ktor = "2.3.12"
 
+# Coil
+coil3 = "3.0.0-alpha10"
+
 # Testing
 androidXJunit = "1.1.5"
 androidxEspresso = "3.5.1"
@@ -128,6 +131,10 @@ ktor-serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", 
 ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 
+# Coil
+coil3-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil3" }
+coil3-network = { module = "io.coil-kt.coil3:coil-network-ktor2", version.ref = "coil3" }
+
 # Testing
 kotest-junit = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest" }
@@ -181,6 +188,11 @@ ktor = [
     "ktor-content-negotiation",
     "ktor-serialization-json",
     "ktor-logging",
+]
+
+coil = [
+    "coil3-compose",
+    "coil3-network",
 ]
 
 testing = [
