@@ -39,5 +39,9 @@ gradlePlugin {
             id = "yumemi.primitive.kover"
             implementationClass = "primitive.KoverPlugin"
         }
+        register("KmpPlugin") {
+            id = "yumemi.primitive.kmp"
+            implementationClass = "primitive.KmpPlugin"
+        }
     }
 }

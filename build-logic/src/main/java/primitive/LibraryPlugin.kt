@@ -18,7 +18,6 @@ class LibraryPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("com.android.library")
-                apply("kotlin-android")
                 apply("kotlinx-serialization")
                 apply("com.google.devtools.ksp")
             }

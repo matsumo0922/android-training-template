@@ -5,6 +5,7 @@ import java.io.Serializable
 
 plugins {
     id("yumemi.primitive.android.application")
+    id("yumemi.primitive.kmp")
     id("yumemi.primitive.detekt")
     id("yumemi.primitive.kover")
     id("yumemi.primitive.compose")
@@ -30,23 +31,46 @@ android {
             excludes += "/META-INF/LICENSE-notice.md"
         }
     }
+
+    dependencies {
+        androidTestImplementation(platform(libs.koin.bom))
+        androidTestImplementation(platform(libs.compose.bom))
+        androidTestImplementation(libs.bundles.android.testing)
+    }
 }
 
-dependencies {
-    implementation(project(":feature:home"))
-    implementation(project(":feature:detail"))
+kotlin {
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation(project(":feature:home"))
+                implementation(project(":feature:detail"))
 
-    implementation(project(":core:repository"))
-    implementation(project(":core:datasource"))
-    implementation(project(":core:ui"))
-    implementation(project(":core:model"))
-    implementation(project(":core:common"))
+                implementation(project(":core:repository"))
+                implementation(project(":core:datasource"))
+                implementation(project(":core:ui"))
+                implementation(project(":core:model"))
+                implementation(project(":core:common"))
+            }
+        }
 
-    implementation(libs.bundles.ui.implementations)
+        val androidMain by getting {
+            dependsOn(commonMain)
+            dependencies {
+                implementation(libs.bundles.ui.implementations)
+            }
+        }
 
-    androidTestImplementation(platform(libs.koin.bom))
-    androidTestImplementation(platform(libs.compose.bom))
-    androidTestImplementation(libs.bundles.android.testing)
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by getting {
+            dependsOn(commonMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
+        }
+    }
 }
 
 fun MapProperty<String, BuildConfigField<out Serializable>>.putBuildConfig(

@@ -13,7 +13,7 @@ class YumemiApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        Timber.plant(YumemiDebugTree())
+        Timber.plant()
 
         startKoin {
             androidContext(this@YumemiApplication)

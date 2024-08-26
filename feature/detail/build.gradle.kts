@@ -1,5 +1,6 @@
 plugins {
     id("yumemi.primitive.android.library")
+    id("yumemi.primitive.kmp")
     id("yumemi.primitive.detekt")
     id("yumemi.primitive.kover")
     id("yumemi.primitive.compose")
@@ -7,15 +8,22 @@ plugins {
 
 android {
     namespace = "jp.co.yumemi.droidtraining.feature.detail"
+
+    dependencies {
+        implementation(libs.bundles.ui.implementations)
+    }
 }
 
-dependencies {
-    implementation(project(":core:repository"))
-    implementation(project(":core:datasource"))
-    implementation(project(":core:ui"))
-    implementation(project(":core:model"))
-    implementation(project(":core:common"))
+kotlin {
+    sourceSets {
+        commonMain.dependencies {
+            implementation(project(":core:repository"))
+            implementation(project(":core:datasource"))
+            implementation(project(":core:ui"))
+            implementation(project(":core:model"))
+            implementation(project(":core:common"))
 
-    implementation(libs.bundles.ui.implementations)
-    implementation(libs.bundles.coil)
+            implementation(libs.bundles.coil)
+        }
+    }
 }
