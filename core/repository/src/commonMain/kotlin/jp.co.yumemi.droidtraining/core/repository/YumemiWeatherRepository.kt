@@ -1,5 +1,6 @@
 package jp.co.yumemi.droidtraining.core.repository
 
+import jp.co.yumemi.droidtraining.core.common.IO
 import jp.co.yumemi.droidtraining.core.datasource.YumemiWeatherSource
 import jp.co.yumemi.droidtraining.core.model.Area
 import jp.co.yumemi.droidtraining.core.model.WeatherDetail
@@ -19,7 +20,7 @@ interface YumemiWeatherRepository {
 class YumemiWeatherRepositoryImpl(
     private val weatherSource: YumemiWeatherSource,
     private val weatherDetailMapper: WeatherDetailMapper,
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.Default,
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : YumemiWeatherRepository {
 
     override suspend fun fetchWeather(area: Area): WeatherDetail = withContext(ioDispatcher) {

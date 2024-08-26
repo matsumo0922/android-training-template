@@ -23,3 +23,7 @@ kotlin {
         }
     }
 }
+
+ksp {
+    arg("KOIN_DEFAULT_MODULE","false")
+}

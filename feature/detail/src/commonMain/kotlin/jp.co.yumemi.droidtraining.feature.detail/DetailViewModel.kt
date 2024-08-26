@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 import org.koin.android.annotation.KoinViewModel
 import org.koin.core.annotation.InjectedParam
 
-@KoinViewModel
 class DetailViewModel(
     @InjectedParam
     private val area: Area,

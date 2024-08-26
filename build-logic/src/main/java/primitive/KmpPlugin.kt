@@ -57,18 +57,22 @@ class KmpPlugin : Plugin<Project> {
                     }
                 }
 
-                sourceSets.commonMain.dependencies {
-                    implementation(project.dependencies.platform(libs.library("koin-bom")))
-                    implementation(libs.bundle("koin"))
+                sourceSets.commonMain {
+                    kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+
+                    dependencies {
+                        implementation(project.dependencies.platform(libs.library("koin-bom")))
+                        implementation(libs.bundle("koin"))
+                    }
                 }
             }
 
             dependencies {
                 add("kspCommonMainMetadata", libs.library("koin-ksp-compiler"))
-                add("kspAndroid", libs.library("koin-ksp-compiler"))
+                /*add("kspAndroid", libs.library("koin-ksp-compiler"))
                 add("kspIosX64", libs.library("koin-ksp-compiler"))
                 add("kspIosArm64", libs.library("koin-ksp-compiler"))
-                add("kspIosSimulatorArm64", libs.library("koin-ksp-compiler"))
+                add("kspIosSimulatorArm64", libs.library("koin-ksp-compiler"))*/
             }
 
             // WORKAROUND FOR KOIN KSP: ADD this dependsOn("kspCommonMainKotlinMetadata") instead of above dependencies

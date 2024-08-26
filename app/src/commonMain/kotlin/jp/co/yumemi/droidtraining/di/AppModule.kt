@@ -1,5 +1,6 @@
 package jp.co.yumemi.droidtraining.di
 
+import jp.co.yumemi.droidtraining.BuildKonfig
 import jp.co.yumemi.droidtraining.core.model.YumemiConfig
 import org.koin.core.annotation.ComponentScan
 import org.koin.core.annotation.Module
@@ -13,6 +14,6 @@ class AppModule {
 
     @Single
     fun provideYumemiConfig() = YumemiConfig(
-        openWeatherMapApiKey = "",
+        openWeatherMapApiKey = BuildKonfig.OPEN_WEATHER_MAP_API_KEY,
     )
 }

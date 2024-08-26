@@ -61,6 +61,7 @@ napier = "2.7.1"
 detekt = "1.23.6"
 twitterComposeRule = "0.0.26"
 kover = "0.8.3"
+buildKonfig = "0.15.1"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -82,6 +83,7 @@ kover-gradlePlugin = { module = "org.jetbrains.kotlinx:kover-gradle-plugin", ver
 ksp-gradlePlugin = { module = "com.google.devtools.ksp:symbol-processing-gradle-plugin", version.ref = "ksp" }
 detekt-gradlePlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
 detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
+build-konfig-gradlePlugin = { group = "com.codingfeline.buildkonfig", name = "buildkonfig-gradle-plugin", version.ref = "buildKonfig" }
 
 # Kotlin
 kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin" }
