@@ -70,8 +70,8 @@ internal fun DetailWeatherItem(
 
             TempItem(
                 modifier = Modifier.weight(5f),
-                minTemp = dayWeather.minTemp,
-                maxTemp = dayWeather.maxTemp,
+                minTemp = dayWeather.minTemp.coerceIn(MIN_TEMP, MAX_TEMP),
+                maxTemp = dayWeather.maxTemp.coerceIn(MIN_TEMP, MAX_TEMP),
             )
         }
     }
@@ -127,7 +127,7 @@ private fun TempItem(
                 modifier = Modifier.weight(1f),
                 value = minTemp..maxTemp,
                 onValueChange = { /* do nothing */ },
-                valueRange = 20f..35f,
+                valueRange = MIN_TEMP..MAX_TEMP,
                 enabled = false,
                 startThumb = { },
                 endThumb = { },
@@ -151,6 +151,9 @@ private fun Instant.formatDate(): String {
         .ofInstant(this.toJavaInstant(), ZoneId.of("Asia/Tokyo"))
         .format(DateTimeFormatter.ofPattern("M/d: H:mm", Locale.US))
 }
+
+private const val MAX_TEMP = 35f
+private const val MIN_TEMP = 20f
 
 @ComponentPreviews
 @Composable
