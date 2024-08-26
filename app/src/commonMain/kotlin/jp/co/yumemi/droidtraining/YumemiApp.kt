@@ -1,4 +1,4 @@
-package jp.co.yumemi.droidtraining.components
+package jp.co.yumemi.droidtraining
 
 import androidx.compose.foundation.background
 import androidx.compose.material3.MaterialTheme

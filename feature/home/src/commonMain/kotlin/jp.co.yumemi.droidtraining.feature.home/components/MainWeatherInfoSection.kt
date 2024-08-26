@@ -66,7 +66,7 @@ internal fun MainWeatherInfoSection(
                 modifier = Modifier
                     .testTag("min_temp")
                     .weight(1f),
-                text = "%.2f℃".format(weather.minTemp),
+                text = "${weather.minTemp}℃",
                 style = MaterialTheme.typography.bodyMedium.center(),
                 color = Color.Blue,
             )
@@ -75,7 +75,7 @@ internal fun MainWeatherInfoSection(
                 modifier = Modifier
                     .testTag("max_temp")
                     .weight(1f),
-                text = "%.2f℃".format(weather.maxTemp),
+                text = "${weather.maxTemp}℃",
                 style = MaterialTheme.typography.bodyMedium.center(),
                 color = Color.Red,
             )

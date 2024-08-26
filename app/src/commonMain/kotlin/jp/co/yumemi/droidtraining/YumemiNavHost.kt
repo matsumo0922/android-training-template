@@ -1,4 +1,4 @@
-package jp.co.yumemi.droidtraining.components
+package jp.co.yumemi.droidtraining
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

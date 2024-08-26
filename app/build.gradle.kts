@@ -58,6 +58,7 @@ kotlin {
             dependsOn(commonMain)
             dependencies {
                 implementation(libs.bundles.ui.implementations)
+                implementation(libs.koin.android)
             }
         }
 

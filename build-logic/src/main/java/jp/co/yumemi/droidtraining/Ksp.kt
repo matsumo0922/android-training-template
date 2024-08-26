@@ -9,25 +9,5 @@ internal fun Project.configureKsp() {
         // for Koin compile time check
         arg("KOIN_CONFIG_CHECK","true")
         arg("KOIN_USE_COMPOSE_VIEWMODEL", "true")
-
-        if (isApplicationProject()) {
-            androidApplication {
-                applicationVariants.forEach { variant ->
-                    variant.sourceSets.forEach {
-                        it.javaDirectories += files("build/generated/ksp/${variant.name}/kotlin")
-                    }
-                }
-            }
-        }
-
-        if (isLibraryProject()) {
-            androidLibrary {
-                libraryVariants.forEach { variant ->
-                    variant.sourceSets.forEach {
-                        it.javaDirectories += files("build/generated/ksp/${variant.name}/kotlin")
-                    }
-                }
-            }
-        }
     }
 }

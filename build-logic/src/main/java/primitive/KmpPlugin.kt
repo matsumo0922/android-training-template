@@ -2,14 +2,15 @@ package primitive
 
 import jp.co.yumemi.droidtraining.android
 import jp.co.yumemi.droidtraining.bundle
-import jp.co.yumemi.droidtraining.implementation
 import jp.co.yumemi.droidtraining.kotlin
 import jp.co.yumemi.droidtraining.library
 import jp.co.yumemi.droidtraining.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 @OptIn(ExperimentalWasmDsl::class)
 class KmpPlugin : Plugin<Project> {
@@ -63,13 +64,18 @@ class KmpPlugin : Plugin<Project> {
             }
 
             dependencies {
-                implementation(libs.library("koin-android"))
-
                 add("kspCommonMainMetadata", libs.library("koin-ksp-compiler"))
                 add("kspAndroid", libs.library("koin-ksp-compiler"))
                 add("kspIosX64", libs.library("koin-ksp-compiler"))
                 add("kspIosArm64", libs.library("koin-ksp-compiler"))
                 add("kspIosSimulatorArm64", libs.library("koin-ksp-compiler"))
+            }
+
+            // WORKAROUND FOR KOIN KSP: ADD this dependsOn("kspCommonMainKotlinMetadata") instead of above dependencies
+            tasks.withType<KotlinCompilationTask<*>>().configureEach {
+                if (name != "kspCommonMainKotlinMetadata") {
+                    dependsOn("kspCommonMainKotlinMetadata")
+                }
             }
         }
     }
