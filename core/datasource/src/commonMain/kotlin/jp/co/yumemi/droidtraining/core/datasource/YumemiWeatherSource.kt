@@ -1,13 +1,11 @@
 package jp.co.yumemi.droidtraining.core.datasource
 
-import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.request.url
-import io.ktor.client.statement.bodyAsText
 import jp.co.yumemi.droidtraining.core.model.Area
 import jp.co.yumemi.droidtraining.core.model.YumemiConfig
 import jp.co.yumemi.droidtraining.core.model.entity.WeatherDetailEntity
@@ -25,11 +23,7 @@ class YumemiWeatherSource(
             url("$API/weather")
             parameter("id", area.id)
             defaultParameters()
-        }.let {
-            val a = it.bodyAsText()
-            Napier.d { a }
-            it.body()
-        }
+        }.body()
     }
 
     suspend fun fetchWeatherForecast(area: Area): WeatherForecastEntity {
