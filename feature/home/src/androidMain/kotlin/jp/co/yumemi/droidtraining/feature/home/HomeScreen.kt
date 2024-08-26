@@ -8,18 +8,21 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import jp.co.yumemi.droidtraining.core.model.Area
-import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
+import jp.co.yumemi.droidtraining.core.ui.Res
+import jp.co.yumemi.droidtraining.core.ui.close
 import jp.co.yumemi.droidtraining.core.ui.components.LoadingScreen
 import jp.co.yumemi.droidtraining.core.ui.components.SimpleAlertDialog
-import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
+import jp.co.yumemi.droidtraining.core.ui.error_message_common
+import jp.co.yumemi.droidtraining.core.ui.error_title_common
+import jp.co.yumemi.droidtraining.core.ui.main_weather_action_reload
 import jp.co.yumemi.droidtraining.feature.home.components.MainActionButtonsSection
 import jp.co.yumemi.droidtraining.feature.home.components.MainWeatherInfoSection
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
 
@@ -96,24 +99,13 @@ internal fun HomeScreen(
 
     if (screenState is HomeWeatherScreenState.Error) {
         SimpleAlertDialog(
-            title = stringResource(R.string.error_title_common),
-            message = stringResource(R.string.error_message_common),
-            positiveButtonText = stringResource(R.string.main_weather_action_reload),
-            negativeButtonText = stringResource(R.string.close),
+            title = stringResource(Res.string.error_title_common),
+            message = stringResource(Res.string.error_message_common),
+            positiveButtonText = stringResource(Res.string.main_weather_action_reload),
+            negativeButtonText = stringResource(Res.string.close),
             onPositiveButtonClick = viewModel::reloadWeather,
             onNegativeButtonClick = viewModel::resetScreenState,
             onDismissRequest = viewModel::resetScreenState,
-        )
-    }
-}
-
-@ComponentPreviews
-@Composable
-private fun MainScreenPreview() {
-    YumemiTheme {
-        HomeScreen(
-            modifier = Modifier.fillMaxSize(),
-            onClickNext = {},
         )
     }
 }

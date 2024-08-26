@@ -21,5 +21,13 @@ kotlin {
 
             implementation(libs.bundles.ktor)
         }
+
+        androidMain.dependencies {
+            api(libs.ktor.okhttp)
+        }
+
+        iosMain.dependencies {
+            api(libs.ktor.darwin)
+        }
     }
 }

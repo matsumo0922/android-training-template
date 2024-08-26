@@ -11,12 +11,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
-import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
+import jp.co.yumemi.droidtraining.core.ui.Res
+import jp.co.yumemi.droidtraining.core.ui.main_weather_action_next
+import jp.co.yumemi.droidtraining.core.ui.main_weather_action_reload
 import jp.co.yumemi.droidtraining.feature.home.R
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 internal fun MainActionButtonsSection(
@@ -32,7 +33,7 @@ internal fun MainActionButtonsSection(
             modifier = Modifier
                 .testTag("reload_button")
                 .weight(1f),
-            text = stringResource(R.string.main_weather_action_reload),
+            text = stringResource(Res.string.main_weather_action_reload),
             onClick = onClickReload,
         )
 
@@ -40,7 +41,7 @@ internal fun MainActionButtonsSection(
             modifier = Modifier
                 .testTag("next_button")
                 .weight(1f),
-            text = stringResource(R.string.main_weather_action_next),
+            text = stringResource(Res.string.main_weather_action_next),
             onClick = onClickNext,
         )
     }
@@ -65,17 +66,6 @@ private fun MainActionButton(
         Text(
             text = text.uppercase(),
             fontSize = 18.sp,
-        )
-    }
-}
-
-@ComponentPreviews
-@Composable
-private fun MainActionButtonsSectionPreview() {
-    YumemiTheme {
-        MainActionButtonsSection(
-            onClickReload = {},
-            onClickNext = {},
         )
     }
 }

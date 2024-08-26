@@ -18,9 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
 import jp.co.yumemi.droidtraining.core.ui.bold
-import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
 
 @Suppress("ModifierMissing")
 @Composable
@@ -94,34 +92,5 @@ fun SimpleAlertDialog(
                 }
             }
         }
-    }
-}
-
-@ComponentPreviews
-@Composable
-private fun SimpleAlertDialogPreview() {
-    YumemiTheme {
-        SimpleAlertDialog(
-            title = "Title",
-            message = "Message",
-            positiveButtonText = "Positive",
-            negativeButtonText = "Negative",
-            onDismissRequest = {},
-        )
-    }
-}
-
-@ComponentPreviews
-@Composable
-private fun SimpleAlertDialogPreviewCaution() {
-    YumemiTheme {
-        SimpleAlertDialog(
-            title = "Title",
-            message = "Message",
-            positiveButtonText = "Positive",
-            negativeButtonText = "Negative",
-            isCaution = true,
-            onDismissRequest = {},
-        )
     }
 }

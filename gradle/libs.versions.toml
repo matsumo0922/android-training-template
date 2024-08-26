@@ -38,7 +38,7 @@ ksp = "2.0.20-1.0.24"
 # Koin
 koin = "3.5.1"
 koinMultiplatform = "1.2.0-Beta4"
-koinAnnotations = "1.4.0-RC3"
+koinAnnotations = "1.4.0-RC4"
 
 # Moshi
 moshi = "1.13.0"
@@ -143,6 +143,9 @@ ktor-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation",
 ktor-serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
+ktor-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 
 # Coil
 coil3-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil3" }

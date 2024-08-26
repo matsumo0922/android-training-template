@@ -21,20 +21,13 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import jp.co.yumemi.droidtraining.core.model.WeatherForecast
-import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
 import jp.co.yumemi.droidtraining.core.ui.colors.tempMaxColor
-import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
-import jp.co.yumemi.droidtraining.core.ui.previews.WeatherForecastPreviewParameter
 import kotlinx.datetime.Instant
-import kotlinx.datetime.toJavaInstant
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.util.Locale
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 @Composable
 internal fun DetailWeatherItem(
@@ -146,25 +139,16 @@ private fun TempItem(
     }
 }
 
-private fun Instant.formatDate(): String {
-    return LocalDateTime
-        .ofInstant(this.toJavaInstant(), ZoneId.of("Asia/Tokyo"))
-        .format(DateTimeFormatter.ofPattern("M/d: H:mm", Locale.US))
+fun Instant.formatDate(): String {
+    val localDateTime = this.toLocalDateTime(TimeZone.of("Asia/Tokyo"))
+
+    val month = localDateTime.monthNumber
+    val day = localDateTime.dayOfMonth
+    val hour = localDateTime.hour
+    val minute = localDateTime.minute
+
+    return "$month/$day: $hour:$minute"
 }
 
 private const val MAX_TEMP = 35f
 private const val MIN_TEMP = 15f
-
-@ComponentPreviews
-@Composable
-private fun DetailWeatherItemPreview(
-    @PreviewParameter(WeatherForecastPreviewParameter::class) weatherForecast: WeatherForecast,
-) {
-    YumemiTheme {
-        DetailWeatherItem(
-            modifier = Modifier.fillMaxWidth(),
-            dayWeather = weatherForecast.dayWeathers.first(),
-            onClickWeather = {},
-        )
-    }
-}

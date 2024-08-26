@@ -30,6 +30,16 @@ kotlin {
             api(compose.ui)
             api(compose.materialIconsExtended)
             api(compose.components.resources)
+
+            api(libs.kmp.navigation.compose)
+            api(libs.kmp.lifecycle.runtime.compose)
+            api(libs.kmp.lifecycle.viewmodel.compose)
         }
     }
+}
+
+compose.resources {
+    publicResClass = true
+    packageOfResClass = "jp.co.yumemi.droidtraining.core.ui"
+    generateResClass = always
 }

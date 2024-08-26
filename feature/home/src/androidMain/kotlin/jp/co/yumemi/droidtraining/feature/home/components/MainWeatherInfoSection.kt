@@ -12,17 +12,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import jp.co.yumemi.droidtraining.core.model.Weather
 import jp.co.yumemi.droidtraining.core.model.WeatherDetail
-import jp.co.yumemi.droidtraining.core.ui.YumemiTheme
+import jp.co.yumemi.droidtraining.core.ui.Res
 import jp.co.yumemi.droidtraining.core.ui.bold
 import jp.co.yumemi.droidtraining.core.ui.center
-import jp.co.yumemi.droidtraining.core.ui.extensions.ComponentPreviews
-import jp.co.yumemi.droidtraining.core.ui.previews.WeatherResponsePreviewParameter
-import jp.co.yumemi.droidtraining.feature.home.R
+import jp.co.yumemi.droidtraining.core.ui.vec_cloudy
+import jp.co.yumemi.droidtraining.core.ui.vec_rainy
+import jp.co.yumemi.droidtraining.core.ui.vec_snowy
+import jp.co.yumemi.droidtraining.core.ui.vec_sunny
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 internal fun MainWeatherInfoSection(
@@ -30,10 +30,10 @@ internal fun MainWeatherInfoSection(
     modifier: Modifier = Modifier,
 ) {
     val weatherIcon = when (weather.weather) {
-        Weather.Sunny -> R.drawable.vec_sunny
-        Weather.Cloudy -> R.drawable.vec_cloudy
-        Weather.Rainy -> R.drawable.vec_rainy
-        Weather.Snowy -> R.drawable.vec_snowy
+        Weather.Sunny -> Res.drawable.vec_sunny
+        Weather.Cloudy -> Res.drawable.vec_cloudy
+        Weather.Rainy -> Res.drawable.vec_rainy
+        Weather.Snowy -> Res.drawable.vec_snowy
         else -> null
     }
 
@@ -80,17 +80,5 @@ internal fun MainWeatherInfoSection(
                 color = Color.Red,
             )
         }
-    }
-}
-
-@ComponentPreviews
-@Composable
-private fun MainWeatherInfoSectionPreview(
-    @PreviewParameter(WeatherResponsePreviewParameter::class) weather: WeatherDetail,
-) {
-    YumemiTheme {
-        MainWeatherInfoSection(
-            weather = weather,
-        )
     }
 }
