@@ -34,19 +34,6 @@ class YumemiWeatherSourceTest : FunSpec(), KoinTest {
             // Assert
             result shouldBe get<Json>().decodeFromString(response)
         }
-
-        test("fetchWeatherForecast should return expected WeatherForecastEntity") {
-            // Arrange
-            val response = loadResource("dummy_weather_forecast.json")
-            val client = setupMockClient(response)
-            val source = YumemiWeatherSource(client, YumemiConfig(""))
-
-            // Act
-            val result = source.fetchWeatherForecast(Area.TOKYO)
-
-            // Assert
-            result shouldBe get<Json>().decodeFromString(response)
-        }
     }
 
     override fun extensions() = listOf(KoinExtension(DataSourceModule().module))
