@@ -1,5 +1,6 @@
 package jp.co.yumemi.droidtraining.core.datasource.di
 
+import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -12,7 +13,6 @@ import org.koin.core.annotation.ComponentScan
 import org.koin.core.annotation.Module
 import org.koin.core.annotation.Named
 import org.koin.core.annotation.Single
-import timber.log.Timber
 
 @Module
 @Named("DataSourceModule")
@@ -35,7 +35,7 @@ class DataSourceModule {
             level = LogLevel.INFO
             logger = object : Logger {
                 override fun log(message: String) {
-                    Timber.d(message)
+                    Napier.d(message)
                 }
             }
         }

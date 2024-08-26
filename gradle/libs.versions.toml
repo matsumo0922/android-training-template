@@ -56,7 +56,7 @@ kotestKoin = "1.3.0"
 mockk = "1.13.11"
 
 # Other
-timber = "5.0.1"
+napier = "2.7.1"
 detekt = "1.23.6"
 twitterComposeRule = "0.0.26"
 kover = "0.8.3"
@@ -70,7 +70,7 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kmp = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kmpCompose = { id = "org.jetbrains.compose", version.ref = "kmpCompose" }
+kmp-compose = { id = "org.jetbrains.compose", version.ref = "kmpCompose" }
 
 [libraries]
 
@@ -159,7 +159,7 @@ androidx-espresso = { module = "androidx.test.espresso:espresso-core", version.r
 androidx-compose-test = { module = "androidx.compose.ui:ui-test-junit4" }
 
 # Other
-timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 twitter-compose-rule = { module = "com.twitter.compose.rules:detekt", version.ref = "twitterComposeRule" }
 
 [bundles]
@@ -167,7 +167,7 @@ infra-api = [
     "kotlin-stdlib",
     "kotlinx-serialization",
     "kotlinx-datetime",
-    "timber",
+    "napier",
 ]
 
 ui-implementations = [
