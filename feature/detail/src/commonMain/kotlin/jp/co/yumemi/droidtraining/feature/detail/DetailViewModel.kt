@@ -10,7 +10,6 @@ import jp.co.yumemi.droidtraining.core.repository.YumemiWeatherRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.koin.android.annotation.KoinViewModel
 import org.koin.core.annotation.InjectedParam
 
 class DetailViewModel(

@@ -1,3 +1,4 @@
+@file:Suppress("UnusedPrivateProperty")
 
 import com.codingfeline.buildkonfig.compiler.FieldSpec
 import com.codingfeline.buildkonfig.gradle.TargetConfigDsl

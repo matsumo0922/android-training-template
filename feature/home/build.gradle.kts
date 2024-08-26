@@ -25,5 +25,5 @@ kotlin {
 }
 
 ksp {
-    arg("KOIN_DEFAULT_MODULE","false")
+    arg("KOIN_DEFAULT_MODULE", "false")
 }
