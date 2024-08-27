@@ -31,7 +31,7 @@ Android Studio Koala 以上のバージョンの Android Studio で実行して�
 Android Studio Koala 以上のバージョンの Android Studio、Xcode15 以上のバージョンの Xcode が必要です。
 Android Studio から実行する場合は [Kotlin Multiplatform Plugin](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform) をインストールの上、実行してください。
 
-#### Wasm for Web :globe_with_meridians:
+#### WebAssembly :globe_with_meridians:
 
 Java17 をインストールの上、以下のコマンドを実行してください。
 既定のブラウザーでアプリが起動します。
