@@ -1,0 +1,108 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > YumemiWeatherRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">jp.co.yumemi.droidtraining.core.repository</a>
+</div>
+
+<h1>Coverage Summary for Class: YumemiWeatherRepository (jp.co.yumemi.droidtraining.core.repository)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+</tr>
+<tr>
+  <td class="name">YumemiWeatherRepository</td>
+    <td class="coverageStat"/>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package jp.co.yumemi.droidtraining.core.repository
+&nbsp;
+&nbsp;import jp.co.yumemi.droidtraining.core.common.IO
+&nbsp;import jp.co.yumemi.droidtraining.core.datasource.YumemiWeatherSource
+&nbsp;import jp.co.yumemi.droidtraining.core.model.Area
+&nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherDetail
+&nbsp;import jp.co.yumemi.droidtraining.core.model.WeatherForecast
+&nbsp;import jp.co.yumemi.droidtraining.core.repository.mapper.WeatherDetailMapper
+&nbsp;import kotlinx.coroutines.CoroutineDispatcher
+&nbsp;import kotlinx.coroutines.Dispatchers
+&nbsp;import kotlinx.coroutines.withContext
+&nbsp;import org.koin.core.annotation.Single
+&nbsp;
+&nbsp;interface YumemiWeatherRepository {
+&nbsp;    suspend fun fetchWeather(area: Area): WeatherDetail
+&nbsp;    suspend fun fetchWeatherForecast(area: Area): WeatherForecast
+&nbsp;}
+&nbsp;
+&nbsp;@Single
+&nbsp;class YumemiWeatherRepositoryImpl(
+&nbsp;    private val weatherSource: YumemiWeatherSource,
+&nbsp;    private val weatherDetailMapper: WeatherDetailMapper,
+&nbsp;    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+&nbsp;) : YumemiWeatherRepository {
+&nbsp;
+&nbsp;    override suspend fun fetchWeather(area: Area): WeatherDetail = withContext(ioDispatcher) {
+&nbsp;        val entity = weatherSource.fetchWeather(area)
+&nbsp;        weatherDetailMapper.asWeatherDetail(entity)
+&nbsp;    }
+&nbsp;
+&nbsp;    override suspend fun fetchWeatherForecast(area: Area): WeatherForecast = withContext(ioDispatcher) {
+&nbsp;        val entity = weatherSource.fetchWeatherForecast(area)
+&nbsp;        weatherDetailMapper.asWeatherForecast(entity)
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-08-27 08:38</div>
+</div>
+</body>
+</html>
