@@ -19,7 +19,11 @@ kotlin {
             implementation(project(":core:model"))
             implementation(project(":core:common"))
 
-            implementation(libs.bundles.coil)
+            implementation(libs.coil3.compose)
+        }
+
+        wasmJsMain.dependencies {
+            implementation(libs.coil3.wasm)
         }
     }
 }

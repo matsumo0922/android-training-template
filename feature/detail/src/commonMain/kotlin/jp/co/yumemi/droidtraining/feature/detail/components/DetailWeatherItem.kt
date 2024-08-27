@@ -46,7 +46,7 @@ internal fun DetailWeatherItem(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
@@ -79,7 +79,7 @@ private fun WeatherIcon(
 
     Row(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.End,
         verticalAlignment = Alignment.CenterVertically,
     ) {
         if (precipitation != null && precipitation >= 1) {
@@ -140,7 +140,7 @@ private fun TempItem(
 }
 
 fun Instant.formatDate(): String {
-    val localDateTime = this.toLocalDateTime(TimeZone.of("Asia/Tokyo"))
+    val localDateTime = this.toLocalDateTime(TimeZone.UTC)
 
     val month = localDateTime.monthNumber.toString().padStart(2, '0')
     val day = localDateTime.dayOfMonth.toString().padStart(2, '0')

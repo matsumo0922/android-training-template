@@ -6,7 +6,7 @@ Androidアプリ開発の基礎復習・実務スキルを身に付けるため�
 このAndroidプロジェクトは[android-training-template](https://github.com/yumemi-inc/android-training-template)からセットアップされました.  
 課題の詳細や進め方は元のリポジトリのREADMEを参照してください.
 
-# セットアップ
+## セットアップ
 
 このアプリは OpenWeatherMap API を利用して天気情報を取得するため、APIキーが必要です。
 [OpenWeatherMap](https://home.openweathermap.org/users/sign_up)にアカウント登録を行い、APIキーを取得してください。
@@ -19,7 +19,28 @@ Androidアプリ開発の基礎復習・実務スキルを身に付けるため�
 OPEN_WEATHER_MAP_API_KEY="YOUR_API_KEY"
 ```
 
-# アーキテクチャ
+## 実行
+
+#### Android :robot:
+
+Android Studio Koala 以上のバージョンの Android Studio で実行してください。
+コマンドラインから実行する場合は Java17 がインストールされている必要があります。
+
+#### iOS :green_apple:
+
+Android Studio Koala 以上のバージョンの Android Studio、Xcode15 以上のバージョンの Xcode が必要です。
+Android Studio から実行する場合は [Kotlin Multiplatform Plugin](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform) をインストールの上、実行してください。
+
+#### WebAssembly :globe_with_meridians:
+
+Java17 をインストールの上、以下のコマンドを実行してください。
+既定のブラウザーでアプリが起動します。
+
+```
+./gradlew :app:wasmJsBrowserDevelopmentRun --continue
+```
+
+## アーキテクチャ
 アプリのアーキテクチャ図です。一部現在は実装されていないモジュールが存在しますが、今後の課題で実装される予定です。
 
 ```mermaid

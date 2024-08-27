@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalWasmDsl::class)
+
 package primitive
 
 import jp.co.yumemi.droidtraining.android
@@ -10,9 +12,10 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
-@OptIn(ExperimentalWasmDsl::class)
 class KmpPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
@@ -28,34 +31,9 @@ class KmpPlugin : Plugin<Project> {
             }
 
             kotlin {
-                js(IR) {
-                    browser {
-                        commonWebpackConfig {
-                            outputFileName = "yumemi.js"
-                        }
-                    }
-
-                    binaries.executable()
-                }
-
-                wasmJs {
-                    browser()
-                    binaries.executable()
-                }
-
-                androidTarget()
-                applyDefaultHierarchyTemplate()
-
-                listOf(
-                    iosX64(),
-                    iosArm64(),
-                    iosSimulatorArm64(),
-                ).forEach { iosTarget ->
-                    iosTarget.binaries.framework {
-                        baseName = "app"
-                        isStatic = true
-                    }
-                }
+                configureKmpAndroid()
+                configureKmpIos()
+                configureKmpWasm()
 
                 sourceSets.commonMain {
                     kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
@@ -78,5 +56,44 @@ class KmpPlugin : Plugin<Project> {
                 }
             }
         }
+    }
+}
+
+private fun KotlinMultiplatformExtension.configureKmpAndroid() {
+    androidTarget()
+    applyDefaultHierarchyTemplate()
+}
+
+private fun KotlinMultiplatformExtension.configureKmpIos() {
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64(),
+    ).forEach { iosTarget ->
+        iosTarget.apply {
+            binaries.framework {
+                baseName = "ComposeApp"
+                isStatic = true
+            }
+        }
+    }
+}
+
+private fun KotlinMultiplatformExtension.configureKmpWasm() {
+    wasmJs {
+        moduleName = "app"
+        browser {
+            commonWebpackConfig {
+                outputFileName = "composeApp.js"
+                devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
+                    static = (static ?: mutableListOf()).apply {
+                        // Serve sources to debug inside browser
+                        add(project.rootDir.path)
+                        add(project.projectDir.path)
+                    }
+                }
+            }
+        }
+        binaries.executable()
     }
 }

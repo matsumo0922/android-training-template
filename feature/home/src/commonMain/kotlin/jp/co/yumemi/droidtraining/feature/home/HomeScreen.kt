@@ -1,18 +1,23 @@
 package jp.co.yumemi.droidtraining.feature.home
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import jp.co.yumemi.droidtraining.core.model.Area
+import jp.co.yumemi.droidtraining.core.ui.CONTAINER_MAX_WIDTH
 import jp.co.yumemi.droidtraining.core.ui.Res
 import jp.co.yumemi.droidtraining.core.ui.close
 import jp.co.yumemi.droidtraining.core.ui.components.LoadingScreen
@@ -36,11 +41,19 @@ internal fun HomeScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val screenState by viewModel.screenState.collectAsStateWithLifecycle()
 
-    Scaffold(modifier) {
-        Box {
+    Scaffold(
+        modifier = modifier,
+        containerColor = MaterialTheme.colorScheme.surface,
+    ) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center,
+        ) {
             ConstraintLayout(
                 modifier = Modifier
                     .fillMaxSize()
+                    .widthIn(max = CONTAINER_MAX_WIDTH)
+                    .background(MaterialTheme.colorScheme.background)
                     .padding(it),
             ) {
                 val (weatherInfoSection, actionButtonsSection) = createRefs()
