@@ -77,6 +77,10 @@ buildkonfig {
     }
 }
 
+compose.experimental {
+    web.application {}
+}
+
 fun TargetConfigDsl.putBuildConfig(
     localProperties: Properties,
     key: String,

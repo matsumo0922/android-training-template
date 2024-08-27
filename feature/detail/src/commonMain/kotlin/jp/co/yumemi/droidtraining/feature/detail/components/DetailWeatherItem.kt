@@ -140,7 +140,7 @@ private fun TempItem(
 }
 
 fun Instant.formatDate(): String {
-    val localDateTime = this.toLocalDateTime(TimeZone.of("Asia/Tokyo"))
+    val localDateTime = this.toLocalDateTime(TimeZone.UTC)
 
     val month = localDateTime.monthNumber.toString().padStart(2, '0')
     val day = localDateTime.dayOfMonth.toString().padStart(2, '0')

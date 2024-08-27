@@ -18,9 +18,9 @@ kotlinxDatetime = "0.6.0"
 kotlinxSerialization = "1.7.1"
 
 # KMP
-kmpCompose = "1.6.11"
+kmpCompose = "1.6.10"
 kmpLifecycle = "2.8.0"
-kmpNavigation = "2.8.0-alpha08"
+kmpNavigation = "2.8.0-alpha02"
 
 # AndroidX
 androidxCore = "1.13.1"
@@ -36,7 +36,7 @@ material = "1.12.0"
 ksp = "2.0.20-1.0.24"
 
 # Koin
-koin = "3.5.1"
+koin = "3.6.0-Beta4"
 koinMultiplatform = "1.2.0-Beta4"
 koinAnnotations = "1.4.0-RC4"
 
@@ -47,7 +47,7 @@ moshi = "1.13.0"
 ktor = "3.0.0-beta-2"
 
 # Coil
-coil3 = "3.0.0-alpha10"
+coil3 = "3.0.0-alpha06"
 
 # Testing
 androidXJunit = "1.1.5"
@@ -151,7 +151,6 @@ ktor-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 
 # Coil
 coil3-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil3" }
-coil3-network = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil3" }
 
 # Testing
 kotest-junit = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
@@ -210,7 +209,6 @@ ktor = [
 
 coil = [
     "coil3-compose",
-    "coil3-network",
 ]
 
 testing = [
