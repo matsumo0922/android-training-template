@@ -53,7 +53,7 @@ internal fun HomeScreen(
                 modifier = Modifier
                     .widthIn(max = CONTAINER_MAX_WIDTH)
                     .padding(it),
-                verticalArrangement = Arrangement.spacedBy(if (maxHeight > maxWidth) 80.dp else 16.dp)
+                verticalArrangement = Arrangement.spacedBy(if (maxHeight > maxWidth) 80.dp else 16.dp),
             ) {
                 if (uiState.weather != null) {
                     MainWeatherInfoSection(
