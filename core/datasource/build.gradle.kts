@@ -29,5 +29,9 @@ kotlin {
         iosMain.dependencies {
             api(libs.ktor.darwin)
         }
+
+        wasmJsMain.dependencies {
+            api(libs.ktor.js)
+        }
     }
 }
