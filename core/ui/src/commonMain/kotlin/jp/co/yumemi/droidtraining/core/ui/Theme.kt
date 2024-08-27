@@ -3,6 +3,7 @@ package jp.co.yumemi.droidtraining.core.ui
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.dp
 import jp.co.yumemi.droidtraining.core.model.ThemeConfig
 import jp.co.yumemi.droidtraining.core.ui.colors.DarkBlueColorScheme
 import jp.co.yumemi.droidtraining.core.ui.colors.LightBlueColorScheme
@@ -17,7 +18,7 @@ fun YumemiTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = YumemiTypography,
+        typography = createCustomFontTypography(getNotoSansJPFontFamily()),
         shapes = YumemiShapes,
         content = content,
     )
@@ -31,3 +32,5 @@ fun shouldUseDarkTheme(themeConfig: ThemeConfig): Boolean {
         ThemeConfig.Dark -> true
     }
 }
+
+val CONTAINER_MAX_WIDTH = 800.dp
