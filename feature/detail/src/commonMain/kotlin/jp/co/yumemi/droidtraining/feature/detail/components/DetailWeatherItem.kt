@@ -97,7 +97,7 @@ private fun WeatherIcon(
             contentDescription = dayWeather.description,
             onError = {
                 Napier.d { it.result.throwable.toString() }
-            }
+            },
         )
     }
 }
