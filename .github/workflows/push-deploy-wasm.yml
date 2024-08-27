@@ -29,6 +29,9 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
+      - name: Create local.properties
+        run: echo "OPEN_WEATHER_MAP_API_KEY=\"${{secrets.OPEN_WEATHER_MAP_API_KEY}}\"" > local.properties
+
       - name: Generate Artifact
         run: ./gradlew :app:wasmJsBrowserDistribution
 
