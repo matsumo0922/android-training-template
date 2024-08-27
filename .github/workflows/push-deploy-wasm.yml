@@ -32,6 +32,9 @@ jobs:
       - name: Generate Artifact
         run: ./gradlew :app:wasmJsBrowserDistribution
 
+      - name: Create local.properties
+        run: echo "OPEN_WEATHER_MAP_API_KEY=\"${{secrets.OPEN_WEATHER_MAP_API_KEY}}\"" > local.properties
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
