@@ -1,6 +1,8 @@
 package jp.co.yumemi.droidtraining
 
 import android.app.Application
+import io.github.aakira.napier.DebugAntilog
+import io.github.aakira.napier.Napier
 import jp.co.yumemi.droidtraining.di.applyModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -16,5 +18,7 @@ class YumemiApplication : Application() {
             androidLogger()
             applyModules()
         }
+
+        Napier.base(DebugAntilog())
     }
 }
