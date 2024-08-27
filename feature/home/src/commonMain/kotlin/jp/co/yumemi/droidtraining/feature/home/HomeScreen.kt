@@ -1,0 +1,111 @@
+package jp.co.yumemi.droidtraining.feature.home
+
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import jp.co.yumemi.droidtraining.core.model.Area
+import jp.co.yumemi.droidtraining.core.ui.Res
+import jp.co.yumemi.droidtraining.core.ui.close
+import jp.co.yumemi.droidtraining.core.ui.components.LoadingScreen
+import jp.co.yumemi.droidtraining.core.ui.components.SimpleAlertDialog
+import jp.co.yumemi.droidtraining.core.ui.error_message_common
+import jp.co.yumemi.droidtraining.core.ui.error_title_common
+import jp.co.yumemi.droidtraining.core.ui.main_weather_action_reload
+import jp.co.yumemi.droidtraining.feature.home.components.MainActionButtonsSection
+import jp.co.yumemi.droidtraining.feature.home.components.MainWeatherInfoSection
+import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.annotation.KoinExperimentalAPI
+
+@OptIn(KoinExperimentalAPI::class)
+@Composable
+internal fun HomeScreen(
+    onClickNext: (Area) -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: HomeViewModel = koinViewModel(),
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val screenState by viewModel.screenState.collectAsStateWithLifecycle()
+
+    Scaffold(modifier) {
+        Box {
+            ConstraintLayout(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(it),
+            ) {
+                val (weatherInfoSection, actionButtonsSection) = createRefs()
+
+                if (uiState.weather != null) {
+                    MainWeatherInfoSection(
+                        modifier = Modifier.constrainAs(weatherInfoSection) {
+                            top.linkTo(parent.top)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                            bottom.linkTo(parent.bottom)
+
+                            width = Dimension.percent(0.5f)
+                            height = Dimension.wrapContent
+                        },
+                        weather = uiState.weather!!,
+                    )
+                }
+
+                MainActionButtonsSection(
+                    modifier = Modifier.constrainAs(actionButtonsSection) {
+                        if (uiState.weather != null) {
+                            top.linkTo(weatherInfoSection.bottom, 80.dp)
+                            start.linkTo(weatherInfoSection.start)
+                            end.linkTo(weatherInfoSection.end)
+
+                            width = Dimension.fillToConstraints
+                            height = Dimension.wrapContent
+                        } else {
+                            top.linkTo(parent.top)
+                            bottom.linkTo(parent.bottom)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+
+                            width = Dimension.percent(0.5f)
+                            height = Dimension.wrapContent
+                        }
+                    },
+                    onClickReload = viewModel::reloadWeather,
+                    onClickNext = {
+                        uiState.weather?.area?.let(onClickNext)
+                    },
+                )
+            }
+
+            AnimatedVisibility(
+                modifier = Modifier.fillMaxSize(),
+                visible = screenState is HomeWeatherScreenState.Loading,
+            ) {
+                LoadingScreen(
+                    modifier = Modifier.fillMaxSize(),
+                )
+            }
+        }
+    }
+
+    if (screenState is HomeWeatherScreenState.Error) {
+        SimpleAlertDialog(
+            title = stringResource(Res.string.error_title_common),
+            message = stringResource(Res.string.error_message_common),
+            positiveButtonText = stringResource(Res.string.main_weather_action_reload),
+            negativeButtonText = stringResource(Res.string.close),
+            onPositiveButtonClick = viewModel::reloadWeather,
+            onNegativeButtonClick = viewModel::resetScreenState,
+            onDismissRequest = viewModel::resetScreenState,
+        )
+    }
+}

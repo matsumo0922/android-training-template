@@ -17,13 +17,18 @@ kotlinxCoroutines = "1.8.1"
 kotlinxDatetime = "0.6.0"
 kotlinxSerialization = "1.7.1"
 
+# KMP
+kmpCompose = "1.6.11"
+kmpLifecycle = "2.8.0"
+kmpNavigation = "2.8.0-alpha08"
+
 # AndroidX
 androidxCore = "1.13.1"
 androidxAppCompat = "1.7.0"
 androidxActivity = "1.9.1"
 androidxLifecycle = "2.8.4"
 androidxCompose = "2024.08.00"
-androidxComposeConstraintLayout = "1.0.1"
+androidxComposeConstraintLayout = "0.4.0"
 androidxNavigation = "2.7.7"
 
 # Google
@@ -32,13 +37,14 @@ ksp = "2.0.20-1.0.24"
 
 # Koin
 koin = "3.5.1"
-koinAnnotations = "1.4.0-RC3"
+koinMultiplatform = "1.2.0-Beta4"
+koinAnnotations = "1.4.0-RC4"
 
 # Moshi
 moshi = "1.13.0"
 
 # Ktor
-ktor = "2.3.12"
+ktor = "3.0.0-beta-2"
 
 # Coil
 coil3 = "3.0.0-alpha10"
@@ -51,10 +57,11 @@ kotestKoin = "1.3.0"
 mockk = "1.13.11"
 
 # Other
-timber = "5.0.1"
+napier = "2.7.1"
 detekt = "1.23.6"
 twitterComposeRule = "0.0.26"
 kover = "0.8.3"
+buildKonfig = "0.15.1"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -64,6 +71,8 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kmp = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kmp-compose = { id = "org.jetbrains.compose", version.ref = "kmpCompose" }
 
 [libraries]
 
@@ -74,6 +83,7 @@ kover-gradlePlugin = { module = "org.jetbrains.kotlinx:kover-gradle-plugin", ver
 ksp-gradlePlugin = { module = "com.google.devtools.ksp:symbol-processing-gradle-plugin", version.ref = "ksp" }
 detekt-gradlePlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
 detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
+build-konfig-gradlePlugin = { group = "com.codingfeline.buildkonfig", name = "buildkonfig-gradle-plugin", version.ref = "buildKonfig" }
 
 # Kotlin
 kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin" }
@@ -84,6 +94,11 @@ kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core",
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxDatetime" }
 kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
+
+# KMP
+kmp-lifecycle-runtime-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "kmpLifecycle" }
+kmp-lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "kmpLifecycle" }
+kmp-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "kmpNavigation" }
 
 # AndroidX
 androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
@@ -104,7 +119,7 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 compose-material3 = { module = "androidx.compose.material3:material3" }
 compose-material-icons = { module = "androidx.compose.material:material-icons-extended" }
-compose-constraint-layout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "androidxComposeConstraintLayout" }
+compose-constraint-layout = { module = "tech.annexflow.compose:constraintlayout-compose-multiplatform", version.ref = "androidxComposeConstraintLayout" }
 
 # Google
 material = { module = "com.google.android.material:material", version.ref = "material" }
@@ -113,7 +128,8 @@ material = { module = "com.google.android.material:material", version.ref = "mat
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core"  }
 koin-android = { module = "io.insert-koin:koin-android" }
-koin-compose = { module = "io.insert-koin:koin-androidx-compose" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinMultiplatform" }
+koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koinMultiplatform" }
 koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koinAnnotations" }
 koin-ksp-compiler = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koinAnnotations" }
 koin-test = { module = "io.insert-koin:koin-test" }
@@ -125,15 +141,17 @@ moshi-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.re
 
 # Ktor
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
-ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
+ktor-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 
 # Coil
 coil3-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil3" }
-coil3-network = { module = "io.coil-kt.coil3:coil-network-ktor2", version.ref = "coil3" }
+coil3-network = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil3" }
 
 # Testing
 kotest-junit = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
@@ -147,15 +165,16 @@ androidx-espresso = { module = "androidx.test.espresso:espresso-core", version.r
 androidx-compose-test = { module = "androidx.compose.ui:ui-test-junit4" }
 
 # Other
-timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 twitter-compose-rule = { module = "com.twitter.compose.rules:detekt", version.ref = "twitterComposeRule" }
 
 [bundles]
 infra-api = [
     "kotlin-stdlib",
+    "kotlinx-coroutines",
     "kotlinx-serialization",
     "kotlinx-datetime",
-    "timber",
+    "napier",
 ]
 
 ui-implementations = [
@@ -178,13 +197,12 @@ ui-implementations = [
 koin = [
     "koin-core",
     "koin-compose",
-    "koin-android",
+    "koin-compose-viewmodel",
     "koin-annotations",
 ]
 
 ktor = [
     "ktor-core",
-    "ktor-android",
     "ktor-content-negotiation",
     "ktor-serialization-json",
     "ktor-logging",

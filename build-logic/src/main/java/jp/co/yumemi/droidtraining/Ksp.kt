@@ -8,25 +8,6 @@ internal fun Project.configureKsp() {
     extensions.getByType<KspExtension>().apply {
         // for Koin compile time check
         arg("KOIN_CONFIG_CHECK","true")
-
-        if (isApplicationProject()) {
-            androidApplication {
-                applicationVariants.forEach { variant ->
-                    variant.sourceSets.forEach {
-                        it.javaDirectories += files("build/generated/ksp/${variant.name}/kotlin")
-                    }
-                }
-            }
-        }
-
-        if (isLibraryProject()) {
-            androidLibrary {
-                libraryVariants.forEach { variant ->
-                    variant.sourceSets.forEach {
-                        it.javaDirectories += files("build/generated/ksp/${variant.name}/kotlin")
-                    }
-                }
-            }
-        }
+        arg("KOIN_USE_COMPOSE_VIEWMODEL", "true")
     }
 }

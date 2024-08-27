@@ -15,6 +15,7 @@ dependencies {
     implementation(libs.kover.gradlePlugin)
     implementation(libs.ksp.gradlePlugin)
     implementation(libs.detekt.gradlePlugin)
+    implementation(libs.build.konfig.gradlePlugin)
 }
 
 gradlePlugin {
@@ -38,6 +39,10 @@ gradlePlugin {
         register("KoverPlugin") {
             id = "yumemi.primitive.kover"
             implementationClass = "primitive.KoverPlugin"
+        }
+        register("KmpPlugin") {
+            id = "yumemi.primitive.kmp"
+            implementationClass = "primitive.KmpPlugin"
         }
     }
 }

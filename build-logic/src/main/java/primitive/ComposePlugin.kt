@@ -6,7 +6,6 @@ import jp.co.yumemi.droidtraining.debugImplementation
 import jp.co.yumemi.droidtraining.implementation
 import jp.co.yumemi.droidtraining.library
 import jp.co.yumemi.droidtraining.libs
-import jp.co.yumemi.droidtraining.plugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
@@ -14,7 +13,10 @@ import org.gradle.kotlin.dsl.dependencies
 class ComposePlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            pluginManager.apply(libs.plugin("compose-compiler").pluginId)
+            pluginManager.apply {
+                apply("org.jetbrains.compose")
+                apply("org.jetbrains.kotlin.plugin.compose")
+            }
 
             commonExt {
                 buildFeatures.compose = true

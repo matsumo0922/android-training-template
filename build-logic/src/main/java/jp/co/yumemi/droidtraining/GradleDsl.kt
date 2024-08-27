@@ -8,6 +8,7 @@ import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 import org.gradle.kotlin.dsl.configure
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 fun DependencyHandlerScope.implementation(
     artifact: Dependency,
@@ -82,5 +83,9 @@ fun DependencyHandlerScope.ksp(
 }
 
 fun Project.java(action: JavaPluginExtension.() -> Unit) {
+    extensions.configure(action)
+}
+
+fun Project.kotlin(action: KotlinMultiplatformExtension.() -> Unit) {
     extensions.configure(action)
 }
