@@ -31,7 +31,7 @@ class KmpPlugin : Plugin<Project> {
                 js(IR) {
                     browser {
                         commonWebpackConfig {
-                            outputFileName = "matsumo-me.js"
+                            outputFileName = "yumemi.js"
                         }
                     }
 
@@ -69,10 +69,6 @@ class KmpPlugin : Plugin<Project> {
 
             dependencies {
                 add("kspCommonMainMetadata", libs.library("koin-ksp-compiler"))
-                /*add("kspAndroid", libs.library("koin-ksp-compiler"))
-                add("kspIosX64", libs.library("koin-ksp-compiler"))
-                add("kspIosArm64", libs.library("koin-ksp-compiler"))
-                add("kspIosSimulatorArm64", libs.library("koin-ksp-compiler"))*/
             }
 
             // WORKAROUND FOR KOIN KSP: ADD this dependsOn("kspCommonMainKotlinMetadata") instead of above dependencies
