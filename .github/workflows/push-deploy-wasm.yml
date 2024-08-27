@@ -38,3 +38,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: "./app/build/dist/wasmJs/productionExecutable"
           destination_dir: "./"
+          keep_files: true
