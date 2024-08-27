@@ -23,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import io.github.aakira.napier.Napier
 import jp.co.yumemi.droidtraining.core.model.WeatherForecast
 import jp.co.yumemi.droidtraining.core.ui.colors.tempMaxColor
 import kotlinx.datetime.Instant
@@ -95,9 +94,6 @@ private fun WeatherIcon(
             modifier = Modifier.size(60.dp),
             model = dayWeather.iconUrl,
             contentDescription = dayWeather.description,
-            onError = {
-                Napier.d { it.result.throwable.toString() }
-            },
         )
     }
 }
