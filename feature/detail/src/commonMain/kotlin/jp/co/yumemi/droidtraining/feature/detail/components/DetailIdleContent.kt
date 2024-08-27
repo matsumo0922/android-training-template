@@ -42,7 +42,7 @@ internal fun DetailIdleContent(
                 onClickBack = onClickBack,
             )
         },
-        containerColor = MaterialTheme.colorScheme.surface
+        containerColor = MaterialTheme.colorScheme.surface,
     ) { padding ->
         Box(
             modifier = Modifier.fillMaxSize(),
