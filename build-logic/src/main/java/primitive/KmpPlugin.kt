@@ -52,7 +52,7 @@ class KmpPlugin : Plugin<Project> {
                     iosSimulatorArm64(),
                 ).forEach { iosTarget ->
                     iosTarget.binaries.framework {
-                        baseName = "app"
+                        baseName = "ComposeApp"
                         isStatic = true
                     }
                 }

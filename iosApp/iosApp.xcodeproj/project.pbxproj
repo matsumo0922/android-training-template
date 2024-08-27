@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F4A88D5F2C7D6DF5000B7431 /* iosAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A88D5E2C7D6DF5000B7431 /* iosAppApp.swift */; };
+		F4A88D5F2C7D6DF5000B7431 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A88D5E2C7D6DF5000B7431 /* iOSApp.swift */; };
 		F4A88D612C7D6DF5000B7431 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A88D602C7D6DF5000B7431 /* ContentView.swift */; };
 		F4A88D632C7D6DF6000B7431 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4A88D622C7D6DF6000B7431 /* Assets.xcassets */; };
 		F4A88D672C7D6DF6000B7431 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4A88D662C7D6DF6000B7431 /* Preview Assets.xcassets */; };
@@ -15,7 +15,7 @@
 
 /* Begin PBXFileReference section */
 		F4A88D5B2C7D6DF5000B7431 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F4A88D5E2C7D6DF5000B7431 /* iosAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosAppApp.swift; sourceTree = "<group>"; };
+		F4A88D5E2C7D6DF5000B7431 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		F4A88D602C7D6DF5000B7431 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F4A88D622C7D6DF6000B7431 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4A88D642C7D6DF6000B7431 /* iosApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iosApp.entitlements; sourceTree = "<group>"; };
@@ -52,7 +52,7 @@
 		F4A88D5D2C7D6DF5000B7431 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
-				F4A88D5E2C7D6DF5000B7431 /* iosAppApp.swift */,
+				F4A88D5E2C7D6DF5000B7431 /* iOSApp.swift */,
 				F4A88D602C7D6DF5000B7431 /* ContentView.swift */,
 				F4A88D622C7D6DF6000B7431 /* Assets.xcassets */,
 				F4A88D642C7D6DF6000B7431 /* iosApp.entitlements */,
@@ -161,7 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4A88D612C7D6DF5000B7431 /* ContentView.swift in Sources */,
-				F4A88D5F2C7D6DF5000B7431 /* iosAppApp.swift in Sources */,
+				F4A88D5F2C7D6DF5000B7431 /* iOSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
