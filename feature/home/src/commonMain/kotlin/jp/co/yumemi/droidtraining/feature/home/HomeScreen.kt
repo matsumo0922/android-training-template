@@ -1,9 +1,11 @@
 package jp.co.yumemi.droidtraining.feature.home
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.MaterialTheme
@@ -13,8 +15,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.constraintlayout.compose.Dimension
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import jp.co.yumemi.droidtraining.core.model.Area
 import jp.co.yumemi.droidtraining.core.ui.CONTAINER_MAX_WIDTH
@@ -45,53 +45,27 @@ internal fun HomeScreen(
         modifier = modifier,
         containerColor = MaterialTheme.colorScheme.surface,
     ) {
-        Box(
+        BoxWithConstraints(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center,
         ) {
-            ConstraintLayout(
+            Column(
                 modifier = Modifier
-                    .fillMaxSize()
                     .widthIn(max = CONTAINER_MAX_WIDTH)
-                    .background(MaterialTheme.colorScheme.background)
                     .padding(it),
+                verticalArrangement = Arrangement.spacedBy(if (maxHeight > maxWidth) 80.dp else 16.dp),
             ) {
-                val (weatherInfoSection, actionButtonsSection) = createRefs()
-
                 if (uiState.weather != null) {
                     MainWeatherInfoSection(
-                        modifier = Modifier.constrainAs(weatherInfoSection) {
-                            top.linkTo(parent.top)
-                            start.linkTo(parent.start)
-                            end.linkTo(parent.end)
-                            bottom.linkTo(parent.bottom)
-
-                            width = Dimension.percent(0.5f)
-                            height = Dimension.wrapContent
-                        },
+                        modifier = Modifier
+                            .fillMaxWidth(0.5f)
+                            .weight(1f, false),
                         weather = uiState.weather!!,
                     )
                 }
 
                 MainActionButtonsSection(
-                    modifier = Modifier.constrainAs(actionButtonsSection) {
-                        if (uiState.weather != null) {
-                            top.linkTo(weatherInfoSection.bottom, 80.dp)
-                            start.linkTo(weatherInfoSection.start)
-                            end.linkTo(weatherInfoSection.end)
-
-                            width = Dimension.fillToConstraints
-                            height = Dimension.wrapContent
-                        } else {
-                            top.linkTo(parent.top)
-                            bottom.linkTo(parent.bottom)
-                            start.linkTo(parent.start)
-                            end.linkTo(parent.end)
-
-                            width = Dimension.percent(0.5f)
-                            height = Dimension.wrapContent
-                        }
-                    },
+                    modifier = Modifier.fillMaxWidth(0.5f),
                     onClickReload = viewModel::reloadWeather,
                     onClickNext = {
                         uiState.weather?.area?.let(onClickNext)

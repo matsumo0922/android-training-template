@@ -29,7 +29,6 @@ androidxAppCompat = "1.7.0"
 androidxActivity = "1.9.1"
 androidxLifecycle = "2.8.4"
 androidxCompose = "2024.08.00"
-androidxComposeConstraintLayout = "0.4.0"
 androidxNavigation = "2.7.7"
 
 # Google
@@ -121,7 +120,6 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 compose-material3 = { module = "androidx.compose.material3:material3" }
 compose-material-icons = { module = "androidx.compose.material:material-icons-extended" }
-compose-constraint-layout = { module = "tech.annexflow.compose:constraintlayout-compose-multiplatform", version.ref = "androidxComposeConstraintLayout" }
 
 # Google
 material = { module = "com.google.android.material:material", version.ref = "material" }
